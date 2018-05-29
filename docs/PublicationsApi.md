@@ -4,13 +4,13 @@ All URIs are relative to *http://localhost:8000/pulp/api/v3*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**publications_delete**](PublicationsApi.md#publications_delete) | **DELETE** /publications/{id}/ | 
+[**publications_delete**](PublicationsApi.md#publications_delete) | **DELETE** {href} | 
 [**publications_list**](PublicationsApi.md#publications_list) | **GET** /publications/ | 
-[**publications_read**](PublicationsApi.md#publications_read) | **GET** /publications/{id}/ | 
+[**publications_read**](PublicationsApi.md#publications_read) | **GET** {href} | 
 
 
 # **publications_delete**
-> publications_delete(id)
+> publications_delete(href)
 
 
 
@@ -31,10 +31,10 @@ configuration.password = 'YOUR_PASSWORD'
 
 # create an instance of the API class
 api_instance = swagger_client.PublicationsApi(swagger_client.ApiClient(configuration))
-id = 'id_example' # str | A UUID string identifying this publication.
+href = 'id_example' # str | A relative URI for the resource.
 
 try:
-    api_instance.publications_delete(id)
+    api_instance.publications_delete(href)
 except ApiException as e:
     print("Exception when calling PublicationsApi->publications_delete: %s\n" % e)
 ```
@@ -43,7 +43,7 @@ except ApiException as e:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | [**str**](.md)| A UUID string identifying this publication. | 
+ **href** | [**str**](.md)| A relative URI for the resource. | 
 
 ### Return type
 
@@ -115,7 +115,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **publications_read**
-> Publication publications_read(id)
+> Publication publications_read(href)
 
 
 
@@ -136,10 +136,10 @@ configuration.password = 'YOUR_PASSWORD'
 
 # create an instance of the API class
 api_instance = swagger_client.PublicationsApi(swagger_client.ApiClient(configuration))
-id = 'id_example' # str | A UUID string identifying this publication.
+href = 'id_example' # str | A relative URI for the resource.
 
 try:
-    api_response = api_instance.publications_read(id)
+    api_response = api_instance.publications_read(href)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling PublicationsApi->publications_read: %s\n" % e)
@@ -149,7 +149,7 @@ except ApiException as e:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | [**str**](.md)| A UUID string identifying this publication. | 
+ **href** | [**str**](.md)| A relative URI for the resource. | 
 
 ### Return type
 

@@ -132,45 +132,45 @@ class RepositoriesApi(object):
             _request_timeout=params.get('_request_timeout'),
             collection_formats=collection_formats)
 
-    def repositories_delete(self, id, **kwargs):  # noqa: E501
+    def repositories_delete(self, href, **kwargs):  # noqa: E501
         """repositories_delete  # noqa: E501
 
         Generates a Task to delete a Repository  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async=True
-        >>> thread = api.repositories_delete(id, async=True)
+        >>> thread = api.repositories_delete(href, async=True)
         >>> result = thread.get()
 
         :param async bool
-        :param str id: A UUID string identifying this repository. (required)
+        :param str href: A relative URI for the resource. (required)
         :return: None
                  If the method is called asynchronously,
                  returns the request thread.
         """
         kwargs['_return_http_data_only'] = True
         if kwargs.get('async'):
-            return self.repositories_delete_with_http_info(id, **kwargs)  # noqa: E501
+            return self.repositories_delete_with_http_info(href, **kwargs)  # noqa: E501
         else:
-            (data) = self.repositories_delete_with_http_info(id, **kwargs)  # noqa: E501
+            (data) = self.repositories_delete_with_http_info(href, **kwargs)  # noqa: E501
             return data
 
-    def repositories_delete_with_http_info(self, id, **kwargs):  # noqa: E501
+    def repositories_delete_with_http_info(self, href, **kwargs):  # noqa: E501
         """repositories_delete  # noqa: E501
 
         Generates a Task to delete a Repository  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async=True
-        >>> thread = api.repositories_delete_with_http_info(id, async=True)
+        >>> thread = api.repositories_delete_with_http_info(href, async=True)
         >>> result = thread.get()
 
         :param async bool
-        :param str id: A UUID string identifying this repository. (required)
+        :param str href: A relative URI for the resource. (required)
         :return: None
                  If the method is called asynchronously,
                  returns the request thread.
         """
 
-        all_params = ['id']  # noqa: E501
+        all_params = ['href']  # noqa: E501
         all_params.append('async')
         all_params.append('_return_http_data_only')
         all_params.append('_preload_content')
@@ -185,16 +185,16 @@ class RepositoriesApi(object):
                 )
             params[key] = val
         del params['kwargs']
-        # verify the required parameter 'id' is set
-        if ('id' not in params or
-                params['id'] is None):
-            raise ValueError("Missing the required parameter `id` when calling `repositories_delete`")  # noqa: E501
+        # verify the required parameter 'href' is set
+        if ('href' not in params or
+                params['href'] is None):
+            raise ValueError("Missing the required parameter `href` when calling `repositories_delete`")  # noqa: E501
 
         collection_formats = {}
 
         path_params = {}
-        if 'id' in params:
-            path_params['id'] = params['id']  # noqa: E501
+        if 'href' in params:
+            path_params['href'] = params['href']  # noqa: E501
 
         query_params = []
 
@@ -216,7 +216,7 @@ class RepositoriesApi(object):
         auth_settings = ['basic']  # noqa: E501
 
         return self.api_client.call_api(
-            '/repositories/{id}/', 'DELETE',
+            '{href}', 'DELETE',
             path_params,
             query_params,
             header_params,
@@ -334,17 +334,17 @@ class RepositoriesApi(object):
             _request_timeout=params.get('_request_timeout'),
             collection_formats=collection_formats)
 
-    def repositories_partial_update(self, id, data, **kwargs):  # noqa: E501
+    def repositories_partial_update(self, href, data, **kwargs):  # noqa: E501
         """repositories_partial_update  # noqa: E501
 
           # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async=True
-        >>> thread = api.repositories_partial_update(id, data, async=True)
+        >>> thread = api.repositories_partial_update(href, data, async=True)
         >>> result = thread.get()
 
         :param async bool
-        :param str id: A UUID string identifying this repository. (required)
+        :param str href: A relative URI for the resource. (required)
         :param Repository data: (required)
         :return: Repository
                  If the method is called asynchronously,
@@ -352,29 +352,29 @@ class RepositoriesApi(object):
         """
         kwargs['_return_http_data_only'] = True
         if kwargs.get('async'):
-            return self.repositories_partial_update_with_http_info(id, data, **kwargs)  # noqa: E501
+            return self.repositories_partial_update_with_http_info(href, data, **kwargs)  # noqa: E501
         else:
-            (data) = self.repositories_partial_update_with_http_info(id, data, **kwargs)  # noqa: E501
+            (data) = self.repositories_partial_update_with_http_info(href, data, **kwargs)  # noqa: E501
             return data
 
-    def repositories_partial_update_with_http_info(self, id, data, **kwargs):  # noqa: E501
+    def repositories_partial_update_with_http_info(self, href, data, **kwargs):  # noqa: E501
         """repositories_partial_update  # noqa: E501
 
           # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async=True
-        >>> thread = api.repositories_partial_update_with_http_info(id, data, async=True)
+        >>> thread = api.repositories_partial_update_with_http_info(href, data, async=True)
         >>> result = thread.get()
 
         :param async bool
-        :param str id: A UUID string identifying this repository. (required)
+        :param str href: A relative URI for the resource. (required)
         :param Repository data: (required)
         :return: Repository
                  If the method is called asynchronously,
                  returns the request thread.
         """
 
-        all_params = ['id', 'data']  # noqa: E501
+        all_params = ['href', 'data']  # noqa: E501
         all_params.append('async')
         all_params.append('_return_http_data_only')
         all_params.append('_preload_content')
@@ -389,10 +389,10 @@ class RepositoriesApi(object):
                 )
             params[key] = val
         del params['kwargs']
-        # verify the required parameter 'id' is set
-        if ('id' not in params or
-                params['id'] is None):
-            raise ValueError("Missing the required parameter `id` when calling `repositories_partial_update`")  # noqa: E501
+        # verify the required parameter 'href' is set
+        if ('href' not in params or
+                params['href'] is None):
+            raise ValueError("Missing the required parameter `href` when calling `repositories_partial_update`")  # noqa: E501
         # verify the required parameter 'data' is set
         if ('data' not in params or
                 params['data'] is None):
@@ -401,8 +401,8 @@ class RepositoriesApi(object):
         collection_formats = {}
 
         path_params = {}
-        if 'id' in params:
-            path_params['id'] = params['id']  # noqa: E501
+        if 'href' in params:
+            path_params['href'] = params['href']  # noqa: E501
 
         query_params = []
 
@@ -426,7 +426,7 @@ class RepositoriesApi(object):
         auth_settings = ['basic']  # noqa: E501
 
         return self.api_client.call_api(
-            '/repositories/{id}/', 'PATCH',
+            '{href}', 'PATCH',
             path_params,
             query_params,
             header_params,
@@ -441,45 +441,45 @@ class RepositoriesApi(object):
             _request_timeout=params.get('_request_timeout'),
             collection_formats=collection_formats)
 
-    def repositories_read(self, id, **kwargs):  # noqa: E501
+    def repositories_read(self, href, **kwargs):  # noqa: E501
         """repositories_read  # noqa: E501
 
           # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async=True
-        >>> thread = api.repositories_read(id, async=True)
+        >>> thread = api.repositories_read(href, async=True)
         >>> result = thread.get()
 
         :param async bool
-        :param str id: A UUID string identifying this repository. (required)
+        :param str href: A relative URI for the resource. (required)
         :return: Repository
                  If the method is called asynchronously,
                  returns the request thread.
         """
         kwargs['_return_http_data_only'] = True
         if kwargs.get('async'):
-            return self.repositories_read_with_http_info(id, **kwargs)  # noqa: E501
+            return self.repositories_read_with_http_info(href, **kwargs)  # noqa: E501
         else:
-            (data) = self.repositories_read_with_http_info(id, **kwargs)  # noqa: E501
+            (data) = self.repositories_read_with_http_info(href, **kwargs)  # noqa: E501
             return data
 
-    def repositories_read_with_http_info(self, id, **kwargs):  # noqa: E501
+    def repositories_read_with_http_info(self, href, **kwargs):  # noqa: E501
         """repositories_read  # noqa: E501
 
           # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async=True
-        >>> thread = api.repositories_read_with_http_info(id, async=True)
+        >>> thread = api.repositories_read_with_http_info(href, async=True)
         >>> result = thread.get()
 
         :param async bool
-        :param str id: A UUID string identifying this repository. (required)
+        :param str href: A relative URI for the resource. (required)
         :return: Repository
                  If the method is called asynchronously,
                  returns the request thread.
         """
 
-        all_params = ['id']  # noqa: E501
+        all_params = ['href']  # noqa: E501
         all_params.append('async')
         all_params.append('_return_http_data_only')
         all_params.append('_preload_content')
@@ -494,16 +494,16 @@ class RepositoriesApi(object):
                 )
             params[key] = val
         del params['kwargs']
-        # verify the required parameter 'id' is set
-        if ('id' not in params or
-                params['id'] is None):
-            raise ValueError("Missing the required parameter `id` when calling `repositories_read`")  # noqa: E501
+        # verify the required parameter 'href' is set
+        if ('href' not in params or
+                params['href'] is None):
+            raise ValueError("Missing the required parameter `href` when calling `repositories_read`")  # noqa: E501
 
         collection_formats = {}
 
         path_params = {}
-        if 'id' in params:
-            path_params['id'] = params['id']  # noqa: E501
+        if 'href' in params:
+            path_params['href'] = params['href']  # noqa: E501
 
         query_params = []
 
@@ -525,7 +525,7 @@ class RepositoriesApi(object):
         auth_settings = ['basic']  # noqa: E501
 
         return self.api_client.call_api(
-            '/repositories/{id}/', 'GET',
+            '{href}', 'GET',
             path_params,
             query_params,
             header_params,
@@ -540,17 +540,17 @@ class RepositoriesApi(object):
             _request_timeout=params.get('_request_timeout'),
             collection_formats=collection_formats)
 
-    def repositories_update(self, id, data, **kwargs):  # noqa: E501
+    def repositories_update(self, href, data, **kwargs):  # noqa: E501
         """repositories_update  # noqa: E501
 
         Generates a Task to update a Repository  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async=True
-        >>> thread = api.repositories_update(id, data, async=True)
+        >>> thread = api.repositories_update(href, data, async=True)
         >>> result = thread.get()
 
         :param async bool
-        :param str id: A UUID string identifying this repository. (required)
+        :param str href: A relative URI for the resource. (required)
         :param Repository data: (required)
         :return: Repository
                  If the method is called asynchronously,
@@ -558,29 +558,29 @@ class RepositoriesApi(object):
         """
         kwargs['_return_http_data_only'] = True
         if kwargs.get('async'):
-            return self.repositories_update_with_http_info(id, data, **kwargs)  # noqa: E501
+            return self.repositories_update_with_http_info(href, data, **kwargs)  # noqa: E501
         else:
-            (data) = self.repositories_update_with_http_info(id, data, **kwargs)  # noqa: E501
+            (data) = self.repositories_update_with_http_info(href, data, **kwargs)  # noqa: E501
             return data
 
-    def repositories_update_with_http_info(self, id, data, **kwargs):  # noqa: E501
+    def repositories_update_with_http_info(self, href, data, **kwargs):  # noqa: E501
         """repositories_update  # noqa: E501
 
         Generates a Task to update a Repository  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async=True
-        >>> thread = api.repositories_update_with_http_info(id, data, async=True)
+        >>> thread = api.repositories_update_with_http_info(href, data, async=True)
         >>> result = thread.get()
 
         :param async bool
-        :param str id: A UUID string identifying this repository. (required)
+        :param str href: A relative URI for the resource. (required)
         :param Repository data: (required)
         :return: Repository
                  If the method is called asynchronously,
                  returns the request thread.
         """
 
-        all_params = ['id', 'data']  # noqa: E501
+        all_params = ['href', 'data']  # noqa: E501
         all_params.append('async')
         all_params.append('_return_http_data_only')
         all_params.append('_preload_content')
@@ -595,10 +595,10 @@ class RepositoriesApi(object):
                 )
             params[key] = val
         del params['kwargs']
-        # verify the required parameter 'id' is set
-        if ('id' not in params or
-                params['id'] is None):
-            raise ValueError("Missing the required parameter `id` when calling `repositories_update`")  # noqa: E501
+        # verify the required parameter 'href' is set
+        if ('href' not in params or
+                params['href'] is None):
+            raise ValueError("Missing the required parameter `href` when calling `repositories_update`")  # noqa: E501
         # verify the required parameter 'data' is set
         if ('data' not in params or
                 params['data'] is None):
@@ -607,8 +607,8 @@ class RepositoriesApi(object):
         collection_formats = {}
 
         path_params = {}
-        if 'id' in params:
-            path_params['id'] = params['id']  # noqa: E501
+        if 'href' in params:
+            path_params['href'] = params['href']  # noqa: E501
 
         query_params = []
 
@@ -632,7 +632,7 @@ class RepositoriesApi(object):
         auth_settings = ['basic']  # noqa: E501
 
         return self.api_client.call_api(
-            '/repositories/{id}/', 'PUT',
+            '{href}', 'PUT',
             path_params,
             query_params,
             header_params,
@@ -647,47 +647,45 @@ class RepositoriesApi(object):
             _request_timeout=params.get('_request_timeout'),
             collection_formats=collection_formats)
 
-    def repositories_versions_added_content(self, repository_pk, number, **kwargs):  # noqa: E501
+    def repositories_versions_added_content(self, href, **kwargs):  # noqa: E501
         """repositories_versions_added_content  # noqa: E501
 
         Display content added since the previous Repository Version.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async=True
-        >>> thread = api.repositories_versions_added_content(repository_pk, number, async=True)
+        >>> thread = api.repositories_versions_added_content(href, async=True)
         >>> result = thread.get()
 
         :param async bool
-        :param str repository_pk: (required)
-        :param int number: (required)
+        :param str href: A relative URI for the resource. (required)
         :return: RepositoryVersion
                  If the method is called asynchronously,
                  returns the request thread.
         """
         kwargs['_return_http_data_only'] = True
         if kwargs.get('async'):
-            return self.repositories_versions_added_content_with_http_info(repository_pk, number, **kwargs)  # noqa: E501
+            return self.repositories_versions_added_content_with_http_info(href, **kwargs)  # noqa: E501
         else:
-            (data) = self.repositories_versions_added_content_with_http_info(repository_pk, number, **kwargs)  # noqa: E501
+            (data) = self.repositories_versions_added_content_with_http_info(href, **kwargs)  # noqa: E501
             return data
 
-    def repositories_versions_added_content_with_http_info(self, repository_pk, number, **kwargs):  # noqa: E501
+    def repositories_versions_added_content_with_http_info(self, href, **kwargs):  # noqa: E501
         """repositories_versions_added_content  # noqa: E501
 
         Display content added since the previous Repository Version.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async=True
-        >>> thread = api.repositories_versions_added_content_with_http_info(repository_pk, number, async=True)
+        >>> thread = api.repositories_versions_added_content_with_http_info(href, async=True)
         >>> result = thread.get()
 
         :param async bool
-        :param str repository_pk: (required)
-        :param int number: (required)
+        :param str href: A relative URI for the resource. (required)
         :return: RepositoryVersion
                  If the method is called asynchronously,
                  returns the request thread.
         """
 
-        all_params = ['repository_pk', 'number']  # noqa: E501
+        all_params = ['href']  # noqa: E501
         all_params.append('async')
         all_params.append('_return_http_data_only')
         all_params.append('_preload_content')
@@ -702,22 +700,16 @@ class RepositoriesApi(object):
                 )
             params[key] = val
         del params['kwargs']
-        # verify the required parameter 'repository_pk' is set
-        if ('repository_pk' not in params or
-                params['repository_pk'] is None):
-            raise ValueError("Missing the required parameter `repository_pk` when calling `repositories_versions_added_content`")  # noqa: E501
-        # verify the required parameter 'number' is set
-        if ('number' not in params or
-                params['number'] is None):
-            raise ValueError("Missing the required parameter `number` when calling `repositories_versions_added_content`")  # noqa: E501
+        # verify the required parameter 'href' is set
+        if ('href' not in params or
+                params['href'] is None):
+            raise ValueError("Missing the required parameter `href` when calling `repositories_versions_added_content`")  # noqa: E501
 
         collection_formats = {}
 
         path_params = {}
-        if 'repository_pk' in params:
-            path_params['repository_pk'] = params['repository_pk']  # noqa: E501
-        if 'number' in params:
-            path_params['number'] = params['number']  # noqa: E501
+        if 'href' in params:
+            path_params['href'] = params['href']  # noqa: E501
 
         query_params = []
 
@@ -739,7 +731,7 @@ class RepositoriesApi(object):
         auth_settings = ['basic']  # noqa: E501
 
         return self.api_client.call_api(
-            '/repositories/{repository_pk}/versions/{number}/added_content/', 'GET',
+            '{href}', 'GET',
             path_params,
             query_params,
             header_params,
@@ -754,47 +746,45 @@ class RepositoriesApi(object):
             _request_timeout=params.get('_request_timeout'),
             collection_formats=collection_formats)
 
-    def repositories_versions_content(self, repository_pk, number, **kwargs):  # noqa: E501
+    def repositories_versions_content(self, href, **kwargs):  # noqa: E501
         """repositories_versions_content  # noqa: E501
 
           # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async=True
-        >>> thread = api.repositories_versions_content(repository_pk, number, async=True)
+        >>> thread = api.repositories_versions_content(href, async=True)
         >>> result = thread.get()
 
         :param async bool
-        :param str repository_pk: (required)
-        :param int number: (required)
+        :param str href: A relative URI for the resource. (required)
         :return: RepositoryVersion
                  If the method is called asynchronously,
                  returns the request thread.
         """
         kwargs['_return_http_data_only'] = True
         if kwargs.get('async'):
-            return self.repositories_versions_content_with_http_info(repository_pk, number, **kwargs)  # noqa: E501
+            return self.repositories_versions_content_with_http_info(href, **kwargs)  # noqa: E501
         else:
-            (data) = self.repositories_versions_content_with_http_info(repository_pk, number, **kwargs)  # noqa: E501
+            (data) = self.repositories_versions_content_with_http_info(href, **kwargs)  # noqa: E501
             return data
 
-    def repositories_versions_content_with_http_info(self, repository_pk, number, **kwargs):  # noqa: E501
+    def repositories_versions_content_with_http_info(self, href, **kwargs):  # noqa: E501
         """repositories_versions_content  # noqa: E501
 
           # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async=True
-        >>> thread = api.repositories_versions_content_with_http_info(repository_pk, number, async=True)
+        >>> thread = api.repositories_versions_content_with_http_info(href, async=True)
         >>> result = thread.get()
 
         :param async bool
-        :param str repository_pk: (required)
-        :param int number: (required)
+        :param str href: A relative URI for the resource. (required)
         :return: RepositoryVersion
                  If the method is called asynchronously,
                  returns the request thread.
         """
 
-        all_params = ['repository_pk', 'number']  # noqa: E501
+        all_params = ['href']  # noqa: E501
         all_params.append('async')
         all_params.append('_return_http_data_only')
         all_params.append('_preload_content')
@@ -809,22 +799,16 @@ class RepositoriesApi(object):
                 )
             params[key] = val
         del params['kwargs']
-        # verify the required parameter 'repository_pk' is set
-        if ('repository_pk' not in params or
-                params['repository_pk'] is None):
-            raise ValueError("Missing the required parameter `repository_pk` when calling `repositories_versions_content`")  # noqa: E501
-        # verify the required parameter 'number' is set
-        if ('number' not in params or
-                params['number'] is None):
-            raise ValueError("Missing the required parameter `number` when calling `repositories_versions_content`")  # noqa: E501
+        # verify the required parameter 'href' is set
+        if ('href' not in params or
+                params['href'] is None):
+            raise ValueError("Missing the required parameter `href` when calling `repositories_versions_content`")  # noqa: E501
 
         collection_formats = {}
 
         path_params = {}
-        if 'repository_pk' in params:
-            path_params['repository_pk'] = params['repository_pk']  # noqa: E501
-        if 'number' in params:
-            path_params['number'] = params['number']  # noqa: E501
+        if 'href' in params:
+            path_params['href'] = params['href']  # noqa: E501
 
         query_params = []
 
@@ -846,7 +830,7 @@ class RepositoriesApi(object):
         auth_settings = ['basic']  # noqa: E501
 
         return self.api_client.call_api(
-            '/repositories/{repository_pk}/versions/{number}/content/', 'GET',
+            '{href}', 'GET',
             path_params,
             query_params,
             header_params,
@@ -861,17 +845,17 @@ class RepositoriesApi(object):
             _request_timeout=params.get('_request_timeout'),
             collection_formats=collection_formats)
 
-    def repositories_versions_create(self, repository_pk, data, **kwargs):  # noqa: E501
+    def repositories_versions_create(self, href, data, **kwargs):  # noqa: E501
         """repositories_versions_create  # noqa: E501
 
         Queues a task that creates a new RepositoryVersion by adding and removing content units  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async=True
-        >>> thread = api.repositories_versions_create(repository_pk, data, async=True)
+        >>> thread = api.repositories_versions_create(href, data, async=True)
         >>> result = thread.get()
 
         :param async bool
-        :param str repository_pk: (required)
+        :param str href: A relative URI for the resource. (required)
         :param RepositoryVersion data: (required)
         :return: RepositoryVersion
                  If the method is called asynchronously,
@@ -879,29 +863,29 @@ class RepositoriesApi(object):
         """
         kwargs['_return_http_data_only'] = True
         if kwargs.get('async'):
-            return self.repositories_versions_create_with_http_info(repository_pk, data, **kwargs)  # noqa: E501
+            return self.repositories_versions_create_with_http_info(href, data, **kwargs)  # noqa: E501
         else:
-            (data) = self.repositories_versions_create_with_http_info(repository_pk, data, **kwargs)  # noqa: E501
+            (data) = self.repositories_versions_create_with_http_info(href, data, **kwargs)  # noqa: E501
             return data
 
-    def repositories_versions_create_with_http_info(self, repository_pk, data, **kwargs):  # noqa: E501
+    def repositories_versions_create_with_http_info(self, href, data, **kwargs):  # noqa: E501
         """repositories_versions_create  # noqa: E501
 
         Queues a task that creates a new RepositoryVersion by adding and removing content units  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async=True
-        >>> thread = api.repositories_versions_create_with_http_info(repository_pk, data, async=True)
+        >>> thread = api.repositories_versions_create_with_http_info(href, data, async=True)
         >>> result = thread.get()
 
         :param async bool
-        :param str repository_pk: (required)
+        :param str href: A relative URI for the resource. (required)
         :param RepositoryVersion data: (required)
         :return: RepositoryVersion
                  If the method is called asynchronously,
                  returns the request thread.
         """
 
-        all_params = ['repository_pk', 'data']  # noqa: E501
+        all_params = ['href', 'data']  # noqa: E501
         all_params.append('async')
         all_params.append('_return_http_data_only')
         all_params.append('_preload_content')
@@ -916,10 +900,10 @@ class RepositoriesApi(object):
                 )
             params[key] = val
         del params['kwargs']
-        # verify the required parameter 'repository_pk' is set
-        if ('repository_pk' not in params or
-                params['repository_pk'] is None):
-            raise ValueError("Missing the required parameter `repository_pk` when calling `repositories_versions_create`")  # noqa: E501
+        # verify the required parameter 'href' is set
+        if ('href' not in params or
+                params['href'] is None):
+            raise ValueError("Missing the required parameter `href` when calling `repositories_versions_create`")  # noqa: E501
         # verify the required parameter 'data' is set
         if ('data' not in params or
                 params['data'] is None):
@@ -928,8 +912,8 @@ class RepositoriesApi(object):
         collection_formats = {}
 
         path_params = {}
-        if 'repository_pk' in params:
-            path_params['repository_pk'] = params['repository_pk']  # noqa: E501
+        if 'href' in params:
+            path_params['href'] = params['href']  # noqa: E501
 
         query_params = []
 
@@ -953,7 +937,7 @@ class RepositoriesApi(object):
         auth_settings = ['basic']  # noqa: E501
 
         return self.api_client.call_api(
-            '/repositories/{repository_pk}/versions/', 'POST',
+            '{href}', 'POST',
             path_params,
             query_params,
             header_params,
@@ -968,47 +952,45 @@ class RepositoriesApi(object):
             _request_timeout=params.get('_request_timeout'),
             collection_formats=collection_formats)
 
-    def repositories_versions_delete(self, repository_pk, number, **kwargs):  # noqa: E501
+    def repositories_versions_delete(self, href, **kwargs):  # noqa: E501
         """repositories_versions_delete  # noqa: E501
 
         Queues a task to handle deletion of a RepositoryVersion  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async=True
-        >>> thread = api.repositories_versions_delete(repository_pk, number, async=True)
+        >>> thread = api.repositories_versions_delete(href, async=True)
         >>> result = thread.get()
 
         :param async bool
-        :param str repository_pk: (required)
-        :param int number: (required)
+        :param str href: A relative URI for the resource. (required)
         :return: None
                  If the method is called asynchronously,
                  returns the request thread.
         """
         kwargs['_return_http_data_only'] = True
         if kwargs.get('async'):
-            return self.repositories_versions_delete_with_http_info(repository_pk, number, **kwargs)  # noqa: E501
+            return self.repositories_versions_delete_with_http_info(href, **kwargs)  # noqa: E501
         else:
-            (data) = self.repositories_versions_delete_with_http_info(repository_pk, number, **kwargs)  # noqa: E501
+            (data) = self.repositories_versions_delete_with_http_info(href, **kwargs)  # noqa: E501
             return data
 
-    def repositories_versions_delete_with_http_info(self, repository_pk, number, **kwargs):  # noqa: E501
+    def repositories_versions_delete_with_http_info(self, href, **kwargs):  # noqa: E501
         """repositories_versions_delete  # noqa: E501
 
         Queues a task to handle deletion of a RepositoryVersion  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async=True
-        >>> thread = api.repositories_versions_delete_with_http_info(repository_pk, number, async=True)
+        >>> thread = api.repositories_versions_delete_with_http_info(href, async=True)
         >>> result = thread.get()
 
         :param async bool
-        :param str repository_pk: (required)
-        :param int number: (required)
+        :param str href: A relative URI for the resource. (required)
         :return: None
                  If the method is called asynchronously,
                  returns the request thread.
         """
 
-        all_params = ['repository_pk', 'number']  # noqa: E501
+        all_params = ['href']  # noqa: E501
         all_params.append('async')
         all_params.append('_return_http_data_only')
         all_params.append('_preload_content')
@@ -1023,22 +1005,16 @@ class RepositoriesApi(object):
                 )
             params[key] = val
         del params['kwargs']
-        # verify the required parameter 'repository_pk' is set
-        if ('repository_pk' not in params or
-                params['repository_pk'] is None):
-            raise ValueError("Missing the required parameter `repository_pk` when calling `repositories_versions_delete`")  # noqa: E501
-        # verify the required parameter 'number' is set
-        if ('number' not in params or
-                params['number'] is None):
-            raise ValueError("Missing the required parameter `number` when calling `repositories_versions_delete`")  # noqa: E501
+        # verify the required parameter 'href' is set
+        if ('href' not in params or
+                params['href'] is None):
+            raise ValueError("Missing the required parameter `href` when calling `repositories_versions_delete`")  # noqa: E501
 
         collection_formats = {}
 
         path_params = {}
-        if 'repository_pk' in params:
-            path_params['repository_pk'] = params['repository_pk']  # noqa: E501
-        if 'number' in params:
-            path_params['number'] = params['number']  # noqa: E501
+        if 'href' in params:
+            path_params['href'] = params['href']  # noqa: E501
 
         query_params = []
 
@@ -1060,7 +1036,7 @@ class RepositoriesApi(object):
         auth_settings = ['basic']  # noqa: E501
 
         return self.api_client.call_api(
-            '/repositories/{repository_pk}/versions/{number}/', 'DELETE',
+            '{href}', 'DELETE',
             path_params,
             query_params,
             header_params,
@@ -1075,17 +1051,17 @@ class RepositoriesApi(object):
             _request_timeout=params.get('_request_timeout'),
             collection_formats=collection_formats)
 
-    def repositories_versions_list(self, repository_pk, **kwargs):  # noqa: E501
+    def repositories_versions_list(self, href, **kwargs):  # noqa: E501
         """repositories_versions_list  # noqa: E501
 
           # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async=True
-        >>> thread = api.repositories_versions_list(repository_pk, async=True)
+        >>> thread = api.repositories_versions_list(href, async=True)
         >>> result = thread.get()
 
         :param async bool
-        :param str repository_pk: (required)
+        :param str href: A relative URI for the resource. (required)
         :param str ordering: Which field to use when ordering the results.
         :param float number: 
         :param float number__lt: 
@@ -1107,22 +1083,22 @@ class RepositoriesApi(object):
         """
         kwargs['_return_http_data_only'] = True
         if kwargs.get('async'):
-            return self.repositories_versions_list_with_http_info(repository_pk, **kwargs)  # noqa: E501
+            return self.repositories_versions_list_with_http_info(href, **kwargs)  # noqa: E501
         else:
-            (data) = self.repositories_versions_list_with_http_info(repository_pk, **kwargs)  # noqa: E501
+            (data) = self.repositories_versions_list_with_http_info(href, **kwargs)  # noqa: E501
             return data
 
-    def repositories_versions_list_with_http_info(self, repository_pk, **kwargs):  # noqa: E501
+    def repositories_versions_list_with_http_info(self, href, **kwargs):  # noqa: E501
         """repositories_versions_list  # noqa: E501
 
           # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async=True
-        >>> thread = api.repositories_versions_list_with_http_info(repository_pk, async=True)
+        >>> thread = api.repositories_versions_list_with_http_info(href, async=True)
         >>> result = thread.get()
 
         :param async bool
-        :param str repository_pk: (required)
+        :param str href: A relative URI for the resource. (required)
         :param str ordering: Which field to use when ordering the results.
         :param float number: 
         :param float number__lt: 
@@ -1143,7 +1119,7 @@ class RepositoriesApi(object):
                  returns the request thread.
         """
 
-        all_params = ['repository_pk', 'ordering', 'number', 'number__lt', 'number__lte', 'number__gt', 'number__gte', 'number__range', 'created__lt', 'created__lte', 'created__gt', 'created__gte', 'created__range', 'content', 'created', 'cursor']  # noqa: E501
+        all_params = ['href', 'ordering', 'number', 'number__lt', 'number__lte', 'number__gt', 'number__gte', 'number__range', 'created__lt', 'created__lte', 'created__gt', 'created__gte', 'created__range', 'content', 'created', 'cursor']  # noqa: E501
         all_params.append('async')
         all_params.append('_return_http_data_only')
         all_params.append('_preload_content')
@@ -1158,16 +1134,16 @@ class RepositoriesApi(object):
                 )
             params[key] = val
         del params['kwargs']
-        # verify the required parameter 'repository_pk' is set
-        if ('repository_pk' not in params or
-                params['repository_pk'] is None):
-            raise ValueError("Missing the required parameter `repository_pk` when calling `repositories_versions_list`")  # noqa: E501
+        # verify the required parameter 'href' is set
+        if ('href' not in params or
+                params['href'] is None):
+            raise ValueError("Missing the required parameter `href` when calling `repositories_versions_list`")  # noqa: E501
 
         collection_formats = {}
 
         path_params = {}
-        if 'repository_pk' in params:
-            path_params['repository_pk'] = params['repository_pk']  # noqa: E501
+        if 'href' in params:
+            path_params['href'] = params['href']  # noqa: E501
 
         query_params = []
         if 'ordering' in params:
@@ -1219,7 +1195,7 @@ class RepositoriesApi(object):
         auth_settings = ['basic']  # noqa: E501
 
         return self.api_client.call_api(
-            '/repositories/{repository_pk}/versions/', 'GET',
+            '{href}', 'GET',
             path_params,
             query_params,
             header_params,
@@ -1234,47 +1210,45 @@ class RepositoriesApi(object):
             _request_timeout=params.get('_request_timeout'),
             collection_formats=collection_formats)
 
-    def repositories_versions_read(self, repository_pk, number, **kwargs):  # noqa: E501
+    def repositories_versions_read(self, href, **kwargs):  # noqa: E501
         """repositories_versions_read  # noqa: E501
 
           # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async=True
-        >>> thread = api.repositories_versions_read(repository_pk, number, async=True)
+        >>> thread = api.repositories_versions_read(href, async=True)
         >>> result = thread.get()
 
         :param async bool
-        :param str repository_pk: (required)
-        :param int number: (required)
+        :param str href: A relative URI for the resource. (required)
         :return: RepositoryVersion
                  If the method is called asynchronously,
                  returns the request thread.
         """
         kwargs['_return_http_data_only'] = True
         if kwargs.get('async'):
-            return self.repositories_versions_read_with_http_info(repository_pk, number, **kwargs)  # noqa: E501
+            return self.repositories_versions_read_with_http_info(href, **kwargs)  # noqa: E501
         else:
-            (data) = self.repositories_versions_read_with_http_info(repository_pk, number, **kwargs)  # noqa: E501
+            (data) = self.repositories_versions_read_with_http_info(href, **kwargs)  # noqa: E501
             return data
 
-    def repositories_versions_read_with_http_info(self, repository_pk, number, **kwargs):  # noqa: E501
+    def repositories_versions_read_with_http_info(self, href, **kwargs):  # noqa: E501
         """repositories_versions_read  # noqa: E501
 
           # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async=True
-        >>> thread = api.repositories_versions_read_with_http_info(repository_pk, number, async=True)
+        >>> thread = api.repositories_versions_read_with_http_info(href, async=True)
         >>> result = thread.get()
 
         :param async bool
-        :param str repository_pk: (required)
-        :param int number: (required)
+        :param str href: A relative URI for the resource. (required)
         :return: RepositoryVersion
                  If the method is called asynchronously,
                  returns the request thread.
         """
 
-        all_params = ['repository_pk', 'number']  # noqa: E501
+        all_params = ['href']  # noqa: E501
         all_params.append('async')
         all_params.append('_return_http_data_only')
         all_params.append('_preload_content')
@@ -1289,22 +1263,16 @@ class RepositoriesApi(object):
                 )
             params[key] = val
         del params['kwargs']
-        # verify the required parameter 'repository_pk' is set
-        if ('repository_pk' not in params or
-                params['repository_pk'] is None):
-            raise ValueError("Missing the required parameter `repository_pk` when calling `repositories_versions_read`")  # noqa: E501
-        # verify the required parameter 'number' is set
-        if ('number' not in params or
-                params['number'] is None):
-            raise ValueError("Missing the required parameter `number` when calling `repositories_versions_read`")  # noqa: E501
+        # verify the required parameter 'href' is set
+        if ('href' not in params or
+                params['href'] is None):
+            raise ValueError("Missing the required parameter `href` when calling `repositories_versions_read`")  # noqa: E501
 
         collection_formats = {}
 
         path_params = {}
-        if 'repository_pk' in params:
-            path_params['repository_pk'] = params['repository_pk']  # noqa: E501
-        if 'number' in params:
-            path_params['number'] = params['number']  # noqa: E501
+        if 'href' in params:
+            path_params['href'] = params['href']  # noqa: E501
 
         query_params = []
 
@@ -1326,7 +1294,7 @@ class RepositoriesApi(object):
         auth_settings = ['basic']  # noqa: E501
 
         return self.api_client.call_api(
-            '/repositories/{repository_pk}/versions/{number}/', 'GET',
+            '{href}', 'GET',
             path_params,
             query_params,
             header_params,
@@ -1341,47 +1309,45 @@ class RepositoriesApi(object):
             _request_timeout=params.get('_request_timeout'),
             collection_formats=collection_formats)
 
-    def repositories_versions_removed_content(self, repository_pk, number, **kwargs):  # noqa: E501
+    def repositories_versions_removed_content(self, href, **kwargs):  # noqa: E501
         """repositories_versions_removed_content  # noqa: E501
 
         Display content removed since the previous Repository Version.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async=True
-        >>> thread = api.repositories_versions_removed_content(repository_pk, number, async=True)
+        >>> thread = api.repositories_versions_removed_content(href, async=True)
         >>> result = thread.get()
 
         :param async bool
-        :param str repository_pk: (required)
-        :param int number: (required)
+        :param str href: A relative URI for the resource. (required)
         :return: RepositoryVersion
                  If the method is called asynchronously,
                  returns the request thread.
         """
         kwargs['_return_http_data_only'] = True
         if kwargs.get('async'):
-            return self.repositories_versions_removed_content_with_http_info(repository_pk, number, **kwargs)  # noqa: E501
+            return self.repositories_versions_removed_content_with_http_info(href, **kwargs)  # noqa: E501
         else:
-            (data) = self.repositories_versions_removed_content_with_http_info(repository_pk, number, **kwargs)  # noqa: E501
+            (data) = self.repositories_versions_removed_content_with_http_info(href, **kwargs)  # noqa: E501
             return data
 
-    def repositories_versions_removed_content_with_http_info(self, repository_pk, number, **kwargs):  # noqa: E501
+    def repositories_versions_removed_content_with_http_info(self, href, **kwargs):  # noqa: E501
         """repositories_versions_removed_content  # noqa: E501
 
         Display content removed since the previous Repository Version.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async=True
-        >>> thread = api.repositories_versions_removed_content_with_http_info(repository_pk, number, async=True)
+        >>> thread = api.repositories_versions_removed_content_with_http_info(href, async=True)
         >>> result = thread.get()
 
         :param async bool
-        :param str repository_pk: (required)
-        :param int number: (required)
+        :param str href: A relative URI for the resource. (required)
         :return: RepositoryVersion
                  If the method is called asynchronously,
                  returns the request thread.
         """
 
-        all_params = ['repository_pk', 'number']  # noqa: E501
+        all_params = ['href']  # noqa: E501
         all_params.append('async')
         all_params.append('_return_http_data_only')
         all_params.append('_preload_content')
@@ -1396,22 +1362,16 @@ class RepositoriesApi(object):
                 )
             params[key] = val
         del params['kwargs']
-        # verify the required parameter 'repository_pk' is set
-        if ('repository_pk' not in params or
-                params['repository_pk'] is None):
-            raise ValueError("Missing the required parameter `repository_pk` when calling `repositories_versions_removed_content`")  # noqa: E501
-        # verify the required parameter 'number' is set
-        if ('number' not in params or
-                params['number'] is None):
-            raise ValueError("Missing the required parameter `number` when calling `repositories_versions_removed_content`")  # noqa: E501
+        # verify the required parameter 'href' is set
+        if ('href' not in params or
+                params['href'] is None):
+            raise ValueError("Missing the required parameter `href` when calling `repositories_versions_removed_content`")  # noqa: E501
 
         collection_formats = {}
 
         path_params = {}
-        if 'repository_pk' in params:
-            path_params['repository_pk'] = params['repository_pk']  # noqa: E501
-        if 'number' in params:
-            path_params['number'] = params['number']  # noqa: E501
+        if 'href' in params:
+            path_params['href'] = params['href']  # noqa: E501
 
         query_params = []
 
@@ -1433,7 +1393,7 @@ class RepositoriesApi(object):
         auth_settings = ['basic']  # noqa: E501
 
         return self.api_client.call_api(
-            '/repositories/{repository_pk}/versions/{number}/removed_content/', 'GET',
+            '{href}', 'GET',
             path_params,
             query_params,
             header_params,

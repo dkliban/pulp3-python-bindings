@@ -6,7 +6,7 @@ Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**content_file_create**](ContentApi.md#content_file_create) | **POST** /content/file/ | 
 [**content_file_list**](ContentApi.md#content_file_list) | **GET** /content/file/ | 
-[**content_file_read**](ContentApi.md#content_file_read) | **GET** /content/file/{id}/ | 
+[**content_file_read**](ContentApi.md#content_file_read) | **GET** {href} | 
 
 
 # **content_file_create**
@@ -118,7 +118,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **content_file_read**
-> FileContent content_file_read(id)
+> FileContent content_file_read(href)
 
 
 
@@ -139,10 +139,10 @@ configuration.password = 'YOUR_PASSWORD'
 
 # create an instance of the API class
 api_instance = swagger_client.ContentApi(swagger_client.ApiClient(configuration))
-id = 'id_example' # str | A UUID string identifying this file content.
+href = 'id_example' # str | A relative URI for the resource.
 
 try:
-    api_response = api_instance.content_file_read(id)
+    api_response = api_instance.content_file_read(href)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling ContentApi->content_file_read: %s\n" % e)
@@ -152,7 +152,7 @@ except ApiException as e:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | [**str**](.md)| A UUID string identifying this file content. | 
+ **href** | [**str**](.md)| A relative URI for the resource. | 
 
 ### Return type
 

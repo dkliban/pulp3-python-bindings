@@ -4,14 +4,14 @@ All URIs are relative to *http://localhost:8000/pulp/api/v3*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**tasks_cancel**](TasksApi.md#tasks_cancel) | **POST** /tasks/{id}/cancel/ | 
-[**tasks_delete**](TasksApi.md#tasks_delete) | **DELETE** /tasks/{id}/ | 
+[**tasks_cancel**](TasksApi.md#tasks_cancel) | **POST** {href} | 
+[**tasks_delete**](TasksApi.md#tasks_delete) | **DELETE** {href} | 
 [**tasks_list**](TasksApi.md#tasks_list) | **GET** /tasks/ | 
-[**tasks_read**](TasksApi.md#tasks_read) | **GET** /tasks/{id}/ | 
+[**tasks_read**](TasksApi.md#tasks_read) | **GET** {href} | 
 
 
 # **tasks_cancel**
-> Task tasks_cancel(id, data)
+> Task tasks_cancel(href, data)
 
 
 
@@ -32,11 +32,11 @@ configuration.password = 'YOUR_PASSWORD'
 
 # create an instance of the API class
 api_instance = swagger_client.TasksApi(swagger_client.ApiClient(configuration))
-id = 'id_example' # str | A UUID string identifying this task.
+href = 'id_example' # str | A relative URI for the resource.
 data = swagger_client.Task() # Task | 
 
 try:
-    api_response = api_instance.tasks_cancel(id, data)
+    api_response = api_instance.tasks_cancel(href, data)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling TasksApi->tasks_cancel: %s\n" % e)
@@ -46,7 +46,7 @@ except ApiException as e:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | [**str**](.md)| A UUID string identifying this task. | 
+ **href** | [**str**](.md)| A relative URI for the resource. | 
  **data** | [**Task**](Task.md)|  | 
 
 ### Return type
@@ -65,7 +65,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **tasks_delete**
-> tasks_delete(id)
+> tasks_delete(href)
 
 
 
@@ -86,10 +86,10 @@ configuration.password = 'YOUR_PASSWORD'
 
 # create an instance of the API class
 api_instance = swagger_client.TasksApi(swagger_client.ApiClient(configuration))
-id = 'id_example' # str | A UUID string identifying this task.
+href = 'id_example' # str | A relative URI for the resource.
 
 try:
-    api_instance.tasks_delete(id)
+    api_instance.tasks_delete(href)
 except ApiException as e:
     print("Exception when calling TasksApi->tasks_delete: %s\n" % e)
 ```
@@ -98,7 +98,7 @@ except ApiException as e:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | [**str**](.md)| A UUID string identifying this task. | 
+ **href** | [**str**](.md)| A relative URI for the resource. | 
 
 ### Return type
 
@@ -204,7 +204,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **tasks_read**
-> Task tasks_read(id)
+> Task tasks_read(href)
 
 
 
@@ -225,10 +225,10 @@ configuration.password = 'YOUR_PASSWORD'
 
 # create an instance of the API class
 api_instance = swagger_client.TasksApi(swagger_client.ApiClient(configuration))
-id = 'id_example' # str | A UUID string identifying this task.
+href = 'id_example' # str | A relative URI for the resource.
 
 try:
-    api_response = api_instance.tasks_read(id)
+    api_response = api_instance.tasks_read(href)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling TasksApi->tasks_read: %s\n" % e)
@@ -238,7 +238,7 @@ except ApiException as e:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | [**str**](.md)| A UUID string identifying this task. | 
+ **href** | [**str**](.md)| A relative URI for the resource. | 
 
 ### Return type
 

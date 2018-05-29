@@ -5,12 +5,12 @@ All URIs are relative to *http://localhost:8000/pulp/api/v3*
 Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**publishers_file_create**](PublishersApi.md#publishers_file_create) | **POST** /publishers/file/ | 
-[**publishers_file_delete**](PublishersApi.md#publishers_file_delete) | **DELETE** /publishers/file/{id}/ | 
+[**publishers_file_delete**](PublishersApi.md#publishers_file_delete) | **DELETE** {href} | 
 [**publishers_file_list**](PublishersApi.md#publishers_file_list) | **GET** /publishers/file/ | 
-[**publishers_file_partial_update**](PublishersApi.md#publishers_file_partial_update) | **PATCH** /publishers/file/{id}/ | 
-[**publishers_file_publish**](PublishersApi.md#publishers_file_publish) | **POST** /publishers/file/{id}/publish/ | 
-[**publishers_file_read**](PublishersApi.md#publishers_file_read) | **GET** /publishers/file/{id}/ | 
-[**publishers_file_update**](PublishersApi.md#publishers_file_update) | **PUT** /publishers/file/{id}/ | 
+[**publishers_file_partial_update**](PublishersApi.md#publishers_file_partial_update) | **PATCH** {href} | 
+[**publishers_file_publish**](PublishersApi.md#publishers_file_publish) | **POST** {href} | 
+[**publishers_file_read**](PublishersApi.md#publishers_file_read) | **GET** {href} | 
+[**publishers_file_update**](PublishersApi.md#publishers_file_update) | **PUT** {href} | 
 
 
 # **publishers_file_create**
@@ -66,7 +66,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **publishers_file_delete**
-> publishers_file_delete(id)
+> publishers_file_delete(href)
 
 
 
@@ -87,10 +87,10 @@ configuration.password = 'YOUR_PASSWORD'
 
 # create an instance of the API class
 api_instance = swagger_client.PublishersApi(swagger_client.ApiClient(configuration))
-id = 'id_example' # str | A UUID string identifying this file publisher.
+href = 'id_example' # str | A relative URI for the resource.
 
 try:
-    api_instance.publishers_file_delete(id)
+    api_instance.publishers_file_delete(href)
 except ApiException as e:
     print("Exception when calling PublishersApi->publishers_file_delete: %s\n" % e)
 ```
@@ -99,7 +99,7 @@ except ApiException as e:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | [**str**](.md)| A UUID string identifying this file publisher. | 
+ **href** | [**str**](.md)| A relative URI for the resource. | 
 
 ### Return type
 
@@ -185,7 +185,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **publishers_file_partial_update**
-> FilePublisher publishers_file_partial_update(id, data)
+> FilePublisher publishers_file_partial_update(href, data)
 
 
 
@@ -206,11 +206,11 @@ configuration.password = 'YOUR_PASSWORD'
 
 # create an instance of the API class
 api_instance = swagger_client.PublishersApi(swagger_client.ApiClient(configuration))
-id = 'id_example' # str | A UUID string identifying this file publisher.
+href = 'id_example' # str | A relative URI for the resource.
 data = swagger_client.FilePublisher() # FilePublisher | 
 
 try:
-    api_response = api_instance.publishers_file_partial_update(id, data)
+    api_response = api_instance.publishers_file_partial_update(href, data)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling PublishersApi->publishers_file_partial_update: %s\n" % e)
@@ -220,7 +220,7 @@ except ApiException as e:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | [**str**](.md)| A UUID string identifying this file publisher. | 
+ **href** | [**str**](.md)| A relative URI for the resource. | 
  **data** | [**FilePublisher**](FilePublisher.md)|  | 
 
 ### Return type
@@ -239,7 +239,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **publishers_file_publish**
-> RepositoryPublishURL publishers_file_publish(id, data)
+> RepositoryPublishURL publishers_file_publish(href, data)
 
 
 
@@ -260,11 +260,11 @@ configuration.password = 'YOUR_PASSWORD'
 
 # create an instance of the API class
 api_instance = swagger_client.PublishersApi(swagger_client.ApiClient(configuration))
-id = 'id_example' # str | A UUID string identifying this file publisher.
+href = 'id_example' # str | A relative URI for the resource.
 data = swagger_client.RepositoryPublishURL() # RepositoryPublishURL | 
 
 try:
-    api_response = api_instance.publishers_file_publish(id, data)
+    api_response = api_instance.publishers_file_publish(href, data)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling PublishersApi->publishers_file_publish: %s\n" % e)
@@ -274,7 +274,7 @@ except ApiException as e:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | [**str**](.md)| A UUID string identifying this file publisher. | 
+ **href** | [**str**](.md)| A relative URI for the resource. | 
  **data** | [**RepositoryPublishURL**](RepositoryPublishURL.md)|  | 
 
 ### Return type
@@ -293,7 +293,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **publishers_file_read**
-> FilePublisher publishers_file_read(id)
+> FilePublisher publishers_file_read(href)
 
 
 
@@ -314,10 +314,10 @@ configuration.password = 'YOUR_PASSWORD'
 
 # create an instance of the API class
 api_instance = swagger_client.PublishersApi(swagger_client.ApiClient(configuration))
-id = 'id_example' # str | A UUID string identifying this file publisher.
+href = 'id_example' # str | A relative URI for the resource.
 
 try:
-    api_response = api_instance.publishers_file_read(id)
+    api_response = api_instance.publishers_file_read(href)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling PublishersApi->publishers_file_read: %s\n" % e)
@@ -327,7 +327,7 @@ except ApiException as e:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | [**str**](.md)| A UUID string identifying this file publisher. | 
+ **href** | [**str**](.md)| A relative URI for the resource. | 
 
 ### Return type
 
@@ -345,7 +345,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **publishers_file_update**
-> FilePublisher publishers_file_update(id, data)
+> FilePublisher publishers_file_update(href, data)
 
 
 
@@ -366,11 +366,11 @@ configuration.password = 'YOUR_PASSWORD'
 
 # create an instance of the API class
 api_instance = swagger_client.PublishersApi(swagger_client.ApiClient(configuration))
-id = 'id_example' # str | A UUID string identifying this file publisher.
+href = 'id_example' # str | A relative URI for the resource.
 data = swagger_client.FilePublisher() # FilePublisher | 
 
 try:
-    api_response = api_instance.publishers_file_update(id, data)
+    api_response = api_instance.publishers_file_update(href, data)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling PublishersApi->publishers_file_update: %s\n" % e)
@@ -380,7 +380,7 @@ except ApiException as e:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | [**str**](.md)| A UUID string identifying this file publisher. | 
+ **href** | [**str**](.md)| A relative URI for the resource. | 
  **data** | [**FilePublisher**](FilePublisher.md)|  | 
 
 ### Return type

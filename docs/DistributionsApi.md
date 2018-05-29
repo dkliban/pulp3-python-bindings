@@ -5,11 +5,11 @@ All URIs are relative to *http://localhost:8000/pulp/api/v3*
 Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**distributions_create**](DistributionsApi.md#distributions_create) | **POST** /distributions/ | 
-[**distributions_delete**](DistributionsApi.md#distributions_delete) | **DELETE** /distributions/{id}/ | 
+[**distributions_delete**](DistributionsApi.md#distributions_delete) | **DELETE** {href} | 
 [**distributions_list**](DistributionsApi.md#distributions_list) | **GET** /distributions/ | 
-[**distributions_partial_update**](DistributionsApi.md#distributions_partial_update) | **PATCH** /distributions/{id}/ | 
-[**distributions_read**](DistributionsApi.md#distributions_read) | **GET** /distributions/{id}/ | 
-[**distributions_update**](DistributionsApi.md#distributions_update) | **PUT** /distributions/{id}/ | 
+[**distributions_partial_update**](DistributionsApi.md#distributions_partial_update) | **PATCH** {href} | 
+[**distributions_read**](DistributionsApi.md#distributions_read) | **GET** {href} | 
+[**distributions_update**](DistributionsApi.md#distributions_update) | **PUT** {href} | 
 
 
 # **distributions_create**
@@ -65,7 +65,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **distributions_delete**
-> distributions_delete(id)
+> distributions_delete(href)
 
 
 
@@ -86,10 +86,10 @@ configuration.password = 'YOUR_PASSWORD'
 
 # create an instance of the API class
 api_instance = swagger_client.DistributionsApi(swagger_client.ApiClient(configuration))
-id = 'id_example' # str | A UUID string identifying this distribution.
+href = 'id_example' # str | A relative URI for the resource.
 
 try:
-    api_instance.distributions_delete(id)
+    api_instance.distributions_delete(href)
 except ApiException as e:
     print("Exception when calling DistributionsApi->distributions_delete: %s\n" % e)
 ```
@@ -98,7 +98,7 @@ except ApiException as e:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | [**str**](.md)| A UUID string identifying this distribution. | 
+ **href** | [**str**](.md)| A relative URI for the resource. | 
 
 ### Return type
 
@@ -180,7 +180,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **distributions_partial_update**
-> Distribution distributions_partial_update(id, data)
+> Distribution distributions_partial_update(href, data)
 
 
 
@@ -201,11 +201,11 @@ configuration.password = 'YOUR_PASSWORD'
 
 # create an instance of the API class
 api_instance = swagger_client.DistributionsApi(swagger_client.ApiClient(configuration))
-id = 'id_example' # str | A UUID string identifying this distribution.
+href = 'id_example' # str | A relative URI for the resource.
 data = swagger_client.Distribution() # Distribution | 
 
 try:
-    api_response = api_instance.distributions_partial_update(id, data)
+    api_response = api_instance.distributions_partial_update(href, data)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling DistributionsApi->distributions_partial_update: %s\n" % e)
@@ -215,7 +215,7 @@ except ApiException as e:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | [**str**](.md)| A UUID string identifying this distribution. | 
+ **href** | [**str**](.md)| A relative URI for the resource. | 
  **data** | [**Distribution**](Distribution.md)|  | 
 
 ### Return type
@@ -234,7 +234,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **distributions_read**
-> Distribution distributions_read(id)
+> Distribution distributions_read(href)
 
 
 
@@ -255,10 +255,10 @@ configuration.password = 'YOUR_PASSWORD'
 
 # create an instance of the API class
 api_instance = swagger_client.DistributionsApi(swagger_client.ApiClient(configuration))
-id = 'id_example' # str | A UUID string identifying this distribution.
+href = 'id_example' # str | A relative URI for the resource.
 
 try:
-    api_response = api_instance.distributions_read(id)
+    api_response = api_instance.distributions_read(href)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling DistributionsApi->distributions_read: %s\n" % e)
@@ -268,7 +268,7 @@ except ApiException as e:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | [**str**](.md)| A UUID string identifying this distribution. | 
+ **href** | [**str**](.md)| A relative URI for the resource. | 
 
 ### Return type
 
@@ -286,7 +286,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **distributions_update**
-> Distribution distributions_update(id, data)
+> Distribution distributions_update(href, data)
 
 
 
@@ -307,11 +307,11 @@ configuration.password = 'YOUR_PASSWORD'
 
 # create an instance of the API class
 api_instance = swagger_client.DistributionsApi(swagger_client.ApiClient(configuration))
-id = 'id_example' # str | A UUID string identifying this distribution.
+href = 'id_example' # str | A relative URI for the resource.
 data = swagger_client.Distribution() # Distribution | 
 
 try:
-    api_response = api_instance.distributions_update(id, data)
+    api_response = api_instance.distributions_update(href, data)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling DistributionsApi->distributions_update: %s\n" % e)
@@ -321,7 +321,7 @@ except ApiException as e:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | [**str**](.md)| A UUID string identifying this distribution. | 
+ **href** | [**str**](.md)| A relative URI for the resource. | 
  **data** | [**Distribution**](Distribution.md)|  | 
 
 ### Return type

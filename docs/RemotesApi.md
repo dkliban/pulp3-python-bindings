@@ -5,12 +5,12 @@ All URIs are relative to *http://localhost:8000/pulp/api/v3*
 Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**remotes_file_create**](RemotesApi.md#remotes_file_create) | **POST** /remotes/file/ | 
-[**remotes_file_delete**](RemotesApi.md#remotes_file_delete) | **DELETE** /remotes/file/{id}/ | 
+[**remotes_file_delete**](RemotesApi.md#remotes_file_delete) | **DELETE** {href} | 
 [**remotes_file_list**](RemotesApi.md#remotes_file_list) | **GET** /remotes/file/ | 
-[**remotes_file_partial_update**](RemotesApi.md#remotes_file_partial_update) | **PATCH** /remotes/file/{id}/ | 
-[**remotes_file_read**](RemotesApi.md#remotes_file_read) | **GET** /remotes/file/{id}/ | 
-[**remotes_file_sync**](RemotesApi.md#remotes_file_sync) | **POST** /remotes/file/{id}/sync/ | 
-[**remotes_file_update**](RemotesApi.md#remotes_file_update) | **PUT** /remotes/file/{id}/ | 
+[**remotes_file_partial_update**](RemotesApi.md#remotes_file_partial_update) | **PATCH** {href} | 
+[**remotes_file_read**](RemotesApi.md#remotes_file_read) | **GET** {href} | 
+[**remotes_file_sync**](RemotesApi.md#remotes_file_sync) | **POST** {href} | 
+[**remotes_file_update**](RemotesApi.md#remotes_file_update) | **PUT** {href} | 
 
 
 # **remotes_file_create**
@@ -66,7 +66,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **remotes_file_delete**
-> remotes_file_delete(id)
+> remotes_file_delete(href)
 
 
 
@@ -87,10 +87,10 @@ configuration.password = 'YOUR_PASSWORD'
 
 # create an instance of the API class
 api_instance = swagger_client.RemotesApi(swagger_client.ApiClient(configuration))
-id = 'id_example' # str | A UUID string identifying this file remote.
+href = 'id_example' # str | A relative URI for the resource.
 
 try:
-    api_instance.remotes_file_delete(id)
+    api_instance.remotes_file_delete(href)
 except ApiException as e:
     print("Exception when calling RemotesApi->remotes_file_delete: %s\n" % e)
 ```
@@ -99,7 +99,7 @@ except ApiException as e:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | [**str**](.md)| A UUID string identifying this file remote. | 
+ **href** | [**str**](.md)| A relative URI for the resource. | 
 
 ### Return type
 
@@ -185,7 +185,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **remotes_file_partial_update**
-> FileRemote remotes_file_partial_update(id, data)
+> FileRemote remotes_file_partial_update(href, data)
 
 
 
@@ -206,11 +206,11 @@ configuration.password = 'YOUR_PASSWORD'
 
 # create an instance of the API class
 api_instance = swagger_client.RemotesApi(swagger_client.ApiClient(configuration))
-id = 'id_example' # str | A UUID string identifying this file remote.
+href = 'id_example' # str | A relative URI for the resource.
 data = swagger_client.FileRemote() # FileRemote | 
 
 try:
-    api_response = api_instance.remotes_file_partial_update(id, data)
+    api_response = api_instance.remotes_file_partial_update(href, data)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling RemotesApi->remotes_file_partial_update: %s\n" % e)
@@ -220,7 +220,7 @@ except ApiException as e:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | [**str**](.md)| A UUID string identifying this file remote. | 
+ **href** | [**str**](.md)| A relative URI for the resource. | 
  **data** | [**FileRemote**](FileRemote.md)|  | 
 
 ### Return type
@@ -239,7 +239,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **remotes_file_read**
-> FileRemote remotes_file_read(id)
+> FileRemote remotes_file_read(href)
 
 
 
@@ -260,10 +260,10 @@ configuration.password = 'YOUR_PASSWORD'
 
 # create an instance of the API class
 api_instance = swagger_client.RemotesApi(swagger_client.ApiClient(configuration))
-id = 'id_example' # str | A UUID string identifying this file remote.
+href = 'id_example' # str | A relative URI for the resource.
 
 try:
-    api_response = api_instance.remotes_file_read(id)
+    api_response = api_instance.remotes_file_read(href)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling RemotesApi->remotes_file_read: %s\n" % e)
@@ -273,7 +273,7 @@ except ApiException as e:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | [**str**](.md)| A UUID string identifying this file remote. | 
+ **href** | [**str**](.md)| A relative URI for the resource. | 
 
 ### Return type
 
@@ -291,7 +291,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **remotes_file_sync**
-> RepositorySyncURL remotes_file_sync(id, data)
+> RepositorySyncURL remotes_file_sync(href, data)
 
 
 
@@ -312,11 +312,11 @@ configuration.password = 'YOUR_PASSWORD'
 
 # create an instance of the API class
 api_instance = swagger_client.RemotesApi(swagger_client.ApiClient(configuration))
-id = 'id_example' # str | A UUID string identifying this file remote.
+href = 'id_example' # str | A relative URI for the resource.
 data = swagger_client.RepositorySyncURL() # RepositorySyncURL | 
 
 try:
-    api_response = api_instance.remotes_file_sync(id, data)
+    api_response = api_instance.remotes_file_sync(href, data)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling RemotesApi->remotes_file_sync: %s\n" % e)
@@ -326,7 +326,7 @@ except ApiException as e:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | [**str**](.md)| A UUID string identifying this file remote. | 
+ **href** | [**str**](.md)| A relative URI for the resource. | 
  **data** | [**RepositorySyncURL**](RepositorySyncURL.md)|  | 
 
 ### Return type
@@ -345,7 +345,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **remotes_file_update**
-> FileRemote remotes_file_update(id, data)
+> FileRemote remotes_file_update(href, data)
 
 
 
@@ -366,11 +366,11 @@ configuration.password = 'YOUR_PASSWORD'
 
 # create an instance of the API class
 api_instance = swagger_client.RemotesApi(swagger_client.ApiClient(configuration))
-id = 'id_example' # str | A UUID string identifying this file remote.
+href = 'id_example' # str | A relative URI for the resource.
 data = swagger_client.FileRemote() # FileRemote | 
 
 try:
-    api_response = api_instance.remotes_file_update(id, data)
+    api_response = api_instance.remotes_file_update(href, data)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling RemotesApi->remotes_file_update: %s\n" % e)
@@ -380,7 +380,7 @@ except ApiException as e:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | [**str**](.md)| A UUID string identifying this file remote. | 
+ **href** | [**str**](.md)| A relative URI for the resource. | 
  **data** | [**FileRemote**](FileRemote.md)|  | 
 
 ### Return type

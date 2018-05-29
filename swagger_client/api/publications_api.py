@@ -33,45 +33,45 @@ class PublicationsApi(object):
             api_client = ApiClient()
         self.api_client = api_client
 
-    def publications_delete(self, id, **kwargs):  # noqa: E501
+    def publications_delete(self, href, **kwargs):  # noqa: E501
         """publications_delete  # noqa: E501
 
           # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async=True
-        >>> thread = api.publications_delete(id, async=True)
+        >>> thread = api.publications_delete(href, async=True)
         >>> result = thread.get()
 
         :param async bool
-        :param str id: A UUID string identifying this publication. (required)
+        :param str href: A relative URI for the resource. (required)
         :return: None
                  If the method is called asynchronously,
                  returns the request thread.
         """
         kwargs['_return_http_data_only'] = True
         if kwargs.get('async'):
-            return self.publications_delete_with_http_info(id, **kwargs)  # noqa: E501
+            return self.publications_delete_with_http_info(href, **kwargs)  # noqa: E501
         else:
-            (data) = self.publications_delete_with_http_info(id, **kwargs)  # noqa: E501
+            (data) = self.publications_delete_with_http_info(href, **kwargs)  # noqa: E501
             return data
 
-    def publications_delete_with_http_info(self, id, **kwargs):  # noqa: E501
+    def publications_delete_with_http_info(self, href, **kwargs):  # noqa: E501
         """publications_delete  # noqa: E501
 
           # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async=True
-        >>> thread = api.publications_delete_with_http_info(id, async=True)
+        >>> thread = api.publications_delete_with_http_info(href, async=True)
         >>> result = thread.get()
 
         :param async bool
-        :param str id: A UUID string identifying this publication. (required)
+        :param str href: A relative URI for the resource. (required)
         :return: None
                  If the method is called asynchronously,
                  returns the request thread.
         """
 
-        all_params = ['id']  # noqa: E501
+        all_params = ['href']  # noqa: E501
         all_params.append('async')
         all_params.append('_return_http_data_only')
         all_params.append('_preload_content')
@@ -86,16 +86,16 @@ class PublicationsApi(object):
                 )
             params[key] = val
         del params['kwargs']
-        # verify the required parameter 'id' is set
-        if ('id' not in params or
-                params['id'] is None):
-            raise ValueError("Missing the required parameter `id` when calling `publications_delete`")  # noqa: E501
+        # verify the required parameter 'href' is set
+        if ('href' not in params or
+                params['href'] is None):
+            raise ValueError("Missing the required parameter `href` when calling `publications_delete`")  # noqa: E501
 
         collection_formats = {}
 
         path_params = {}
-        if 'id' in params:
-            path_params['id'] = params['id']  # noqa: E501
+        if 'href' in params:
+            path_params['href'] = params['href']  # noqa: E501
 
         query_params = []
 
@@ -117,7 +117,7 @@ class PublicationsApi(object):
         auth_settings = ['basic']  # noqa: E501
 
         return self.api_client.call_api(
-            '/publications/{id}/', 'DELETE',
+            '{href}', 'DELETE',
             path_params,
             query_params,
             header_params,
@@ -231,45 +231,45 @@ class PublicationsApi(object):
             _request_timeout=params.get('_request_timeout'),
             collection_formats=collection_formats)
 
-    def publications_read(self, id, **kwargs):  # noqa: E501
+    def publications_read(self, href, **kwargs):  # noqa: E501
         """publications_read  # noqa: E501
 
           # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async=True
-        >>> thread = api.publications_read(id, async=True)
+        >>> thread = api.publications_read(href, async=True)
         >>> result = thread.get()
 
         :param async bool
-        :param str id: A UUID string identifying this publication. (required)
+        :param str href: A relative URI for the resource. (required)
         :return: Publication
                  If the method is called asynchronously,
                  returns the request thread.
         """
         kwargs['_return_http_data_only'] = True
         if kwargs.get('async'):
-            return self.publications_read_with_http_info(id, **kwargs)  # noqa: E501
+            return self.publications_read_with_http_info(href, **kwargs)  # noqa: E501
         else:
-            (data) = self.publications_read_with_http_info(id, **kwargs)  # noqa: E501
+            (data) = self.publications_read_with_http_info(href, **kwargs)  # noqa: E501
             return data
 
-    def publications_read_with_http_info(self, id, **kwargs):  # noqa: E501
+    def publications_read_with_http_info(self, href, **kwargs):  # noqa: E501
         """publications_read  # noqa: E501
 
           # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async=True
-        >>> thread = api.publications_read_with_http_info(id, async=True)
+        >>> thread = api.publications_read_with_http_info(href, async=True)
         >>> result = thread.get()
 
         :param async bool
-        :param str id: A UUID string identifying this publication. (required)
+        :param str href: A relative URI for the resource. (required)
         :return: Publication
                  If the method is called asynchronously,
                  returns the request thread.
         """
 
-        all_params = ['id']  # noqa: E501
+        all_params = ['href']  # noqa: E501
         all_params.append('async')
         all_params.append('_return_http_data_only')
         all_params.append('_preload_content')
@@ -284,16 +284,16 @@ class PublicationsApi(object):
                 )
             params[key] = val
         del params['kwargs']
-        # verify the required parameter 'id' is set
-        if ('id' not in params or
-                params['id'] is None):
-            raise ValueError("Missing the required parameter `id` when calling `publications_read`")  # noqa: E501
+        # verify the required parameter 'href' is set
+        if ('href' not in params or
+                params['href'] is None):
+            raise ValueError("Missing the required parameter `href` when calling `publications_read`")  # noqa: E501
 
         collection_formats = {}
 
         path_params = {}
-        if 'id' in params:
-            path_params['id'] = params['id']  # noqa: E501
+        if 'href' in params:
+            path_params['href'] = params['href']  # noqa: E501
 
         query_params = []
 
@@ -315,7 +315,7 @@ class PublicationsApi(object):
         auth_settings = ['basic']  # noqa: E501
 
         return self.api_client.call_api(
-            '/publications/{id}/', 'GET',
+            '{href}', 'GET',
             path_params,
             query_params,
             header_params,

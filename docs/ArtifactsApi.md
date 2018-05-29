@@ -5,9 +5,9 @@ All URIs are relative to *http://localhost:8000/pulp/api/v3*
 Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**artifacts_create**](ArtifactsApi.md#artifacts_create) | **POST** /artifacts/ | 
-[**artifacts_delete**](ArtifactsApi.md#artifacts_delete) | **DELETE** /artifacts/{id}/ | 
+[**artifacts_delete**](ArtifactsApi.md#artifacts_delete) | **DELETE** {href} | 
 [**artifacts_list**](ArtifactsApi.md#artifacts_list) | **GET** /artifacts/ | 
-[**artifacts_read**](ArtifactsApi.md#artifacts_read) | **GET** /artifacts/{id}/ | 
+[**artifacts_read**](ArtifactsApi.md#artifacts_read) | **GET** {href} | 
 
 
 # **artifacts_create**
@@ -63,7 +63,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **artifacts_delete**
-> artifacts_delete(id)
+> artifacts_delete(href)
 
 
 
@@ -84,10 +84,10 @@ configuration.password = 'YOUR_PASSWORD'
 
 # create an instance of the API class
 api_instance = swagger_client.ArtifactsApi(swagger_client.ApiClient(configuration))
-id = 'id_example' # str | A UUID string identifying this artifact.
+href = 'id_example' # str | A relative URI for the resource.
 
 try:
-    api_instance.artifacts_delete(id)
+    api_instance.artifacts_delete(href)
 except ApiException as e:
     print("Exception when calling ArtifactsApi->artifacts_delete: %s\n" % e)
 ```
@@ -96,7 +96,7 @@ except ApiException as e:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | [**str**](.md)| A UUID string identifying this artifact. | 
+ **href** | [**str**](.md)| A relative URI for the resource. | 
 
 ### Return type
 
@@ -178,7 +178,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **artifacts_read**
-> Artifact artifacts_read(id)
+> Artifact artifacts_read(href)
 
 
 
@@ -199,10 +199,10 @@ configuration.password = 'YOUR_PASSWORD'
 
 # create an instance of the API class
 api_instance = swagger_client.ArtifactsApi(swagger_client.ApiClient(configuration))
-id = 'id_example' # str | A UUID string identifying this artifact.
+href = 'id_example' # str | A relative URI for the resource.
 
 try:
-    api_response = api_instance.artifacts_read(id)
+    api_response = api_instance.artifacts_read(href)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling ArtifactsApi->artifacts_read: %s\n" % e)
@@ -212,7 +212,7 @@ except ApiException as e:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | [**str**](.md)| A UUID string identifying this artifact. | 
+ **href** | [**str**](.md)| A relative URI for the resource. | 
 
 ### Return type
 

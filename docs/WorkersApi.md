@@ -5,7 +5,7 @@ All URIs are relative to *http://localhost:8000/pulp/api/v3*
 Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**workers_list**](WorkersApi.md#workers_list) | **GET** /workers/ | 
-[**workers_read**](WorkersApi.md#workers_read) | **GET** /workers/{id}/ | 
+[**workers_read**](WorkersApi.md#workers_read) | **GET** {href} | 
 
 
 # **workers_list**
@@ -81,7 +81,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **workers_read**
-> Worker workers_read(id)
+> Worker workers_read(href)
 
 
 
@@ -102,10 +102,10 @@ configuration.password = 'YOUR_PASSWORD'
 
 # create an instance of the API class
 api_instance = swagger_client.WorkersApi(swagger_client.ApiClient(configuration))
-id = 'id_example' # str | A UUID string identifying this worker.
+href = 'id_example' # str | A relative URI for the resource.
 
 try:
-    api_response = api_instance.workers_read(id)
+    api_response = api_instance.workers_read(href)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling WorkersApi->workers_read: %s\n" % e)
@@ -115,7 +115,7 @@ except ApiException as e:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | [**str**](.md)| A UUID string identifying this worker. | 
+ **href** | [**str**](.md)| A relative URI for the resource. | 
 
 ### Return type
 

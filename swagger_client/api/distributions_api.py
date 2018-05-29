@@ -132,45 +132,45 @@ class DistributionsApi(object):
             _request_timeout=params.get('_request_timeout'),
             collection_formats=collection_formats)
 
-    def distributions_delete(self, id, **kwargs):  # noqa: E501
+    def distributions_delete(self, href, **kwargs):  # noqa: E501
         """distributions_delete  # noqa: E501
 
           # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async=True
-        >>> thread = api.distributions_delete(id, async=True)
+        >>> thread = api.distributions_delete(href, async=True)
         >>> result = thread.get()
 
         :param async bool
-        :param str id: A UUID string identifying this distribution. (required)
+        :param str href: A relative URI for the resource. (required)
         :return: None
                  If the method is called asynchronously,
                  returns the request thread.
         """
         kwargs['_return_http_data_only'] = True
         if kwargs.get('async'):
-            return self.distributions_delete_with_http_info(id, **kwargs)  # noqa: E501
+            return self.distributions_delete_with_http_info(href, **kwargs)  # noqa: E501
         else:
-            (data) = self.distributions_delete_with_http_info(id, **kwargs)  # noqa: E501
+            (data) = self.distributions_delete_with_http_info(href, **kwargs)  # noqa: E501
             return data
 
-    def distributions_delete_with_http_info(self, id, **kwargs):  # noqa: E501
+    def distributions_delete_with_http_info(self, href, **kwargs):  # noqa: E501
         """distributions_delete  # noqa: E501
 
           # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async=True
-        >>> thread = api.distributions_delete_with_http_info(id, async=True)
+        >>> thread = api.distributions_delete_with_http_info(href, async=True)
         >>> result = thread.get()
 
         :param async bool
-        :param str id: A UUID string identifying this distribution. (required)
+        :param str href: A relative URI for the resource. (required)
         :return: None
                  If the method is called asynchronously,
                  returns the request thread.
         """
 
-        all_params = ['id']  # noqa: E501
+        all_params = ['href']  # noqa: E501
         all_params.append('async')
         all_params.append('_return_http_data_only')
         all_params.append('_preload_content')
@@ -185,16 +185,16 @@ class DistributionsApi(object):
                 )
             params[key] = val
         del params['kwargs']
-        # verify the required parameter 'id' is set
-        if ('id' not in params or
-                params['id'] is None):
-            raise ValueError("Missing the required parameter `id` when calling `distributions_delete`")  # noqa: E501
+        # verify the required parameter 'href' is set
+        if ('href' not in params or
+                params['href'] is None):
+            raise ValueError("Missing the required parameter `href` when calling `distributions_delete`")  # noqa: E501
 
         collection_formats = {}
 
         path_params = {}
-        if 'id' in params:
-            path_params['id'] = params['id']  # noqa: E501
+        if 'href' in params:
+            path_params['href'] = params['href']  # noqa: E501
 
         query_params = []
 
@@ -216,7 +216,7 @@ class DistributionsApi(object):
         auth_settings = ['basic']  # noqa: E501
 
         return self.api_client.call_api(
-            '/distributions/{id}/', 'DELETE',
+            '{href}', 'DELETE',
             path_params,
             query_params,
             header_params,
@@ -350,17 +350,17 @@ class DistributionsApi(object):
             _request_timeout=params.get('_request_timeout'),
             collection_formats=collection_formats)
 
-    def distributions_partial_update(self, id, data, **kwargs):  # noqa: E501
+    def distributions_partial_update(self, href, data, **kwargs):  # noqa: E501
         """distributions_partial_update  # noqa: E501
 
           # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async=True
-        >>> thread = api.distributions_partial_update(id, data, async=True)
+        >>> thread = api.distributions_partial_update(href, data, async=True)
         >>> result = thread.get()
 
         :param async bool
-        :param str id: A UUID string identifying this distribution. (required)
+        :param str href: A relative URI for the resource. (required)
         :param Distribution data: (required)
         :return: Distribution
                  If the method is called asynchronously,
@@ -368,29 +368,29 @@ class DistributionsApi(object):
         """
         kwargs['_return_http_data_only'] = True
         if kwargs.get('async'):
-            return self.distributions_partial_update_with_http_info(id, data, **kwargs)  # noqa: E501
+            return self.distributions_partial_update_with_http_info(href, data, **kwargs)  # noqa: E501
         else:
-            (data) = self.distributions_partial_update_with_http_info(id, data, **kwargs)  # noqa: E501
+            (data) = self.distributions_partial_update_with_http_info(href, data, **kwargs)  # noqa: E501
             return data
 
-    def distributions_partial_update_with_http_info(self, id, data, **kwargs):  # noqa: E501
+    def distributions_partial_update_with_http_info(self, href, data, **kwargs):  # noqa: E501
         """distributions_partial_update  # noqa: E501
 
           # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async=True
-        >>> thread = api.distributions_partial_update_with_http_info(id, data, async=True)
+        >>> thread = api.distributions_partial_update_with_http_info(href, data, async=True)
         >>> result = thread.get()
 
         :param async bool
-        :param str id: A UUID string identifying this distribution. (required)
+        :param str href: A relative URI for the resource. (required)
         :param Distribution data: (required)
         :return: Distribution
                  If the method is called asynchronously,
                  returns the request thread.
         """
 
-        all_params = ['id', 'data']  # noqa: E501
+        all_params = ['href', 'data']  # noqa: E501
         all_params.append('async')
         all_params.append('_return_http_data_only')
         all_params.append('_preload_content')
@@ -405,10 +405,10 @@ class DistributionsApi(object):
                 )
             params[key] = val
         del params['kwargs']
-        # verify the required parameter 'id' is set
-        if ('id' not in params or
-                params['id'] is None):
-            raise ValueError("Missing the required parameter `id` when calling `distributions_partial_update`")  # noqa: E501
+        # verify the required parameter 'href' is set
+        if ('href' not in params or
+                params['href'] is None):
+            raise ValueError("Missing the required parameter `href` when calling `distributions_partial_update`")  # noqa: E501
         # verify the required parameter 'data' is set
         if ('data' not in params or
                 params['data'] is None):
@@ -417,8 +417,8 @@ class DistributionsApi(object):
         collection_formats = {}
 
         path_params = {}
-        if 'id' in params:
-            path_params['id'] = params['id']  # noqa: E501
+        if 'href' in params:
+            path_params['href'] = params['href']  # noqa: E501
 
         query_params = []
 
@@ -442,7 +442,7 @@ class DistributionsApi(object):
         auth_settings = ['basic']  # noqa: E501
 
         return self.api_client.call_api(
-            '/distributions/{id}/', 'PATCH',
+            '{href}', 'PATCH',
             path_params,
             query_params,
             header_params,
@@ -457,45 +457,45 @@ class DistributionsApi(object):
             _request_timeout=params.get('_request_timeout'),
             collection_formats=collection_formats)
 
-    def distributions_read(self, id, **kwargs):  # noqa: E501
+    def distributions_read(self, href, **kwargs):  # noqa: E501
         """distributions_read  # noqa: E501
 
           # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async=True
-        >>> thread = api.distributions_read(id, async=True)
+        >>> thread = api.distributions_read(href, async=True)
         >>> result = thread.get()
 
         :param async bool
-        :param str id: A UUID string identifying this distribution. (required)
+        :param str href: A relative URI for the resource. (required)
         :return: Distribution
                  If the method is called asynchronously,
                  returns the request thread.
         """
         kwargs['_return_http_data_only'] = True
         if kwargs.get('async'):
-            return self.distributions_read_with_http_info(id, **kwargs)  # noqa: E501
+            return self.distributions_read_with_http_info(href, **kwargs)  # noqa: E501
         else:
-            (data) = self.distributions_read_with_http_info(id, **kwargs)  # noqa: E501
+            (data) = self.distributions_read_with_http_info(href, **kwargs)  # noqa: E501
             return data
 
-    def distributions_read_with_http_info(self, id, **kwargs):  # noqa: E501
+    def distributions_read_with_http_info(self, href, **kwargs):  # noqa: E501
         """distributions_read  # noqa: E501
 
           # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async=True
-        >>> thread = api.distributions_read_with_http_info(id, async=True)
+        >>> thread = api.distributions_read_with_http_info(href, async=True)
         >>> result = thread.get()
 
         :param async bool
-        :param str id: A UUID string identifying this distribution. (required)
+        :param str href: A relative URI for the resource. (required)
         :return: Distribution
                  If the method is called asynchronously,
                  returns the request thread.
         """
 
-        all_params = ['id']  # noqa: E501
+        all_params = ['href']  # noqa: E501
         all_params.append('async')
         all_params.append('_return_http_data_only')
         all_params.append('_preload_content')
@@ -510,16 +510,16 @@ class DistributionsApi(object):
                 )
             params[key] = val
         del params['kwargs']
-        # verify the required parameter 'id' is set
-        if ('id' not in params or
-                params['id'] is None):
-            raise ValueError("Missing the required parameter `id` when calling `distributions_read`")  # noqa: E501
+        # verify the required parameter 'href' is set
+        if ('href' not in params or
+                params['href'] is None):
+            raise ValueError("Missing the required parameter `href` when calling `distributions_read`")  # noqa: E501
 
         collection_formats = {}
 
         path_params = {}
-        if 'id' in params:
-            path_params['id'] = params['id']  # noqa: E501
+        if 'href' in params:
+            path_params['href'] = params['href']  # noqa: E501
 
         query_params = []
 
@@ -541,7 +541,7 @@ class DistributionsApi(object):
         auth_settings = ['basic']  # noqa: E501
 
         return self.api_client.call_api(
-            '/distributions/{id}/', 'GET',
+            '{href}', 'GET',
             path_params,
             query_params,
             header_params,
@@ -556,17 +556,17 @@ class DistributionsApi(object):
             _request_timeout=params.get('_request_timeout'),
             collection_formats=collection_formats)
 
-    def distributions_update(self, id, data, **kwargs):  # noqa: E501
+    def distributions_update(self, href, data, **kwargs):  # noqa: E501
         """distributions_update  # noqa: E501
 
           # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async=True
-        >>> thread = api.distributions_update(id, data, async=True)
+        >>> thread = api.distributions_update(href, data, async=True)
         >>> result = thread.get()
 
         :param async bool
-        :param str id: A UUID string identifying this distribution. (required)
+        :param str href: A relative URI for the resource. (required)
         :param Distribution data: (required)
         :return: Distribution
                  If the method is called asynchronously,
@@ -574,29 +574,29 @@ class DistributionsApi(object):
         """
         kwargs['_return_http_data_only'] = True
         if kwargs.get('async'):
-            return self.distributions_update_with_http_info(id, data, **kwargs)  # noqa: E501
+            return self.distributions_update_with_http_info(href, data, **kwargs)  # noqa: E501
         else:
-            (data) = self.distributions_update_with_http_info(id, data, **kwargs)  # noqa: E501
+            (data) = self.distributions_update_with_http_info(href, data, **kwargs)  # noqa: E501
             return data
 
-    def distributions_update_with_http_info(self, id, data, **kwargs):  # noqa: E501
+    def distributions_update_with_http_info(self, href, data, **kwargs):  # noqa: E501
         """distributions_update  # noqa: E501
 
           # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async=True
-        >>> thread = api.distributions_update_with_http_info(id, data, async=True)
+        >>> thread = api.distributions_update_with_http_info(href, data, async=True)
         >>> result = thread.get()
 
         :param async bool
-        :param str id: A UUID string identifying this distribution. (required)
+        :param str href: A relative URI for the resource. (required)
         :param Distribution data: (required)
         :return: Distribution
                  If the method is called asynchronously,
                  returns the request thread.
         """
 
-        all_params = ['id', 'data']  # noqa: E501
+        all_params = ['href', 'data']  # noqa: E501
         all_params.append('async')
         all_params.append('_return_http_data_only')
         all_params.append('_preload_content')
@@ -611,10 +611,10 @@ class DistributionsApi(object):
                 )
             params[key] = val
         del params['kwargs']
-        # verify the required parameter 'id' is set
-        if ('id' not in params or
-                params['id'] is None):
-            raise ValueError("Missing the required parameter `id` when calling `distributions_update`")  # noqa: E501
+        # verify the required parameter 'href' is set
+        if ('href' not in params or
+                params['href'] is None):
+            raise ValueError("Missing the required parameter `href` when calling `distributions_update`")  # noqa: E501
         # verify the required parameter 'data' is set
         if ('data' not in params or
                 params['data'] is None):
@@ -623,8 +623,8 @@ class DistributionsApi(object):
         collection_formats = {}
 
         path_params = {}
-        if 'id' in params:
-            path_params['id'] = params['id']  # noqa: E501
+        if 'href' in params:
+            path_params['href'] = params['href']  # noqa: E501
 
         query_params = []
 
@@ -648,7 +648,7 @@ class DistributionsApi(object):
         auth_settings = ['basic']  # noqa: E501
 
         return self.api_client.call_api(
-            '/distributions/{id}/', 'PUT',
+            '{href}', 'PUT',
             path_params,
             query_params,
             header_params,

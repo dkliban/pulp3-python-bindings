@@ -132,45 +132,45 @@ class ArtifactsApi(object):
             _request_timeout=params.get('_request_timeout'),
             collection_formats=collection_formats)
 
-    def artifacts_delete(self, id, **kwargs):  # noqa: E501
+    def artifacts_delete(self, href, **kwargs):  # noqa: E501
         """artifacts_delete  # noqa: E501
 
         Remove Artifact only if it is not associated with any Content.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async=True
-        >>> thread = api.artifacts_delete(id, async=True)
+        >>> thread = api.artifacts_delete(href, async=True)
         >>> result = thread.get()
 
         :param async bool
-        :param str id: A UUID string identifying this artifact. (required)
+        :param str href: A relative URI for the resource. (required)
         :return: None
                  If the method is called asynchronously,
                  returns the request thread.
         """
         kwargs['_return_http_data_only'] = True
         if kwargs.get('async'):
-            return self.artifacts_delete_with_http_info(id, **kwargs)  # noqa: E501
+            return self.artifacts_delete_with_http_info(href, **kwargs)  # noqa: E501
         else:
-            (data) = self.artifacts_delete_with_http_info(id, **kwargs)  # noqa: E501
+            (data) = self.artifacts_delete_with_http_info(href, **kwargs)  # noqa: E501
             return data
 
-    def artifacts_delete_with_http_info(self, id, **kwargs):  # noqa: E501
+    def artifacts_delete_with_http_info(self, href, **kwargs):  # noqa: E501
         """artifacts_delete  # noqa: E501
 
         Remove Artifact only if it is not associated with any Content.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async=True
-        >>> thread = api.artifacts_delete_with_http_info(id, async=True)
+        >>> thread = api.artifacts_delete_with_http_info(href, async=True)
         >>> result = thread.get()
 
         :param async bool
-        :param str id: A UUID string identifying this artifact. (required)
+        :param str href: A relative URI for the resource. (required)
         :return: None
                  If the method is called asynchronously,
                  returns the request thread.
         """
 
-        all_params = ['id']  # noqa: E501
+        all_params = ['href']  # noqa: E501
         all_params.append('async')
         all_params.append('_return_http_data_only')
         all_params.append('_preload_content')
@@ -185,16 +185,16 @@ class ArtifactsApi(object):
                 )
             params[key] = val
         del params['kwargs']
-        # verify the required parameter 'id' is set
-        if ('id' not in params or
-                params['id'] is None):
-            raise ValueError("Missing the required parameter `id` when calling `artifacts_delete`")  # noqa: E501
+        # verify the required parameter 'href' is set
+        if ('href' not in params or
+                params['href'] is None):
+            raise ValueError("Missing the required parameter `href` when calling `artifacts_delete`")  # noqa: E501
 
         collection_formats = {}
 
         path_params = {}
-        if 'id' in params:
-            path_params['id'] = params['id']  # noqa: E501
+        if 'href' in params:
+            path_params['href'] = params['href']  # noqa: E501
 
         query_params = []
 
@@ -216,7 +216,7 @@ class ArtifactsApi(object):
         auth_settings = ['basic']  # noqa: E501
 
         return self.api_client.call_api(
-            '/artifacts/{id}/', 'DELETE',
+            '{href}', 'DELETE',
             path_params,
             query_params,
             header_params,
@@ -350,45 +350,45 @@ class ArtifactsApi(object):
             _request_timeout=params.get('_request_timeout'),
             collection_formats=collection_formats)
 
-    def artifacts_read(self, id, **kwargs):  # noqa: E501
+    def artifacts_read(self, href, **kwargs):  # noqa: E501
         """artifacts_read  # noqa: E501
 
           # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async=True
-        >>> thread = api.artifacts_read(id, async=True)
+        >>> thread = api.artifacts_read(href, async=True)
         >>> result = thread.get()
 
         :param async bool
-        :param str id: A UUID string identifying this artifact. (required)
+        :param str href: A relative URI for the resource. (required)
         :return: Artifact
                  If the method is called asynchronously,
                  returns the request thread.
         """
         kwargs['_return_http_data_only'] = True
         if kwargs.get('async'):
-            return self.artifacts_read_with_http_info(id, **kwargs)  # noqa: E501
+            return self.artifacts_read_with_http_info(href, **kwargs)  # noqa: E501
         else:
-            (data) = self.artifacts_read_with_http_info(id, **kwargs)  # noqa: E501
+            (data) = self.artifacts_read_with_http_info(href, **kwargs)  # noqa: E501
             return data
 
-    def artifacts_read_with_http_info(self, id, **kwargs):  # noqa: E501
+    def artifacts_read_with_http_info(self, href, **kwargs):  # noqa: E501
         """artifacts_read  # noqa: E501
 
           # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async=True
-        >>> thread = api.artifacts_read_with_http_info(id, async=True)
+        >>> thread = api.artifacts_read_with_http_info(href, async=True)
         >>> result = thread.get()
 
         :param async bool
-        :param str id: A UUID string identifying this artifact. (required)
+        :param str href: A relative URI for the resource. (required)
         :return: Artifact
                  If the method is called asynchronously,
                  returns the request thread.
         """
 
-        all_params = ['id']  # noqa: E501
+        all_params = ['href']  # noqa: E501
         all_params.append('async')
         all_params.append('_return_http_data_only')
         all_params.append('_preload_content')
@@ -403,16 +403,16 @@ class ArtifactsApi(object):
                 )
             params[key] = val
         del params['kwargs']
-        # verify the required parameter 'id' is set
-        if ('id' not in params or
-                params['id'] is None):
-            raise ValueError("Missing the required parameter `id` when calling `artifacts_read`")  # noqa: E501
+        # verify the required parameter 'href' is set
+        if ('href' not in params or
+                params['href'] is None):
+            raise ValueError("Missing the required parameter `href` when calling `artifacts_read`")  # noqa: E501
 
         collection_formats = {}
 
         path_params = {}
-        if 'id' in params:
-            path_params['id'] = params['id']  # noqa: E501
+        if 'href' in params:
+            path_params['href'] = params['href']  # noqa: E501
 
         query_params = []
 
@@ -434,7 +434,7 @@ class ArtifactsApi(object):
         auth_settings = ['basic']  # noqa: E501
 
         return self.api_client.call_api(
-            '/artifacts/{id}/', 'GET',
+            '{href}', 'GET',
             path_params,
             query_params,
             header_params,
