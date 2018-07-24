@@ -5,12 +5,12 @@ All URIs are relative to *http://localhost:8000/pulp/api/v3*
 Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**remotes_file_create**](RemotesApi.md#remotes_file_create) | **POST** /remotes/file/ | 
-[**remotes_file_delete**](RemotesApi.md#remotes_file_delete) | **DELETE** {href} | 
+[**remotes_file_delete**](RemotesApi.md#remotes_file_delete) | **DELETE** /{file_remote_href}/ | 
 [**remotes_file_list**](RemotesApi.md#remotes_file_list) | **GET** /remotes/file/ | 
-[**remotes_file_partial_update**](RemotesApi.md#remotes_file_partial_update) | **PATCH** {href} | 
-[**remotes_file_read**](RemotesApi.md#remotes_file_read) | **GET** {href} | 
-[**remotes_file_sync**](RemotesApi.md#remotes_file_sync) | **POST** {href} | 
-[**remotes_file_update**](RemotesApi.md#remotes_file_update) | **PUT** {href} | 
+[**remotes_file_partial_update**](RemotesApi.md#remotes_file_partial_update) | **PATCH** /{file_remote_href}/ | 
+[**remotes_file_read**](RemotesApi.md#remotes_file_read) | **GET** /{file_remote_href}/ | 
+[**remotes_file_sync**](RemotesApi.md#remotes_file_sync) | **POST** /{file_remote_href}/sync/ | 
+[**remotes_file_update**](RemotesApi.md#remotes_file_update) | **PUT** /{file_remote_href}/ | 
 
 
 # **remotes_file_create**
@@ -66,11 +66,11 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **remotes_file_delete**
-> remotes_file_delete(href)
+> AsnycOperationResponse remotes_file_delete(file_remote_href)
 
 
 
-Delete a model instance
+Trigger an asynchronous delete task
 
 ### Example
 ```python
@@ -87,10 +87,11 @@ configuration.password = 'YOUR_PASSWORD'
 
 # create an instance of the API class
 api_instance = swagger_client.RemotesApi(swagger_client.ApiClient(configuration))
-href = 'id_example' # str | A relative URI for the resource.
+file_remote_href = 'file_remote_href_example' # str | URI of File Remote. e.g.: /remotes/file/1/
 
 try:
-    api_instance.remotes_file_delete(href)
+    api_response = api_instance.remotes_file_delete(file_remote_href)
+    pprint(api_response)
 except ApiException as e:
     print("Exception when calling RemotesApi->remotes_file_delete: %s\n" % e)
 ```
@@ -99,11 +100,11 @@ except ApiException as e:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **href** | [**str**](.md)| A relative URI for the resource. | 
+ **file_remote_href** | **str**| URI of File Remote. e.g.: /remotes/file/1/ | 
 
 ### Return type
 
-void (empty response body)
+[**AsnycOperationResponse**](AsnycOperationResponse.md)
 
 ### Authorization
 
@@ -117,7 +118,7 @@ void (empty response body)
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **remotes_file_list**
-> InlineResponse2005 remotes_file_list(name=name, name__in=name__in, last_updated__lt=last_updated__lt, last_updated__lte=last_updated__lte, last_updated__gt=last_updated__gt, last_updated__gte=last_updated__gte, last_updated__range=last_updated__range, last_updated=last_updated, cursor=cursor)
+> InlineResponse2004 remotes_file_list(cursor=cursor, page_size=page_size)
 
 
 
@@ -138,18 +139,11 @@ configuration.password = 'YOUR_PASSWORD'
 
 # create an instance of the API class
 api_instance = swagger_client.RemotesApi(swagger_client.ApiClient(configuration))
-name = 'name_example' # str |  (optional)
-name__in = 'name__in_example' # str | Multiple values may be separated by commas. (optional)
-last_updated__lt = 'last_updated__lt_example' # str |  (optional)
-last_updated__lte = 'last_updated__lte_example' # str |  (optional)
-last_updated__gt = 'last_updated__gt_example' # str |  (optional)
-last_updated__gte = 'last_updated__gte_example' # str |  (optional)
-last_updated__range = 'last_updated__range_example' # str | Multiple values may be separated by commas. (optional)
-last_updated = 'last_updated_example' # str |  (optional)
 cursor = 'cursor_example' # str | The pagination cursor value. (optional)
+page_size = 56 # int | Number of results to return per page. (optional)
 
 try:
-    api_response = api_instance.remotes_file_list(name=name, name__in=name__in, last_updated__lt=last_updated__lt, last_updated__lte=last_updated__lte, last_updated__gt=last_updated__gt, last_updated__gte=last_updated__gte, last_updated__range=last_updated__range, last_updated=last_updated, cursor=cursor)
+    api_response = api_instance.remotes_file_list(cursor=cursor, page_size=page_size)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling RemotesApi->remotes_file_list: %s\n" % e)
@@ -159,19 +153,12 @@ except ApiException as e:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **name** | **str**|  | [optional] 
- **name__in** | **str**| Multiple values may be separated by commas. | [optional] 
- **last_updated__lt** | **str**|  | [optional] 
- **last_updated__lte** | **str**|  | [optional] 
- **last_updated__gt** | **str**|  | [optional] 
- **last_updated__gte** | **str**|  | [optional] 
- **last_updated__range** | **str**| Multiple values may be separated by commas. | [optional] 
- **last_updated** | **str**|  | [optional] 
  **cursor** | **str**| The pagination cursor value. | [optional] 
+ **page_size** | **int**| Number of results to return per page. | [optional] 
 
 ### Return type
 
-[**InlineResponse2005**](InlineResponse2005.md)
+[**InlineResponse2004**](InlineResponse2004.md)
 
 ### Authorization
 
@@ -185,11 +172,11 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **remotes_file_partial_update**
-> FileRemote remotes_file_partial_update(href, data)
+> AsnycOperationResponse remotes_file_partial_update(file_remote_href, data)
 
 
 
-
+Trigger an asynchronous partial update task
 
 ### Example
 ```python
@@ -206,11 +193,11 @@ configuration.password = 'YOUR_PASSWORD'
 
 # create an instance of the API class
 api_instance = swagger_client.RemotesApi(swagger_client.ApiClient(configuration))
-href = 'id_example' # str | A relative URI for the resource.
+file_remote_href = 'file_remote_href_example' # str | URI of File Remote. e.g.: /remotes/file/1/
 data = swagger_client.FileRemote() # FileRemote | 
 
 try:
-    api_response = api_instance.remotes_file_partial_update(href, data)
+    api_response = api_instance.remotes_file_partial_update(file_remote_href, data)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling RemotesApi->remotes_file_partial_update: %s\n" % e)
@@ -220,12 +207,12 @@ except ApiException as e:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **href** | [**str**](.md)| A relative URI for the resource. | 
+ **file_remote_href** | **str**| URI of File Remote. e.g.: /remotes/file/1/ | 
  **data** | [**FileRemote**](FileRemote.md)|  | 
 
 ### Return type
 
-[**FileRemote**](FileRemote.md)
+[**AsnycOperationResponse**](AsnycOperationResponse.md)
 
 ### Authorization
 
@@ -239,7 +226,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **remotes_file_read**
-> FileRemote remotes_file_read(href)
+> FileRemote remotes_file_read(file_remote_href)
 
 
 
@@ -260,10 +247,10 @@ configuration.password = 'YOUR_PASSWORD'
 
 # create an instance of the API class
 api_instance = swagger_client.RemotesApi(swagger_client.ApiClient(configuration))
-href = 'id_example' # str | A relative URI for the resource.
+file_remote_href = 'file_remote_href_example' # str | URI of File Remote. e.g.: /remotes/file/1/
 
 try:
-    api_response = api_instance.remotes_file_read(href)
+    api_response = api_instance.remotes_file_read(file_remote_href)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling RemotesApi->remotes_file_read: %s\n" % e)
@@ -273,7 +260,7 @@ except ApiException as e:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **href** | [**str**](.md)| A relative URI for the resource. | 
+ **file_remote_href** | **str**| URI of File Remote. e.g.: /remotes/file/1/ | 
 
 ### Return type
 
@@ -291,11 +278,11 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **remotes_file_sync**
-> RepositorySyncURL remotes_file_sync(href, data)
+> AsnycOperationResponse remotes_file_sync(file_remote_href, data)
 
 
 
-Synchronizes a repository. The ``repository`` field has to be provided.
+Trigger an asynchronous task to sync file content.
 
 ### Example
 ```python
@@ -312,11 +299,11 @@ configuration.password = 'YOUR_PASSWORD'
 
 # create an instance of the API class
 api_instance = swagger_client.RemotesApi(swagger_client.ApiClient(configuration))
-href = 'id_example' # str | A relative URI for the resource.
+file_remote_href = 'file_remote_href_example' # str | URI of File Remote. e.g.: /remotes/file/1/
 data = swagger_client.RepositorySyncURL() # RepositorySyncURL | 
 
 try:
-    api_response = api_instance.remotes_file_sync(href, data)
+    api_response = api_instance.remotes_file_sync(file_remote_href, data)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling RemotesApi->remotes_file_sync: %s\n" % e)
@@ -326,12 +313,12 @@ except ApiException as e:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **href** | [**str**](.md)| A relative URI for the resource. | 
+ **file_remote_href** | **str**| URI of File Remote. e.g.: /remotes/file/1/ | 
  **data** | [**RepositorySyncURL**](RepositorySyncURL.md)|  | 
 
 ### Return type
 
-[**RepositorySyncURL**](RepositorySyncURL.md)
+[**AsnycOperationResponse**](AsnycOperationResponse.md)
 
 ### Authorization
 
@@ -345,11 +332,11 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **remotes_file_update**
-> FileRemote remotes_file_update(href, data)
+> AsnycOperationResponse remotes_file_update(file_remote_href, data)
 
 
 
-
+Trigger an asynchronous update task
 
 ### Example
 ```python
@@ -366,11 +353,11 @@ configuration.password = 'YOUR_PASSWORD'
 
 # create an instance of the API class
 api_instance = swagger_client.RemotesApi(swagger_client.ApiClient(configuration))
-href = 'id_example' # str | A relative URI for the resource.
+file_remote_href = 'file_remote_href_example' # str | URI of File Remote. e.g.: /remotes/file/1/
 data = swagger_client.FileRemote() # FileRemote | 
 
 try:
-    api_response = api_instance.remotes_file_update(href, data)
+    api_response = api_instance.remotes_file_update(file_remote_href, data)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling RemotesApi->remotes_file_update: %s\n" % e)
@@ -380,12 +367,12 @@ except ApiException as e:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **href** | [**str**](.md)| A relative URI for the resource. | 
+ **file_remote_href** | **str**| URI of File Remote. e.g.: /remotes/file/1/ | 
  **data** | [**FileRemote**](FileRemote.md)|  | 
 
 ### Return type
 
-[**FileRemote**](FileRemote.md)
+[**AsnycOperationResponse**](AsnycOperationResponse.md)
 
 ### Authorization
 

@@ -31,6 +31,7 @@ class Repository(object):
                             and the value is json key in definition.
     """
     swagger_types = {
+        'id': 'int',
         'href': 'str',
         'created': 'datetime',
         'versions_href': 'str',
@@ -41,6 +42,7 @@ class Repository(object):
     }
 
     attribute_map = {
+        'id': 'id',
         'href': '_href',
         'created': 'created',
         'versions_href': '_versions_href',
@@ -50,9 +52,10 @@ class Repository(object):
         'notes': 'notes'
     }
 
-    def __init__(self, href=None, created=None, versions_href=None, latest_version_href=None, name=None, description=None, notes=None):  # noqa: E501
+    def __init__(self, id=None, href=None, created=None, versions_href=None, latest_version_href=None, name=None, description=None, notes=None):  # noqa: E501
         """Repository - a model defined in Swagger"""  # noqa: E501
 
+        self._id = None
         self._href = None
         self._created = None
         self._versions_href = None
@@ -62,6 +65,8 @@ class Repository(object):
         self._notes = None
         self.discriminator = None
 
+        if id is not None:
+            self.id = id
         if href is not None:
             self.href = href
         if created is not None:
@@ -75,6 +80,27 @@ class Repository(object):
             self.description = description
         if notes is not None:
             self.notes = notes
+
+    @property
+    def id(self):
+        """Gets the id of this Repository.  # noqa: E501
+
+
+        :return: The id of this Repository.  # noqa: E501
+        :rtype: int
+        """
+        return self._id
+
+    @id.setter
+    def id(self, id):
+        """Sets the id of this Repository.
+
+
+        :param id: The id of this Repository.  # noqa: E501
+        :type: int
+        """
+
+        self._id = id
 
     @property
     def href(self):
@@ -184,6 +210,8 @@ class Repository(object):
         """
         if name is None:
             raise ValueError("Invalid value for `name`, must not be `None`")  # noqa: E501
+        if name is not None and len(name) < 1:
+            raise ValueError("Invalid value for `name`, length must be greater than or equal to `1`")  # noqa: E501
 
         self._name = name
 

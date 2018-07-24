@@ -5,13 +5,13 @@ All URIs are relative to *http://localhost:8000/pulp/api/v3*
 Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**artifacts_create**](ArtifactsApi.md#artifacts_create) | **POST** /artifacts/ | 
-[**artifacts_delete**](ArtifactsApi.md#artifacts_delete) | **DELETE** {href} | 
+[**artifacts_delete**](ArtifactsApi.md#artifacts_delete) | **DELETE** /{artifact_href}/ | 
 [**artifacts_list**](ArtifactsApi.md#artifacts_list) | **GET** /artifacts/ | 
-[**artifacts_read**](ArtifactsApi.md#artifacts_read) | **GET** {href} | 
+[**artifacts_read**](ArtifactsApi.md#artifacts_read) | **GET** /{artifact_href}/ | 
 
 
 # **artifacts_create**
-> Artifact artifacts_create(data)
+> artifacts_create(file, id=id, href=href, created=created, size=size, md5=md5, sha1=sha1, sha224=sha224, sha256=sha256, sha384=sha384, sha512=sha512)
 
 
 
@@ -32,11 +32,20 @@ configuration.password = 'YOUR_PASSWORD'
 
 # create an instance of the API class
 api_instance = swagger_client.ArtifactsApi(swagger_client.ApiClient(configuration))
-data = swagger_client.Artifact() # Artifact | 
+file = '/path/to/file.txt' # file | The stored file.
+id = 56 # int |  (optional)
+href = 'href_example' # str |  (optional)
+created = '2013-10-20T19:20:30+01:00' # datetime | Timestamp of creation. (optional)
+size = 56 # int | The size of the file in bytes. (optional)
+md5 = 'md5_example' # str | The MD5 checksum of the file if available. (optional)
+sha1 = 'sha1_example' # str | The SHA-1 checksum of the file if available. (optional)
+sha224 = 'sha224_example' # str | The SHA-224 checksum of the file if available. (optional)
+sha256 = 'sha256_example' # str | The SHA-256 checksum of the file if available. (optional)
+sha384 = 'sha384_example' # str | The SHA-384 checksum of the file if available. (optional)
+sha512 = 'sha512_example' # str | The SHA-512 checksum of the file if available. (optional)
 
 try:
-    api_response = api_instance.artifacts_create(data)
-    pprint(api_response)
+    api_instance.artifacts_create(file, id=id, href=href, created=created, size=size, md5=md5, sha1=sha1, sha224=sha224, sha256=sha256, sha384=sha384, sha512=sha512)
 except ApiException as e:
     print("Exception when calling ArtifactsApi->artifacts_create: %s\n" % e)
 ```
@@ -45,11 +54,21 @@ except ApiException as e:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **data** | [**Artifact**](Artifact.md)|  | 
+ **file** | **file**| The stored file. | 
+ **id** | **int**|  | [optional] 
+ **href** | **str**|  | [optional] 
+ **created** | **datetime**| Timestamp of creation. | [optional] 
+ **size** | **int**| The size of the file in bytes. | [optional] 
+ **md5** | **str**| The MD5 checksum of the file if available. | [optional] 
+ **sha1** | **str**| The SHA-1 checksum of the file if available. | [optional] 
+ **sha224** | **str**| The SHA-224 checksum of the file if available. | [optional] 
+ **sha256** | **str**| The SHA-256 checksum of the file if available. | [optional] 
+ **sha384** | **str**| The SHA-384 checksum of the file if available. | [optional] 
+ **sha512** | **str**| The SHA-512 checksum of the file if available. | [optional] 
 
 ### Return type
 
-[**Artifact**](Artifact.md)
+void (empty response body)
 
 ### Authorization
 
@@ -57,13 +76,13 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: application/json
+ - **Content-Type**: multipart/form-data, application/x-www-form-urlencoded
  - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **artifacts_delete**
-> artifacts_delete(href)
+> artifacts_delete(artifact_href)
 
 
 
@@ -84,10 +103,10 @@ configuration.password = 'YOUR_PASSWORD'
 
 # create an instance of the API class
 api_instance = swagger_client.ArtifactsApi(swagger_client.ApiClient(configuration))
-href = 'id_example' # str | A relative URI for the resource.
+artifact_href = 'artifact_href_example' # str | URI of Artifact. e.g.: /artifacts/1/
 
 try:
-    api_instance.artifacts_delete(href)
+    api_instance.artifacts_delete(artifact_href)
 except ApiException as e:
     print("Exception when calling ArtifactsApi->artifacts_delete: %s\n" % e)
 ```
@@ -96,7 +115,7 @@ except ApiException as e:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **href** | [**str**](.md)| A relative URI for the resource. | 
+ **artifact_href** | **str**| URI of Artifact. e.g.: /artifacts/1/ | 
 
 ### Return type
 
@@ -108,13 +127,13 @@ void (empty response body)
 
 ### HTTP request headers
 
- - **Content-Type**: application/json
+ - **Content-Type**: multipart/form-data, application/x-www-form-urlencoded
  - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **artifacts_list**
-> InlineResponse200 artifacts_list(md5=md5, sha1=sha1, sha224=sha224, sha256=sha256, sha384=sha384, sha512=sha512, cursor=cursor)
+> artifacts_list(cursor=cursor, page_size=page_size)
 
 
 
@@ -135,17 +154,11 @@ configuration.password = 'YOUR_PASSWORD'
 
 # create an instance of the API class
 api_instance = swagger_client.ArtifactsApi(swagger_client.ApiClient(configuration))
-md5 = 'md5_example' # str |  (optional)
-sha1 = 'sha1_example' # str |  (optional)
-sha224 = 'sha224_example' # str |  (optional)
-sha256 = 'sha256_example' # str |  (optional)
-sha384 = 'sha384_example' # str |  (optional)
-sha512 = 'sha512_example' # str |  (optional)
 cursor = 'cursor_example' # str | The pagination cursor value. (optional)
+page_size = 56 # int | Number of results to return per page. (optional)
 
 try:
-    api_response = api_instance.artifacts_list(md5=md5, sha1=sha1, sha224=sha224, sha256=sha256, sha384=sha384, sha512=sha512, cursor=cursor)
-    pprint(api_response)
+    api_instance.artifacts_list(cursor=cursor, page_size=page_size)
 except ApiException as e:
     print("Exception when calling ArtifactsApi->artifacts_list: %s\n" % e)
 ```
@@ -154,17 +167,12 @@ except ApiException as e:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **md5** | **str**|  | [optional] 
- **sha1** | **str**|  | [optional] 
- **sha224** | **str**|  | [optional] 
- **sha256** | **str**|  | [optional] 
- **sha384** | **str**|  | [optional] 
- **sha512** | **str**|  | [optional] 
  **cursor** | **str**| The pagination cursor value. | [optional] 
+ **page_size** | **int**| Number of results to return per page. | [optional] 
 
 ### Return type
 
-[**InlineResponse200**](InlineResponse200.md)
+void (empty response body)
 
 ### Authorization
 
@@ -172,13 +180,13 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: application/json
+ - **Content-Type**: multipart/form-data, application/x-www-form-urlencoded
  - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **artifacts_read**
-> Artifact artifacts_read(href)
+> artifacts_read(artifact_href)
 
 
 
@@ -199,11 +207,10 @@ configuration.password = 'YOUR_PASSWORD'
 
 # create an instance of the API class
 api_instance = swagger_client.ArtifactsApi(swagger_client.ApiClient(configuration))
-href = 'id_example' # str | A relative URI for the resource.
+artifact_href = 'artifact_href_example' # str | URI of Artifact. e.g.: /artifacts/1/
 
 try:
-    api_response = api_instance.artifacts_read(href)
-    pprint(api_response)
+    api_instance.artifacts_read(artifact_href)
 except ApiException as e:
     print("Exception when calling ArtifactsApi->artifacts_read: %s\n" % e)
 ```
@@ -212,11 +219,11 @@ except ApiException as e:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **href** | [**str**](.md)| A relative URI for the resource. | 
+ **artifact_href** | **str**| URI of Artifact. e.g.: /artifacts/1/ | 
 
 ### Return type
 
-[**Artifact**](Artifact.md)
+void (empty response body)
 
 ### Authorization
 
@@ -224,7 +231,7 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: application/json
+ - **Content-Type**: multipart/form-data, application/x-www-form-urlencoded
  - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)

@@ -132,45 +132,45 @@ class PublishersApi(object):
             _request_timeout=params.get('_request_timeout'),
             collection_formats=collection_formats)
 
-    def publishers_file_delete(self, href, **kwargs):  # noqa: E501
+    def publishers_file_delete(self, file_publisher_href, **kwargs):  # noqa: E501
         """publishers_file_delete  # noqa: E501
 
-        Delete a model instance  # noqa: E501
+        Trigger an asynchronous delete task  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async=True
-        >>> thread = api.publishers_file_delete(href, async=True)
+        >>> thread = api.publishers_file_delete(file_publisher_href, async=True)
         >>> result = thread.get()
 
         :param async bool
-        :param str href: A relative URI for the resource. (required)
-        :return: None
+        :param str file_publisher_href: URI of File Publisher. e.g.: /publishers/file/1/ (required)
+        :return: AsnycOperationResponse
                  If the method is called asynchronously,
                  returns the request thread.
         """
         kwargs['_return_http_data_only'] = True
         if kwargs.get('async'):
-            return self.publishers_file_delete_with_http_info(href, **kwargs)  # noqa: E501
+            return self.publishers_file_delete_with_http_info(file_publisher_href, **kwargs)  # noqa: E501
         else:
-            (data) = self.publishers_file_delete_with_http_info(href, **kwargs)  # noqa: E501
+            (data) = self.publishers_file_delete_with_http_info(file_publisher_href, **kwargs)  # noqa: E501
             return data
 
-    def publishers_file_delete_with_http_info(self, href, **kwargs):  # noqa: E501
+    def publishers_file_delete_with_http_info(self, file_publisher_href, **kwargs):  # noqa: E501
         """publishers_file_delete  # noqa: E501
 
-        Delete a model instance  # noqa: E501
+        Trigger an asynchronous delete task  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async=True
-        >>> thread = api.publishers_file_delete_with_http_info(href, async=True)
+        >>> thread = api.publishers_file_delete_with_http_info(file_publisher_href, async=True)
         >>> result = thread.get()
 
         :param async bool
-        :param str href: A relative URI for the resource. (required)
-        :return: None
+        :param str file_publisher_href: URI of File Publisher. e.g.: /publishers/file/1/ (required)
+        :return: AsnycOperationResponse
                  If the method is called asynchronously,
                  returns the request thread.
         """
 
-        all_params = ['href']  # noqa: E501
+        all_params = ['file_publisher_href']  # noqa: E501
         all_params.append('async')
         all_params.append('_return_http_data_only')
         all_params.append('_preload_content')
@@ -185,16 +185,16 @@ class PublishersApi(object):
                 )
             params[key] = val
         del params['kwargs']
-        # verify the required parameter 'href' is set
-        if ('href' not in params or
-                params['href'] is None):
-            raise ValueError("Missing the required parameter `href` when calling `publishers_file_delete`")  # noqa: E501
+        # verify the required parameter 'file_publisher_href' is set
+        if ('file_publisher_href' not in params or
+                params['file_publisher_href'] is None):
+            raise ValueError("Missing the required parameter `file_publisher_href` when calling `publishers_file_delete`")  # noqa: E501
 
         collection_formats = {}
 
         path_params = {}
-        if 'href' in params:
-            path_params['href'] = params['href']  # noqa: E501
+        if 'file_publisher_href' in params:
+            path_params['{file_publisher_href}'] = params['file_publisher_href']  # noqa: E501
 
         query_params = []
 
@@ -216,14 +216,14 @@ class PublishersApi(object):
         auth_settings = ['basic']  # noqa: E501
 
         return self.api_client.call_api(
-            '{href}', 'DELETE',
+            '/{file_publisher_href}/', 'DELETE',
             path_params,
             query_params,
             header_params,
             body=body_params,
             post_params=form_params,
             files=local_var_files,
-            response_type=None,  # noqa: E501
+            response_type='AsnycOperationResponse',  # noqa: E501
             auth_settings=auth_settings,
             async=params.get('async'),
             _return_http_data_only=params.get('_return_http_data_only'),
@@ -241,16 +241,9 @@ class PublishersApi(object):
         >>> result = thread.get()
 
         :param async bool
-        :param str name: 
-        :param str name__in: Multiple values may be separated by commas.
-        :param str last_updated__lt: 
-        :param str last_updated__lte: 
-        :param str last_updated__gt: 
-        :param str last_updated__gte: 
-        :param str last_updated__range: Multiple values may be separated by commas.
-        :param str last_updated: 
         :param str cursor: The pagination cursor value.
-        :return: InlineResponse2004
+        :param int page_size: Number of results to return per page.
+        :return: InlineResponse2003
                  If the method is called asynchronously,
                  returns the request thread.
         """
@@ -271,21 +264,14 @@ class PublishersApi(object):
         >>> result = thread.get()
 
         :param async bool
-        :param str name: 
-        :param str name__in: Multiple values may be separated by commas.
-        :param str last_updated__lt: 
-        :param str last_updated__lte: 
-        :param str last_updated__gt: 
-        :param str last_updated__gte: 
-        :param str last_updated__range: Multiple values may be separated by commas.
-        :param str last_updated: 
         :param str cursor: The pagination cursor value.
-        :return: InlineResponse2004
+        :param int page_size: Number of results to return per page.
+        :return: InlineResponse2003
                  If the method is called asynchronously,
                  returns the request thread.
         """
 
-        all_params = ['name', 'name__in', 'last_updated__lt', 'last_updated__lte', 'last_updated__gt', 'last_updated__gte', 'last_updated__range', 'last_updated', 'cursor']  # noqa: E501
+        all_params = ['cursor', 'page_size']  # noqa: E501
         all_params.append('async')
         all_params.append('_return_http_data_only')
         all_params.append('_preload_content')
@@ -306,24 +292,10 @@ class PublishersApi(object):
         path_params = {}
 
         query_params = []
-        if 'name' in params:
-            query_params.append(('name', params['name']))  # noqa: E501
-        if 'name__in' in params:
-            query_params.append(('name__in', params['name__in']))  # noqa: E501
-        if 'last_updated__lt' in params:
-            query_params.append(('last_updated__lt', params['last_updated__lt']))  # noqa: E501
-        if 'last_updated__lte' in params:
-            query_params.append(('last_updated__lte', params['last_updated__lte']))  # noqa: E501
-        if 'last_updated__gt' in params:
-            query_params.append(('last_updated__gt', params['last_updated__gt']))  # noqa: E501
-        if 'last_updated__gte' in params:
-            query_params.append(('last_updated__gte', params['last_updated__gte']))  # noqa: E501
-        if 'last_updated__range' in params:
-            query_params.append(('last_updated__range', params['last_updated__range']))  # noqa: E501
-        if 'last_updated' in params:
-            query_params.append(('last_updated', params['last_updated']))  # noqa: E501
         if 'cursor' in params:
             query_params.append(('cursor', params['cursor']))  # noqa: E501
+        if 'page_size' in params:
+            query_params.append(('page_size', params['page_size']))  # noqa: E501
 
         header_params = {}
 
@@ -350,7 +322,7 @@ class PublishersApi(object):
             body=body_params,
             post_params=form_params,
             files=local_var_files,
-            response_type='InlineResponse2004',  # noqa: E501
+            response_type='InlineResponse2003',  # noqa: E501
             auth_settings=auth_settings,
             async=params.get('async'),
             _return_http_data_only=params.get('_return_http_data_only'),
@@ -358,47 +330,47 @@ class PublishersApi(object):
             _request_timeout=params.get('_request_timeout'),
             collection_formats=collection_formats)
 
-    def publishers_file_partial_update(self, href, data, **kwargs):  # noqa: E501
+    def publishers_file_partial_update(self, file_publisher_href, data, **kwargs):  # noqa: E501
         """publishers_file_partial_update  # noqa: E501
 
-          # noqa: E501
+        Trigger an asynchronous partial update task  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async=True
-        >>> thread = api.publishers_file_partial_update(href, data, async=True)
+        >>> thread = api.publishers_file_partial_update(file_publisher_href, data, async=True)
         >>> result = thread.get()
 
         :param async bool
-        :param str href: A relative URI for the resource. (required)
+        :param str file_publisher_href: URI of File Publisher. e.g.: /publishers/file/1/ (required)
         :param FilePublisher data: (required)
-        :return: FilePublisher
+        :return: AsnycOperationResponse
                  If the method is called asynchronously,
                  returns the request thread.
         """
         kwargs['_return_http_data_only'] = True
         if kwargs.get('async'):
-            return self.publishers_file_partial_update_with_http_info(href, data, **kwargs)  # noqa: E501
+            return self.publishers_file_partial_update_with_http_info(file_publisher_href, data, **kwargs)  # noqa: E501
         else:
-            (data) = self.publishers_file_partial_update_with_http_info(href, data, **kwargs)  # noqa: E501
+            (data) = self.publishers_file_partial_update_with_http_info(file_publisher_href, data, **kwargs)  # noqa: E501
             return data
 
-    def publishers_file_partial_update_with_http_info(self, href, data, **kwargs):  # noqa: E501
+    def publishers_file_partial_update_with_http_info(self, file_publisher_href, data, **kwargs):  # noqa: E501
         """publishers_file_partial_update  # noqa: E501
 
-          # noqa: E501
+        Trigger an asynchronous partial update task  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async=True
-        >>> thread = api.publishers_file_partial_update_with_http_info(href, data, async=True)
+        >>> thread = api.publishers_file_partial_update_with_http_info(file_publisher_href, data, async=True)
         >>> result = thread.get()
 
         :param async bool
-        :param str href: A relative URI for the resource. (required)
+        :param str file_publisher_href: URI of File Publisher. e.g.: /publishers/file/1/ (required)
         :param FilePublisher data: (required)
-        :return: FilePublisher
+        :return: AsnycOperationResponse
                  If the method is called asynchronously,
                  returns the request thread.
         """
 
-        all_params = ['href', 'data']  # noqa: E501
+        all_params = ['file_publisher_href', 'data']  # noqa: E501
         all_params.append('async')
         all_params.append('_return_http_data_only')
         all_params.append('_preload_content')
@@ -413,10 +385,10 @@ class PublishersApi(object):
                 )
             params[key] = val
         del params['kwargs']
-        # verify the required parameter 'href' is set
-        if ('href' not in params or
-                params['href'] is None):
-            raise ValueError("Missing the required parameter `href` when calling `publishers_file_partial_update`")  # noqa: E501
+        # verify the required parameter 'file_publisher_href' is set
+        if ('file_publisher_href' not in params or
+                params['file_publisher_href'] is None):
+            raise ValueError("Missing the required parameter `file_publisher_href` when calling `publishers_file_partial_update`")  # noqa: E501
         # verify the required parameter 'data' is set
         if ('data' not in params or
                 params['data'] is None):
@@ -425,8 +397,8 @@ class PublishersApi(object):
         collection_formats = {}
 
         path_params = {}
-        if 'href' in params:
-            path_params['href'] = params['href']  # noqa: E501
+        if 'file_publisher_href' in params:
+            path_params['{file_publisher_href}'] = params['file_publisher_href']  # noqa: E501
 
         query_params = []
 
@@ -450,14 +422,14 @@ class PublishersApi(object):
         auth_settings = ['basic']  # noqa: E501
 
         return self.api_client.call_api(
-            '{href}', 'PATCH',
+            '/{file_publisher_href}/', 'PATCH',
             path_params,
             query_params,
             header_params,
             body=body_params,
             post_params=form_params,
             files=local_var_files,
-            response_type='FilePublisher',  # noqa: E501
+            response_type='AsnycOperationResponse',  # noqa: E501
             auth_settings=auth_settings,
             async=params.get('async'),
             _return_http_data_only=params.get('_return_http_data_only'),
@@ -465,47 +437,47 @@ class PublishersApi(object):
             _request_timeout=params.get('_request_timeout'),
             collection_formats=collection_formats)
 
-    def publishers_file_publish(self, href, data, **kwargs):  # noqa: E501
+    def publishers_file_publish(self, file_publisher_href, data, **kwargs):  # noqa: E501
         """publishers_file_publish  # noqa: E501
 
-        Publishes a repository. Either the ``repository`` or the ``repository_version`` fields can be provided but not both at the same time.  # noqa: E501
+        Trigger an asynchronous task to publish file content.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async=True
-        >>> thread = api.publishers_file_publish(href, data, async=True)
+        >>> thread = api.publishers_file_publish(file_publisher_href, data, async=True)
         >>> result = thread.get()
 
         :param async bool
-        :param str href: A relative URI for the resource. (required)
+        :param str file_publisher_href: URI of File Publisher. e.g.: /publishers/file/1/ (required)
         :param RepositoryPublishURL data: (required)
-        :return: RepositoryPublishURL
+        :return: AsnycOperationResponse
                  If the method is called asynchronously,
                  returns the request thread.
         """
         kwargs['_return_http_data_only'] = True
         if kwargs.get('async'):
-            return self.publishers_file_publish_with_http_info(href, data, **kwargs)  # noqa: E501
+            return self.publishers_file_publish_with_http_info(file_publisher_href, data, **kwargs)  # noqa: E501
         else:
-            (data) = self.publishers_file_publish_with_http_info(href, data, **kwargs)  # noqa: E501
+            (data) = self.publishers_file_publish_with_http_info(file_publisher_href, data, **kwargs)  # noqa: E501
             return data
 
-    def publishers_file_publish_with_http_info(self, href, data, **kwargs):  # noqa: E501
+    def publishers_file_publish_with_http_info(self, file_publisher_href, data, **kwargs):  # noqa: E501
         """publishers_file_publish  # noqa: E501
 
-        Publishes a repository. Either the ``repository`` or the ``repository_version`` fields can be provided but not both at the same time.  # noqa: E501
+        Trigger an asynchronous task to publish file content.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async=True
-        >>> thread = api.publishers_file_publish_with_http_info(href, data, async=True)
+        >>> thread = api.publishers_file_publish_with_http_info(file_publisher_href, data, async=True)
         >>> result = thread.get()
 
         :param async bool
-        :param str href: A relative URI for the resource. (required)
+        :param str file_publisher_href: URI of File Publisher. e.g.: /publishers/file/1/ (required)
         :param RepositoryPublishURL data: (required)
-        :return: RepositoryPublishURL
+        :return: AsnycOperationResponse
                  If the method is called asynchronously,
                  returns the request thread.
         """
 
-        all_params = ['href', 'data']  # noqa: E501
+        all_params = ['file_publisher_href', 'data']  # noqa: E501
         all_params.append('async')
         all_params.append('_return_http_data_only')
         all_params.append('_preload_content')
@@ -520,10 +492,10 @@ class PublishersApi(object):
                 )
             params[key] = val
         del params['kwargs']
-        # verify the required parameter 'href' is set
-        if ('href' not in params or
-                params['href'] is None):
-            raise ValueError("Missing the required parameter `href` when calling `publishers_file_publish`")  # noqa: E501
+        # verify the required parameter 'file_publisher_href' is set
+        if ('file_publisher_href' not in params or
+                params['file_publisher_href'] is None):
+            raise ValueError("Missing the required parameter `file_publisher_href` when calling `publishers_file_publish`")  # noqa: E501
         # verify the required parameter 'data' is set
         if ('data' not in params or
                 params['data'] is None):
@@ -532,8 +504,8 @@ class PublishersApi(object):
         collection_formats = {}
 
         path_params = {}
-        if 'href' in params:
-            path_params['href'] = params['href']  # noqa: E501
+        if 'file_publisher_href' in params:
+            path_params['{file_publisher_href}'] = params['file_publisher_href']  # noqa: E501
 
         query_params = []
 
@@ -557,14 +529,14 @@ class PublishersApi(object):
         auth_settings = ['basic']  # noqa: E501
 
         return self.api_client.call_api(
-            '{href}', 'POST',
+            '/{file_publisher_href}/publish/', 'POST',
             path_params,
             query_params,
             header_params,
             body=body_params,
             post_params=form_params,
             files=local_var_files,
-            response_type='RepositoryPublishURL',  # noqa: E501
+            response_type='AsnycOperationResponse',  # noqa: E501
             auth_settings=auth_settings,
             async=params.get('async'),
             _return_http_data_only=params.get('_return_http_data_only'),
@@ -572,45 +544,45 @@ class PublishersApi(object):
             _request_timeout=params.get('_request_timeout'),
             collection_formats=collection_formats)
 
-    def publishers_file_read(self, href, **kwargs):  # noqa: E501
+    def publishers_file_read(self, file_publisher_href, **kwargs):  # noqa: E501
         """publishers_file_read  # noqa: E501
 
           # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async=True
-        >>> thread = api.publishers_file_read(href, async=True)
+        >>> thread = api.publishers_file_read(file_publisher_href, async=True)
         >>> result = thread.get()
 
         :param async bool
-        :param str href: A relative URI for the resource. (required)
+        :param str file_publisher_href: URI of File Publisher. e.g.: /publishers/file/1/ (required)
         :return: FilePublisher
                  If the method is called asynchronously,
                  returns the request thread.
         """
         kwargs['_return_http_data_only'] = True
         if kwargs.get('async'):
-            return self.publishers_file_read_with_http_info(href, **kwargs)  # noqa: E501
+            return self.publishers_file_read_with_http_info(file_publisher_href, **kwargs)  # noqa: E501
         else:
-            (data) = self.publishers_file_read_with_http_info(href, **kwargs)  # noqa: E501
+            (data) = self.publishers_file_read_with_http_info(file_publisher_href, **kwargs)  # noqa: E501
             return data
 
-    def publishers_file_read_with_http_info(self, href, **kwargs):  # noqa: E501
+    def publishers_file_read_with_http_info(self, file_publisher_href, **kwargs):  # noqa: E501
         """publishers_file_read  # noqa: E501
 
           # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async=True
-        >>> thread = api.publishers_file_read_with_http_info(href, async=True)
+        >>> thread = api.publishers_file_read_with_http_info(file_publisher_href, async=True)
         >>> result = thread.get()
 
         :param async bool
-        :param str href: A relative URI for the resource. (required)
+        :param str file_publisher_href: URI of File Publisher. e.g.: /publishers/file/1/ (required)
         :return: FilePublisher
                  If the method is called asynchronously,
                  returns the request thread.
         """
 
-        all_params = ['href']  # noqa: E501
+        all_params = ['file_publisher_href']  # noqa: E501
         all_params.append('async')
         all_params.append('_return_http_data_only')
         all_params.append('_preload_content')
@@ -625,16 +597,16 @@ class PublishersApi(object):
                 )
             params[key] = val
         del params['kwargs']
-        # verify the required parameter 'href' is set
-        if ('href' not in params or
-                params['href'] is None):
-            raise ValueError("Missing the required parameter `href` when calling `publishers_file_read`")  # noqa: E501
+        # verify the required parameter 'file_publisher_href' is set
+        if ('file_publisher_href' not in params or
+                params['file_publisher_href'] is None):
+            raise ValueError("Missing the required parameter `file_publisher_href` when calling `publishers_file_read`")  # noqa: E501
 
         collection_formats = {}
 
         path_params = {}
-        if 'href' in params:
-            path_params['href'] = params['href']  # noqa: E501
+        if 'file_publisher_href' in params:
+            path_params['{file_publisher_href}'] = params['file_publisher_href']  # noqa: E501
 
         query_params = []
 
@@ -656,7 +628,7 @@ class PublishersApi(object):
         auth_settings = ['basic']  # noqa: E501
 
         return self.api_client.call_api(
-            '{href}', 'GET',
+            '/{file_publisher_href}/', 'GET',
             path_params,
             query_params,
             header_params,
@@ -671,47 +643,47 @@ class PublishersApi(object):
             _request_timeout=params.get('_request_timeout'),
             collection_formats=collection_formats)
 
-    def publishers_file_update(self, href, data, **kwargs):  # noqa: E501
+    def publishers_file_update(self, file_publisher_href, data, **kwargs):  # noqa: E501
         """publishers_file_update  # noqa: E501
 
-          # noqa: E501
+        Trigger an asynchronous update task  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async=True
-        >>> thread = api.publishers_file_update(href, data, async=True)
+        >>> thread = api.publishers_file_update(file_publisher_href, data, async=True)
         >>> result = thread.get()
 
         :param async bool
-        :param str href: A relative URI for the resource. (required)
+        :param str file_publisher_href: URI of File Publisher. e.g.: /publishers/file/1/ (required)
         :param FilePublisher data: (required)
-        :return: FilePublisher
+        :return: AsnycOperationResponse
                  If the method is called asynchronously,
                  returns the request thread.
         """
         kwargs['_return_http_data_only'] = True
         if kwargs.get('async'):
-            return self.publishers_file_update_with_http_info(href, data, **kwargs)  # noqa: E501
+            return self.publishers_file_update_with_http_info(file_publisher_href, data, **kwargs)  # noqa: E501
         else:
-            (data) = self.publishers_file_update_with_http_info(href, data, **kwargs)  # noqa: E501
+            (data) = self.publishers_file_update_with_http_info(file_publisher_href, data, **kwargs)  # noqa: E501
             return data
 
-    def publishers_file_update_with_http_info(self, href, data, **kwargs):  # noqa: E501
+    def publishers_file_update_with_http_info(self, file_publisher_href, data, **kwargs):  # noqa: E501
         """publishers_file_update  # noqa: E501
 
-          # noqa: E501
+        Trigger an asynchronous update task  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async=True
-        >>> thread = api.publishers_file_update_with_http_info(href, data, async=True)
+        >>> thread = api.publishers_file_update_with_http_info(file_publisher_href, data, async=True)
         >>> result = thread.get()
 
         :param async bool
-        :param str href: A relative URI for the resource. (required)
+        :param str file_publisher_href: URI of File Publisher. e.g.: /publishers/file/1/ (required)
         :param FilePublisher data: (required)
-        :return: FilePublisher
+        :return: AsnycOperationResponse
                  If the method is called asynchronously,
                  returns the request thread.
         """
 
-        all_params = ['href', 'data']  # noqa: E501
+        all_params = ['file_publisher_href', 'data']  # noqa: E501
         all_params.append('async')
         all_params.append('_return_http_data_only')
         all_params.append('_preload_content')
@@ -726,10 +698,10 @@ class PublishersApi(object):
                 )
             params[key] = val
         del params['kwargs']
-        # verify the required parameter 'href' is set
-        if ('href' not in params or
-                params['href'] is None):
-            raise ValueError("Missing the required parameter `href` when calling `publishers_file_update`")  # noqa: E501
+        # verify the required parameter 'file_publisher_href' is set
+        if ('file_publisher_href' not in params or
+                params['file_publisher_href'] is None):
+            raise ValueError("Missing the required parameter `file_publisher_href` when calling `publishers_file_update`")  # noqa: E501
         # verify the required parameter 'data' is set
         if ('data' not in params or
                 params['data'] is None):
@@ -738,8 +710,8 @@ class PublishersApi(object):
         collection_formats = {}
 
         path_params = {}
-        if 'href' in params:
-            path_params['href'] = params['href']  # noqa: E501
+        if 'file_publisher_href' in params:
+            path_params['{file_publisher_href}'] = params['file_publisher_href']  # noqa: E501
 
         query_params = []
 
@@ -763,14 +735,14 @@ class PublishersApi(object):
         auth_settings = ['basic']  # noqa: E501
 
         return self.api_client.call_api(
-            '{href}', 'PUT',
+            '/{file_publisher_href}/', 'PUT',
             path_params,
             query_params,
             header_params,
             body=body_params,
             post_params=form_params,
             files=local_var_files,
-            response_type='FilePublisher',  # noqa: E501
+            response_type='AsnycOperationResponse',  # noqa: E501
             auth_settings=auth_settings,
             async=params.get('async'),
             _return_http_data_only=params.get('_return_http_data_only'),

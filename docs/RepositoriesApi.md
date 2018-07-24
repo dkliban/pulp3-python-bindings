@@ -5,18 +5,20 @@ All URIs are relative to *http://localhost:8000/pulp/api/v3*
 Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**repositories_create**](RepositoriesApi.md#repositories_create) | **POST** /repositories/ | 
-[**repositories_delete**](RepositoriesApi.md#repositories_delete) | **DELETE** {href} | 
+[**repositories_delete**](RepositoriesApi.md#repositories_delete) | **DELETE** /{repository_href}/ | 
 [**repositories_list**](RepositoriesApi.md#repositories_list) | **GET** /repositories/ | 
-[**repositories_partial_update**](RepositoriesApi.md#repositories_partial_update) | **PATCH** {href} | 
-[**repositories_read**](RepositoriesApi.md#repositories_read) | **GET** {href} | 
-[**repositories_update**](RepositoriesApi.md#repositories_update) | **PUT** {href} | 
-[**repositories_versions_added_content**](RepositoriesApi.md#repositories_versions_added_content) | **GET** {href} | 
-[**repositories_versions_content**](RepositoriesApi.md#repositories_versions_content) | **GET** {href} | 
-[**repositories_versions_create**](RepositoriesApi.md#repositories_versions_create) | **POST** {href} | 
-[**repositories_versions_delete**](RepositoriesApi.md#repositories_versions_delete) | **DELETE** {href} | 
-[**repositories_versions_list**](RepositoriesApi.md#repositories_versions_list) | **GET** {href} | 
-[**repositories_versions_read**](RepositoriesApi.md#repositories_versions_read) | **GET** {href} | 
-[**repositories_versions_removed_content**](RepositoriesApi.md#repositories_versions_removed_content) | **GET** {href} | 
+[**repositories_partial_update**](RepositoriesApi.md#repositories_partial_update) | **PATCH** /{repository_href}/ | 
+[**repositories_read**](RepositoriesApi.md#repositories_read) | **GET** /{repository_href}/ | 
+[**repositories_update**](RepositoriesApi.md#repositories_update) | **PUT** /{repository_href}/ | 
+[**repositories_versions_added_content**](RepositoriesApi.md#repositories_versions_added_content) | **GET** /{repository_version_href}/added_content/ | 
+[**repositories_versions_content**](RepositoriesApi.md#repositories_versions_content) | **GET** /{repository_version_href}/content/ | 
+[**repositories_versions_create**](RepositoriesApi.md#repositories_versions_create) | **POST** /{repository_version_href}/versions/ | 
+[**repositories_versions_delete**](RepositoriesApi.md#repositories_versions_delete) | **DELETE** /{repository_version_href}/ | 
+[**repositories_versions_list**](RepositoriesApi.md#repositories_versions_list) | **GET** /{repository_version_href}/versions/ | 
+[**repositories_versions_partial_update**](RepositoriesApi.md#repositories_versions_partial_update) | **PATCH** /{repository_version_href}/ | 
+[**repositories_versions_read**](RepositoriesApi.md#repositories_versions_read) | **GET** /{repository_version_href}/ | 
+[**repositories_versions_removed_content**](RepositoriesApi.md#repositories_versions_removed_content) | **GET** /{repository_version_href}/removed_content/ | 
+[**repositories_versions_update**](RepositoriesApi.md#repositories_versions_update) | **PUT** /{repository_version_href}/ | 
 
 
 # **repositories_create**
@@ -72,11 +74,11 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **repositories_delete**
-> repositories_delete(href)
+> AsnycOperationResponse repositories_delete(repository_href)
 
 
 
-Generates a Task to delete a Repository
+Trigger an asynchronous task to delete a repository.
 
 ### Example
 ```python
@@ -93,10 +95,11 @@ configuration.password = 'YOUR_PASSWORD'
 
 # create an instance of the API class
 api_instance = swagger_client.RepositoriesApi(swagger_client.ApiClient(configuration))
-href = 'id_example' # str | A relative URI for the resource.
+repository_href = 'repository_href_example' # str | URI of Repository. e.g.: /repositories/1/
 
 try:
-    api_instance.repositories_delete(href)
+    api_response = api_instance.repositories_delete(repository_href)
+    pprint(api_response)
 except ApiException as e:
     print("Exception when calling RepositoriesApi->repositories_delete: %s\n" % e)
 ```
@@ -105,11 +108,11 @@ except ApiException as e:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **href** | [**str**](.md)| A relative URI for the resource. | 
+ **repository_href** | **str**| URI of Repository. e.g.: /repositories/1/ | 
 
 ### Return type
 
-void (empty response body)
+[**AsnycOperationResponse**](AsnycOperationResponse.md)
 
 ### Authorization
 
@@ -123,7 +126,7 @@ void (empty response body)
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **repositories_list**
-> InlineResponse2006 repositories_list(name=name, name__in=name__in, cursor=cursor)
+> InlineResponse2005 repositories_list(cursor=cursor, page_size=page_size)
 
 
 
@@ -144,12 +147,11 @@ configuration.password = 'YOUR_PASSWORD'
 
 # create an instance of the API class
 api_instance = swagger_client.RepositoriesApi(swagger_client.ApiClient(configuration))
-name = 'name_example' # str |  (optional)
-name__in = 'name__in_example' # str | Multiple values may be separated by commas. (optional)
 cursor = 'cursor_example' # str | The pagination cursor value. (optional)
+page_size = 56 # int | Number of results to return per page. (optional)
 
 try:
-    api_response = api_instance.repositories_list(name=name, name__in=name__in, cursor=cursor)
+    api_response = api_instance.repositories_list(cursor=cursor, page_size=page_size)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling RepositoriesApi->repositories_list: %s\n" % e)
@@ -159,13 +161,12 @@ except ApiException as e:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **name** | **str**|  | [optional] 
- **name__in** | **str**| Multiple values may be separated by commas. | [optional] 
  **cursor** | **str**| The pagination cursor value. | [optional] 
+ **page_size** | **int**| Number of results to return per page. | [optional] 
 
 ### Return type
 
-[**InlineResponse2006**](InlineResponse2006.md)
+[**InlineResponse2005**](InlineResponse2005.md)
 
 ### Authorization
 
@@ -179,7 +180,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **repositories_partial_update**
-> Repository repositories_partial_update(href, data)
+> Repository repositories_partial_update(repository_href, data)
 
 
 
@@ -200,11 +201,11 @@ configuration.password = 'YOUR_PASSWORD'
 
 # create an instance of the API class
 api_instance = swagger_client.RepositoriesApi(swagger_client.ApiClient(configuration))
-href = 'id_example' # str | A relative URI for the resource.
+repository_href = 'repository_href_example' # str | URI of Repository. e.g.: /repositories/1/
 data = swagger_client.Repository() # Repository | 
 
 try:
-    api_response = api_instance.repositories_partial_update(href, data)
+    api_response = api_instance.repositories_partial_update(repository_href, data)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling RepositoriesApi->repositories_partial_update: %s\n" % e)
@@ -214,7 +215,7 @@ except ApiException as e:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **href** | [**str**](.md)| A relative URI for the resource. | 
+ **repository_href** | **str**| URI of Repository. e.g.: /repositories/1/ | 
  **data** | [**Repository**](Repository.md)|  | 
 
 ### Return type
@@ -233,7 +234,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **repositories_read**
-> Repository repositories_read(href)
+> Repository repositories_read(repository_href)
 
 
 
@@ -254,10 +255,10 @@ configuration.password = 'YOUR_PASSWORD'
 
 # create an instance of the API class
 api_instance = swagger_client.RepositoriesApi(swagger_client.ApiClient(configuration))
-href = 'id_example' # str | A relative URI for the resource.
+repository_href = 'repository_href_example' # str | URI of Repository. e.g.: /repositories/1/
 
 try:
-    api_response = api_instance.repositories_read(href)
+    api_response = api_instance.repositories_read(repository_href)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling RepositoriesApi->repositories_read: %s\n" % e)
@@ -267,7 +268,7 @@ except ApiException as e:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **href** | [**str**](.md)| A relative URI for the resource. | 
+ **repository_href** | **str**| URI of Repository. e.g.: /repositories/1/ | 
 
 ### Return type
 
@@ -285,11 +286,11 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **repositories_update**
-> Repository repositories_update(href, data)
+> AsnycOperationResponse repositories_update(repository_href, data)
 
 
 
-Generates a Task to update a Repository
+Trigger an asynchronous task to updatea repository.
 
 ### Example
 ```python
@@ -306,11 +307,11 @@ configuration.password = 'YOUR_PASSWORD'
 
 # create an instance of the API class
 api_instance = swagger_client.RepositoriesApi(swagger_client.ApiClient(configuration))
-href = 'id_example' # str | A relative URI for the resource.
+repository_href = 'repository_href_example' # str | URI of Repository. e.g.: /repositories/1/
 data = swagger_client.Repository() # Repository | 
 
 try:
-    api_response = api_instance.repositories_update(href, data)
+    api_response = api_instance.repositories_update(repository_href, data)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling RepositoriesApi->repositories_update: %s\n" % e)
@@ -320,12 +321,12 @@ except ApiException as e:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **href** | [**str**](.md)| A relative URI for the resource. | 
+ **repository_href** | **str**| URI of Repository. e.g.: /repositories/1/ | 
  **data** | [**Repository**](Repository.md)|  | 
 
 ### Return type
 
-[**Repository**](Repository.md)
+[**AsnycOperationResponse**](AsnycOperationResponse.md)
 
 ### Authorization
 
@@ -339,11 +340,11 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **repositories_versions_added_content**
-> RepositoryVersion repositories_versions_added_content(href)
+> Content repositories_versions_added_content(repository_version_href)
 
 
 
-Display content added since the previous Repository Version.
+List added Content
 
 ### Example
 ```python
@@ -360,10 +361,10 @@ configuration.password = 'YOUR_PASSWORD'
 
 # create an instance of the API class
 api_instance = swagger_client.RepositoriesApi(swagger_client.ApiClient(configuration))
-href = 'repository_pk_example' # str | A relative URI for the resource.
+repository_version_href = 'repository_version_href_example' # str | URI of Repository Version. e.g.: /repositories/1/versions/1/
 
 try:
-    api_response = api_instance.repositories_versions_added_content(href)
+    api_response = api_instance.repositories_versions_added_content(repository_version_href)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling RepositoriesApi->repositories_versions_added_content: %s\n" % e)
@@ -373,11 +374,11 @@ except ApiException as e:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **href** | **str**| A relative URI for the resource. | 
+ **repository_version_href** | **str**| URI of Repository Version. e.g.: /repositories/1/versions/1/ | 
 
 ### Return type
 
-[**RepositoryVersion**](RepositoryVersion.md)
+[**Content**](Content.md)
 
 ### Authorization
 
@@ -391,11 +392,11 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **repositories_versions_content**
-> RepositoryVersion repositories_versions_content(href)
+> Content repositories_versions_content(repository_version_href)
 
 
 
-
+List Content
 
 ### Example
 ```python
@@ -412,10 +413,10 @@ configuration.password = 'YOUR_PASSWORD'
 
 # create an instance of the API class
 api_instance = swagger_client.RepositoriesApi(swagger_client.ApiClient(configuration))
-href = 'repository_pk_example' # str | A relative URI for the resource.
+repository_version_href = 'repository_version_href_example' # str | URI of Repository Version. e.g.: /repositories/1/versions/1/
 
 try:
-    api_response = api_instance.repositories_versions_content(href)
+    api_response = api_instance.repositories_versions_content(repository_version_href)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling RepositoriesApi->repositories_versions_content: %s\n" % e)
@@ -425,11 +426,11 @@ except ApiException as e:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **href** | **str**| A relative URI for the resource. | 
+ **repository_version_href** | **str**| URI of Repository Version. e.g.: /repositories/1/versions/1/ | 
 
 ### Return type
 
-[**RepositoryVersion**](RepositoryVersion.md)
+[**Content**](Content.md)
 
 ### Authorization
 
@@ -443,11 +444,11 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **repositories_versions_create**
-> RepositoryVersion repositories_versions_create(href, data)
+> AsnycOperationResponse repositories_versions_create(repository_version_href, data)
 
 
 
-Queues a task that creates a new RepositoryVersion by adding and removing content units
+Trigger an asynchronous task to create a new repository version.
 
 ### Example
 ```python
@@ -464,11 +465,11 @@ configuration.password = 'YOUR_PASSWORD'
 
 # create an instance of the API class
 api_instance = swagger_client.RepositoriesApi(swagger_client.ApiClient(configuration))
-href = 'repository_pk_example' # str | A relative URI for the resource.
+repository_version_href = 'repository_version_href_example' # str | URI of Repository Version. e.g.: /repositories/1/versions/
 data = swagger_client.RepositoryVersion() # RepositoryVersion | 
 
 try:
-    api_response = api_instance.repositories_versions_create(href, data)
+    api_response = api_instance.repositories_versions_create(repository_version_href, data)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling RepositoriesApi->repositories_versions_create: %s\n" % e)
@@ -478,7 +479,171 @@ except ApiException as e:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **href** | **str**| A relative URI for the resource. | 
+ **repository_version_href** | **str**| URI of Repository Version. e.g.: /repositories/1/versions/ | 
+ **data** | [**RepositoryVersion**](RepositoryVersion.md)|  | 
+
+### Return type
+
+[**AsnycOperationResponse**](AsnycOperationResponse.md)
+
+### Authorization
+
+[basic](../README.md#basic)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **repositories_versions_delete**
+> AsnycOperationResponse repositories_versions_delete(repository_version_href)
+
+
+
+Trigger an asynchronous task to delete a repositroy version.
+
+### Example
+```python
+from __future__ import print_function
+import time
+import swagger_client
+from swagger_client.rest import ApiException
+from pprint import pprint
+
+# Configure HTTP basic authorization: basic
+configuration = swagger_client.Configuration()
+configuration.username = 'YOUR_USERNAME'
+configuration.password = 'YOUR_PASSWORD'
+
+# create an instance of the API class
+api_instance = swagger_client.RepositoriesApi(swagger_client.ApiClient(configuration))
+repository_version_href = 'repository_version_href_example' # str | URI of Repository Version. e.g.: /repositories/1/versions/1/
+
+try:
+    api_response = api_instance.repositories_versions_delete(repository_version_href)
+    pprint(api_response)
+except ApiException as e:
+    print("Exception when calling RepositoriesApi->repositories_versions_delete: %s\n" % e)
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **repository_version_href** | **str**| URI of Repository Version. e.g.: /repositories/1/versions/1/ | 
+
+### Return type
+
+[**AsnycOperationResponse**](AsnycOperationResponse.md)
+
+### Authorization
+
+[basic](../README.md#basic)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **repositories_versions_list**
+> InlineResponse2006 repositories_versions_list(repository_version_href, ordering=ordering, cursor=cursor, page_size=page_size)
+
+
+
+
+
+### Example
+```python
+from __future__ import print_function
+import time
+import swagger_client
+from swagger_client.rest import ApiException
+from pprint import pprint
+
+# Configure HTTP basic authorization: basic
+configuration = swagger_client.Configuration()
+configuration.username = 'YOUR_USERNAME'
+configuration.password = 'YOUR_PASSWORD'
+
+# create an instance of the API class
+api_instance = swagger_client.RepositoriesApi(swagger_client.ApiClient(configuration))
+repository_version_href = 'repository_version_href_example' # str | URI of Repository Version. e.g.: /repositories/1/versions/
+ordering = 'ordering_example' # str | Which field to use when ordering the results. (optional)
+cursor = 'cursor_example' # str | The pagination cursor value. (optional)
+page_size = 56 # int | Number of results to return per page. (optional)
+
+try:
+    api_response = api_instance.repositories_versions_list(repository_version_href, ordering=ordering, cursor=cursor, page_size=page_size)
+    pprint(api_response)
+except ApiException as e:
+    print("Exception when calling RepositoriesApi->repositories_versions_list: %s\n" % e)
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **repository_version_href** | **str**| URI of Repository Version. e.g.: /repositories/1/versions/ | 
+ **ordering** | **str**| Which field to use when ordering the results. | [optional] 
+ **cursor** | **str**| The pagination cursor value. | [optional] 
+ **page_size** | **int**| Number of results to return per page. | [optional] 
+
+### Return type
+
+[**InlineResponse2006**](InlineResponse2006.md)
+
+### Authorization
+
+[basic](../README.md#basic)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **repositories_versions_partial_update**
+> RepositoryVersion repositories_versions_partial_update(repository_version_href, data)
+
+
+
+
+
+### Example
+```python
+from __future__ import print_function
+import time
+import swagger_client
+from swagger_client.rest import ApiException
+from pprint import pprint
+
+# Configure HTTP basic authorization: basic
+configuration = swagger_client.Configuration()
+configuration.username = 'YOUR_USERNAME'
+configuration.password = 'YOUR_PASSWORD'
+
+# create an instance of the API class
+api_instance = swagger_client.RepositoriesApi(swagger_client.ApiClient(configuration))
+repository_version_href = 'repository_version_href_example' # str | URI of Repository Version. e.g.: /repositories/1/versions/1/
+data = swagger_client.RepositoryVersion() # RepositoryVersion | 
+
+try:
+    api_response = api_instance.repositories_versions_partial_update(repository_version_href, data)
+    pprint(api_response)
+except ApiException as e:
+    print("Exception when calling RepositoriesApi->repositories_versions_partial_update: %s\n" % e)
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **repository_version_href** | **str**| URI of Repository Version. e.g.: /repositories/1/versions/1/ | 
  **data** | [**RepositoryVersion**](RepositoryVersion.md)|  | 
 
 ### Return type
@@ -496,141 +661,8 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **repositories_versions_delete**
-> repositories_versions_delete(href)
-
-
-
-Queues a task to handle deletion of a RepositoryVersion
-
-### Example
-```python
-from __future__ import print_function
-import time
-import swagger_client
-from swagger_client.rest import ApiException
-from pprint import pprint
-
-# Configure HTTP basic authorization: basic
-configuration = swagger_client.Configuration()
-configuration.username = 'YOUR_USERNAME'
-configuration.password = 'YOUR_PASSWORD'
-
-# create an instance of the API class
-api_instance = swagger_client.RepositoriesApi(swagger_client.ApiClient(configuration))
-href = 'repository_pk_example' # str | A relative URI for the resource.
-
-try:
-    api_instance.repositories_versions_delete(href)
-except ApiException as e:
-    print("Exception when calling RepositoriesApi->repositories_versions_delete: %s\n" % e)
-```
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **href** | **str**| A relative URI for the resource. | 
-
-### Return type
-
-void (empty response body)
-
-### Authorization
-
-[basic](../README.md#basic)
-
-### HTTP request headers
-
- - **Content-Type**: application/json
- - **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-# **repositories_versions_list**
-> InlineResponse2007 repositories_versions_list(href, ordering=ordering, number=number, number__lt=number__lt, number__lte=number__lte, number__gt=number__gt, number__gte=number__gte, number__range=number__range, created__lt=created__lt, created__lte=created__lte, created__gt=created__gt, created__gte=created__gte, created__range=created__range, content=content, created=created, cursor=cursor)
-
-
-
-
-
-### Example
-```python
-from __future__ import print_function
-import time
-import swagger_client
-from swagger_client.rest import ApiException
-from pprint import pprint
-
-# Configure HTTP basic authorization: basic
-configuration = swagger_client.Configuration()
-configuration.username = 'YOUR_USERNAME'
-configuration.password = 'YOUR_PASSWORD'
-
-# create an instance of the API class
-api_instance = swagger_client.RepositoriesApi(swagger_client.ApiClient(configuration))
-href = 'repository_pk_example' # str | A relative URI for the resource.
-ordering = 'ordering_example' # str | Which field to use when ordering the results. (optional)
-number = 8.14 # float |  (optional)
-number__lt = 8.14 # float |  (optional)
-number__lte = 8.14 # float |  (optional)
-number__gt = 8.14 # float |  (optional)
-number__gte = 8.14 # float |  (optional)
-number__range = 8.14 # float | Multiple values may be separated by commas. (optional)
-created__lt = 'created__lt_example' # str |  (optional)
-created__lte = 'created__lte_example' # str |  (optional)
-created__gt = 'created__gt_example' # str |  (optional)
-created__gte = 'created__gte_example' # str |  (optional)
-created__range = 'created__range_example' # str | Multiple values may be separated by commas. (optional)
-content = 'content_example' # str | Content Unit referenced by HREF (optional)
-created = 'created_example' # str |  (optional)
-cursor = 'cursor_example' # str | The pagination cursor value. (optional)
-
-try:
-    api_response = api_instance.repositories_versions_list(href, ordering=ordering, number=number, number__lt=number__lt, number__lte=number__lte, number__gt=number__gt, number__gte=number__gte, number__range=number__range, created__lt=created__lt, created__lte=created__lte, created__gt=created__gt, created__gte=created__gte, created__range=created__range, content=content, created=created, cursor=cursor)
-    pprint(api_response)
-except ApiException as e:
-    print("Exception when calling RepositoriesApi->repositories_versions_list: %s\n" % e)
-```
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **href** | **str**| A relative URI for the resource. | 
- **ordering** | **str**| Which field to use when ordering the results. | [optional] 
- **number** | **float**|  | [optional] 
- **number__lt** | **float**|  | [optional] 
- **number__lte** | **float**|  | [optional] 
- **number__gt** | **float**|  | [optional] 
- **number__gte** | **float**|  | [optional] 
- **number__range** | **float**| Multiple values may be separated by commas. | [optional] 
- **created__lt** | **str**|  | [optional] 
- **created__lte** | **str**|  | [optional] 
- **created__gt** | **str**|  | [optional] 
- **created__gte** | **str**|  | [optional] 
- **created__range** | **str**| Multiple values may be separated by commas. | [optional] 
- **content** | **str**| Content Unit referenced by HREF | [optional] 
- **created** | **str**|  | [optional] 
- **cursor** | **str**| The pagination cursor value. | [optional] 
-
-### Return type
-
-[**InlineResponse2007**](InlineResponse2007.md)
-
-### Authorization
-
-[basic](../README.md#basic)
-
-### HTTP request headers
-
- - **Content-Type**: application/json
- - **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
 # **repositories_versions_read**
-> RepositoryVersion repositories_versions_read(href)
+> RepositoryVersion repositories_versions_read(repository_version_href)
 
 
 
@@ -651,10 +683,10 @@ configuration.password = 'YOUR_PASSWORD'
 
 # create an instance of the API class
 api_instance = swagger_client.RepositoriesApi(swagger_client.ApiClient(configuration))
-href = 'repository_pk_example' # str | A relative URI for the resource.
+repository_version_href = 'repository_version_href_example' # str | URI of Repository Version. e.g.: /repositories/1/versions/1/
 
 try:
-    api_response = api_instance.repositories_versions_read(href)
+    api_response = api_instance.repositories_versions_read(repository_version_href)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling RepositoriesApi->repositories_versions_read: %s\n" % e)
@@ -664,7 +696,7 @@ except ApiException as e:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **href** | **str**| A relative URI for the resource. | 
+ **repository_version_href** | **str**| URI of Repository Version. e.g.: /repositories/1/versions/1/ | 
 
 ### Return type
 
@@ -682,11 +714,11 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **repositories_versions_removed_content**
-> RepositoryVersion repositories_versions_removed_content(href)
+> Content repositories_versions_removed_content(repository_version_href)
 
 
 
-Display content removed since the previous Repository Version.
+List removed Content
 
 ### Example
 ```python
@@ -703,10 +735,10 @@ configuration.password = 'YOUR_PASSWORD'
 
 # create an instance of the API class
 api_instance = swagger_client.RepositoriesApi(swagger_client.ApiClient(configuration))
-href = 'repository_pk_example' # str | A relative URI for the resource.
+repository_version_href = 'repository_version_href_example' # str | URI of Repository Version. e.g.: /repositories/1/versions/1/
 
 try:
-    api_response = api_instance.repositories_versions_removed_content(href)
+    api_response = api_instance.repositories_versions_removed_content(repository_version_href)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling RepositoriesApi->repositories_versions_removed_content: %s\n" % e)
@@ -716,7 +748,61 @@ except ApiException as e:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **href** | **str**| A relative URI for the resource. | 
+ **repository_version_href** | **str**| URI of Repository Version. e.g.: /repositories/1/versions/1/ | 
+
+### Return type
+
+[**Content**](Content.md)
+
+### Authorization
+
+[basic](../README.md#basic)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **repositories_versions_update**
+> RepositoryVersion repositories_versions_update(repository_version_href, data)
+
+
+
+
+
+### Example
+```python
+from __future__ import print_function
+import time
+import swagger_client
+from swagger_client.rest import ApiException
+from pprint import pprint
+
+# Configure HTTP basic authorization: basic
+configuration = swagger_client.Configuration()
+configuration.username = 'YOUR_USERNAME'
+configuration.password = 'YOUR_PASSWORD'
+
+# create an instance of the API class
+api_instance = swagger_client.RepositoriesApi(swagger_client.ApiClient(configuration))
+repository_version_href = 'repository_version_href_example' # str | URI of Repository Version. e.g.: /repositories/1/versions/1/
+data = swagger_client.RepositoryVersion() # RepositoryVersion | 
+
+try:
+    api_response = api_instance.repositories_versions_update(repository_version_href, data)
+    pprint(api_response)
+except ApiException as e:
+    print("Exception when calling RepositoriesApi->repositories_versions_update: %s\n" % e)
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **repository_version_href** | **str**| URI of Repository Version. e.g.: /repositories/1/versions/1/ | 
+ **data** | [**RepositoryVersion**](RepositoryVersion.md)|  | 
 
 ### Return type
 

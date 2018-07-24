@@ -33,13 +33,13 @@ class ContentApi(object):
             api_client = ApiClient()
         self.api_client = api_client
 
-    def content_file_create(self, data, **kwargs):  # noqa: E501
-        """content_file_create  # noqa: E501
+    def content_file_files_create(self, data, **kwargs):  # noqa: E501
+        """content_file_files_create  # noqa: E501
 
           # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async=True
-        >>> thread = api.content_file_create(data, async=True)
+        >>> thread = api.content_file_files_create(data, async=True)
         >>> result = thread.get()
 
         :param async bool
@@ -50,18 +50,18 @@ class ContentApi(object):
         """
         kwargs['_return_http_data_only'] = True
         if kwargs.get('async'):
-            return self.content_file_create_with_http_info(data, **kwargs)  # noqa: E501
+            return self.content_file_files_create_with_http_info(data, **kwargs)  # noqa: E501
         else:
-            (data) = self.content_file_create_with_http_info(data, **kwargs)  # noqa: E501
+            (data) = self.content_file_files_create_with_http_info(data, **kwargs)  # noqa: E501
             return data
 
-    def content_file_create_with_http_info(self, data, **kwargs):  # noqa: E501
-        """content_file_create  # noqa: E501
+    def content_file_files_create_with_http_info(self, data, **kwargs):  # noqa: E501
+        """content_file_files_create  # noqa: E501
 
           # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async=True
-        >>> thread = api.content_file_create_with_http_info(data, async=True)
+        >>> thread = api.content_file_files_create_with_http_info(data, async=True)
         >>> result = thread.get()
 
         :param async bool
@@ -82,14 +82,14 @@ class ContentApi(object):
             if key not in all_params:
                 raise TypeError(
                     "Got an unexpected keyword argument '%s'"
-                    " to method content_file_create" % key
+                    " to method content_file_files_create" % key
                 )
             params[key] = val
         del params['kwargs']
         # verify the required parameter 'data' is set
         if ('data' not in params or
                 params['data'] is None):
-            raise ValueError("Missing the required parameter `data` when calling `content_file_create`")  # noqa: E501
+            raise ValueError("Missing the required parameter `data` when calling `content_file_files_create`")  # noqa: E501
 
         collection_formats = {}
 
@@ -117,7 +117,7 @@ class ContentApi(object):
         auth_settings = ['basic']  # noqa: E501
 
         return self.api_client.call_api(
-            '/content/file/', 'POST',
+            '/content/file/files/', 'POST',
             path_params,
             query_params,
             header_params,
@@ -132,49 +132,47 @@ class ContentApi(object):
             _request_timeout=params.get('_request_timeout'),
             collection_formats=collection_formats)
 
-    def content_file_list(self, **kwargs):  # noqa: E501
-        """content_file_list  # noqa: E501
+    def content_file_files_list(self, **kwargs):  # noqa: E501
+        """content_file_files_list  # noqa: E501
 
           # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async=True
-        >>> thread = api.content_file_list(async=True)
+        >>> thread = api.content_file_files_list(async=True)
         >>> result = thread.get()
 
         :param async bool
-        :param str relative_path: 
-        :param str digest: 
         :param str cursor: The pagination cursor value.
-        :return: InlineResponse2001
+        :param int page_size: Number of results to return per page.
+        :return: InlineResponse200
                  If the method is called asynchronously,
                  returns the request thread.
         """
         kwargs['_return_http_data_only'] = True
         if kwargs.get('async'):
-            return self.content_file_list_with_http_info(**kwargs)  # noqa: E501
+            return self.content_file_files_list_with_http_info(**kwargs)  # noqa: E501
         else:
-            (data) = self.content_file_list_with_http_info(**kwargs)  # noqa: E501
+            (data) = self.content_file_files_list_with_http_info(**kwargs)  # noqa: E501
             return data
 
-    def content_file_list_with_http_info(self, **kwargs):  # noqa: E501
-        """content_file_list  # noqa: E501
+    def content_file_files_list_with_http_info(self, **kwargs):  # noqa: E501
+        """content_file_files_list  # noqa: E501
 
           # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async=True
-        >>> thread = api.content_file_list_with_http_info(async=True)
+        >>> thread = api.content_file_files_list_with_http_info(async=True)
         >>> result = thread.get()
 
         :param async bool
-        :param str relative_path: 
-        :param str digest: 
         :param str cursor: The pagination cursor value.
-        :return: InlineResponse2001
+        :param int page_size: Number of results to return per page.
+        :return: InlineResponse200
                  If the method is called asynchronously,
                  returns the request thread.
         """
 
-        all_params = ['relative_path', 'digest', 'cursor']  # noqa: E501
+        all_params = ['cursor', 'page_size']  # noqa: E501
         all_params.append('async')
         all_params.append('_return_http_data_only')
         all_params.append('_preload_content')
@@ -185,7 +183,7 @@ class ContentApi(object):
             if key not in all_params:
                 raise TypeError(
                     "Got an unexpected keyword argument '%s'"
-                    " to method content_file_list" % key
+                    " to method content_file_files_list" % key
                 )
             params[key] = val
         del params['kwargs']
@@ -195,12 +193,10 @@ class ContentApi(object):
         path_params = {}
 
         query_params = []
-        if 'relative_path' in params:
-            query_params.append(('relative_path', params['relative_path']))  # noqa: E501
-        if 'digest' in params:
-            query_params.append(('digest', params['digest']))  # noqa: E501
         if 'cursor' in params:
             query_params.append(('cursor', params['cursor']))  # noqa: E501
+        if 'page_size' in params:
+            query_params.append(('page_size', params['page_size']))  # noqa: E501
 
         header_params = {}
 
@@ -220,14 +216,14 @@ class ContentApi(object):
         auth_settings = ['basic']  # noqa: E501
 
         return self.api_client.call_api(
-            '/content/file/', 'GET',
+            '/content/file/files/', 'GET',
             path_params,
             query_params,
             header_params,
             body=body_params,
             post_params=form_params,
             files=local_var_files,
-            response_type='InlineResponse2001',  # noqa: E501
+            response_type='InlineResponse200',  # noqa: E501
             auth_settings=auth_settings,
             async=params.get('async'),
             _return_http_data_only=params.get('_return_http_data_only'),
@@ -235,45 +231,45 @@ class ContentApi(object):
             _request_timeout=params.get('_request_timeout'),
             collection_formats=collection_formats)
 
-    def content_file_read(self, href, **kwargs):  # noqa: E501
-        """content_file_read  # noqa: E501
+    def content_file_files_read(self, file_content_href, **kwargs):  # noqa: E501
+        """content_file_files_read  # noqa: E501
 
           # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async=True
-        >>> thread = api.content_file_read(href, async=True)
+        >>> thread = api.content_file_files_read(file_content_href, async=True)
         >>> result = thread.get()
 
         :param async bool
-        :param str href: A relative URI for the resource. (required)
+        :param str file_content_href: URI of File Content. e.g.: /content/file/files/1/ (required)
         :return: FileContent
                  If the method is called asynchronously,
                  returns the request thread.
         """
         kwargs['_return_http_data_only'] = True
         if kwargs.get('async'):
-            return self.content_file_read_with_http_info(href, **kwargs)  # noqa: E501
+            return self.content_file_files_read_with_http_info(file_content_href, **kwargs)  # noqa: E501
         else:
-            (data) = self.content_file_read_with_http_info(href, **kwargs)  # noqa: E501
+            (data) = self.content_file_files_read_with_http_info(file_content_href, **kwargs)  # noqa: E501
             return data
 
-    def content_file_read_with_http_info(self, href, **kwargs):  # noqa: E501
-        """content_file_read  # noqa: E501
+    def content_file_files_read_with_http_info(self, file_content_href, **kwargs):  # noqa: E501
+        """content_file_files_read  # noqa: E501
 
           # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async=True
-        >>> thread = api.content_file_read_with_http_info(href, async=True)
+        >>> thread = api.content_file_files_read_with_http_info(file_content_href, async=True)
         >>> result = thread.get()
 
         :param async bool
-        :param str href: A relative URI for the resource. (required)
+        :param str file_content_href: URI of File Content. e.g.: /content/file/files/1/ (required)
         :return: FileContent
                  If the method is called asynchronously,
                  returns the request thread.
         """
 
-        all_params = ['href']  # noqa: E501
+        all_params = ['file_content_href']  # noqa: E501
         all_params.append('async')
         all_params.append('_return_http_data_only')
         all_params.append('_preload_content')
@@ -284,20 +280,20 @@ class ContentApi(object):
             if key not in all_params:
                 raise TypeError(
                     "Got an unexpected keyword argument '%s'"
-                    " to method content_file_read" % key
+                    " to method content_file_files_read" % key
                 )
             params[key] = val
         del params['kwargs']
-        # verify the required parameter 'href' is set
-        if ('href' not in params or
-                params['href'] is None):
-            raise ValueError("Missing the required parameter `href` when calling `content_file_read`")  # noqa: E501
+        # verify the required parameter 'file_content_href' is set
+        if ('file_content_href' not in params or
+                params['file_content_href'] is None):
+            raise ValueError("Missing the required parameter `file_content_href` when calling `content_file_files_read`")  # noqa: E501
 
         collection_formats = {}
 
         path_params = {}
-        if 'href' in params:
-            path_params['href'] = params['href']  # noqa: E501
+        if 'file_content_href' in params:
+            path_params['{file_content_href}'] = params['file_content_href']  # noqa: E501
 
         query_params = []
 
@@ -319,7 +315,7 @@ class ContentApi(object):
         auth_settings = ['basic']  # noqa: E501
 
         return self.api_client.call_api(
-            '{href}', 'GET',
+            '/{file_content_href}/', 'GET',
             path_params,
             query_params,
             header_params,

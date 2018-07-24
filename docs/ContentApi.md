@@ -4,13 +4,13 @@ All URIs are relative to *http://localhost:8000/pulp/api/v3*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**content_file_create**](ContentApi.md#content_file_create) | **POST** /content/file/ | 
-[**content_file_list**](ContentApi.md#content_file_list) | **GET** /content/file/ | 
-[**content_file_read**](ContentApi.md#content_file_read) | **GET** {href} | 
+[**content_file_files_create**](ContentApi.md#content_file_files_create) | **POST** /content/file/files/ | 
+[**content_file_files_list**](ContentApi.md#content_file_files_list) | **GET** /content/file/files/ | 
+[**content_file_files_read**](ContentApi.md#content_file_files_read) | **GET** /{file_content_href}/ | 
 
 
-# **content_file_create**
-> FileContent content_file_create(data)
+# **content_file_files_create**
+> FileContent content_file_files_create(data)
 
 
 
@@ -34,10 +34,10 @@ api_instance = swagger_client.ContentApi(swagger_client.ApiClient(configuration)
 data = swagger_client.FileContent() # FileContent | 
 
 try:
-    api_response = api_instance.content_file_create(data)
+    api_response = api_instance.content_file_files_create(data)
     pprint(api_response)
 except ApiException as e:
-    print("Exception when calling ContentApi->content_file_create: %s\n" % e)
+    print("Exception when calling ContentApi->content_file_files_create: %s\n" % e)
 ```
 
 ### Parameters
@@ -61,8 +61,8 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **content_file_list**
-> InlineResponse2001 content_file_list(relative_path=relative_path, digest=digest, cursor=cursor)
+# **content_file_files_list**
+> InlineResponse200 content_file_files_list(cursor=cursor, page_size=page_size)
 
 
 
@@ -83,28 +83,26 @@ configuration.password = 'YOUR_PASSWORD'
 
 # create an instance of the API class
 api_instance = swagger_client.ContentApi(swagger_client.ApiClient(configuration))
-relative_path = 'relative_path_example' # str |  (optional)
-digest = 'digest_example' # str |  (optional)
 cursor = 'cursor_example' # str | The pagination cursor value. (optional)
+page_size = 56 # int | Number of results to return per page. (optional)
 
 try:
-    api_response = api_instance.content_file_list(relative_path=relative_path, digest=digest, cursor=cursor)
+    api_response = api_instance.content_file_files_list(cursor=cursor, page_size=page_size)
     pprint(api_response)
 except ApiException as e:
-    print("Exception when calling ContentApi->content_file_list: %s\n" % e)
+    print("Exception when calling ContentApi->content_file_files_list: %s\n" % e)
 ```
 
 ### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **relative_path** | **str**|  | [optional] 
- **digest** | **str**|  | [optional] 
  **cursor** | **str**| The pagination cursor value. | [optional] 
+ **page_size** | **int**| Number of results to return per page. | [optional] 
 
 ### Return type
 
-[**InlineResponse2001**](InlineResponse2001.md)
+[**InlineResponse200**](InlineResponse200.md)
 
 ### Authorization
 
@@ -117,8 +115,8 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **content_file_read**
-> FileContent content_file_read(href)
+# **content_file_files_read**
+> FileContent content_file_files_read(file_content_href)
 
 
 
@@ -139,20 +137,20 @@ configuration.password = 'YOUR_PASSWORD'
 
 # create an instance of the API class
 api_instance = swagger_client.ContentApi(swagger_client.ApiClient(configuration))
-href = 'id_example' # str | A relative URI for the resource.
+file_content_href = 'file_content_href_example' # str | URI of File Content. e.g.: /content/file/files/1/
 
 try:
-    api_response = api_instance.content_file_read(href)
+    api_response = api_instance.content_file_files_read(file_content_href)
     pprint(api_response)
 except ApiException as e:
-    print("Exception when calling ContentApi->content_file_read: %s\n" % e)
+    print("Exception when calling ContentApi->content_file_files_read: %s\n" % e)
 ```
 
 ### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **href** | [**str**](.md)| A relative URI for the resource. | 
+ **file_content_href** | **str**| URI of File Content. e.g.: /content/file/files/1/ | 
 
 ### Return type
 

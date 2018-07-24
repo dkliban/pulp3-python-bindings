@@ -132,45 +132,45 @@ class RemotesApi(object):
             _request_timeout=params.get('_request_timeout'),
             collection_formats=collection_formats)
 
-    def remotes_file_delete(self, href, **kwargs):  # noqa: E501
+    def remotes_file_delete(self, file_remote_href, **kwargs):  # noqa: E501
         """remotes_file_delete  # noqa: E501
 
-        Delete a model instance  # noqa: E501
+        Trigger an asynchronous delete task  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async=True
-        >>> thread = api.remotes_file_delete(href, async=True)
+        >>> thread = api.remotes_file_delete(file_remote_href, async=True)
         >>> result = thread.get()
 
         :param async bool
-        :param str href: A relative URI for the resource. (required)
-        :return: None
+        :param str file_remote_href: URI of File Remote. e.g.: /remotes/file/1/ (required)
+        :return: AsnycOperationResponse
                  If the method is called asynchronously,
                  returns the request thread.
         """
         kwargs['_return_http_data_only'] = True
         if kwargs.get('async'):
-            return self.remotes_file_delete_with_http_info(href, **kwargs)  # noqa: E501
+            return self.remotes_file_delete_with_http_info(file_remote_href, **kwargs)  # noqa: E501
         else:
-            (data) = self.remotes_file_delete_with_http_info(href, **kwargs)  # noqa: E501
+            (data) = self.remotes_file_delete_with_http_info(file_remote_href, **kwargs)  # noqa: E501
             return data
 
-    def remotes_file_delete_with_http_info(self, href, **kwargs):  # noqa: E501
+    def remotes_file_delete_with_http_info(self, file_remote_href, **kwargs):  # noqa: E501
         """remotes_file_delete  # noqa: E501
 
-        Delete a model instance  # noqa: E501
+        Trigger an asynchronous delete task  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async=True
-        >>> thread = api.remotes_file_delete_with_http_info(href, async=True)
+        >>> thread = api.remotes_file_delete_with_http_info(file_remote_href, async=True)
         >>> result = thread.get()
 
         :param async bool
-        :param str href: A relative URI for the resource. (required)
-        :return: None
+        :param str file_remote_href: URI of File Remote. e.g.: /remotes/file/1/ (required)
+        :return: AsnycOperationResponse
                  If the method is called asynchronously,
                  returns the request thread.
         """
 
-        all_params = ['href']  # noqa: E501
+        all_params = ['file_remote_href']  # noqa: E501
         all_params.append('async')
         all_params.append('_return_http_data_only')
         all_params.append('_preload_content')
@@ -185,16 +185,16 @@ class RemotesApi(object):
                 )
             params[key] = val
         del params['kwargs']
-        # verify the required parameter 'href' is set
-        if ('href' not in params or
-                params['href'] is None):
-            raise ValueError("Missing the required parameter `href` when calling `remotes_file_delete`")  # noqa: E501
+        # verify the required parameter 'file_remote_href' is set
+        if ('file_remote_href' not in params or
+                params['file_remote_href'] is None):
+            raise ValueError("Missing the required parameter `file_remote_href` when calling `remotes_file_delete`")  # noqa: E501
 
         collection_formats = {}
 
         path_params = {}
-        if 'href' in params:
-            path_params['href'] = params['href']  # noqa: E501
+        if 'file_remote_href' in params:
+            path_params['{file_remote_href}'] = params['file_remote_href']  # noqa: E501
 
         query_params = []
 
@@ -216,14 +216,14 @@ class RemotesApi(object):
         auth_settings = ['basic']  # noqa: E501
 
         return self.api_client.call_api(
-            '{href}', 'DELETE',
+            '/{file_remote_href}/', 'DELETE',
             path_params,
             query_params,
             header_params,
             body=body_params,
             post_params=form_params,
             files=local_var_files,
-            response_type=None,  # noqa: E501
+            response_type='AsnycOperationResponse',  # noqa: E501
             auth_settings=auth_settings,
             async=params.get('async'),
             _return_http_data_only=params.get('_return_http_data_only'),
@@ -241,16 +241,9 @@ class RemotesApi(object):
         >>> result = thread.get()
 
         :param async bool
-        :param str name: 
-        :param str name__in: Multiple values may be separated by commas.
-        :param str last_updated__lt: 
-        :param str last_updated__lte: 
-        :param str last_updated__gt: 
-        :param str last_updated__gte: 
-        :param str last_updated__range: Multiple values may be separated by commas.
-        :param str last_updated: 
         :param str cursor: The pagination cursor value.
-        :return: InlineResponse2005
+        :param int page_size: Number of results to return per page.
+        :return: InlineResponse2004
                  If the method is called asynchronously,
                  returns the request thread.
         """
@@ -271,21 +264,14 @@ class RemotesApi(object):
         >>> result = thread.get()
 
         :param async bool
-        :param str name: 
-        :param str name__in: Multiple values may be separated by commas.
-        :param str last_updated__lt: 
-        :param str last_updated__lte: 
-        :param str last_updated__gt: 
-        :param str last_updated__gte: 
-        :param str last_updated__range: Multiple values may be separated by commas.
-        :param str last_updated: 
         :param str cursor: The pagination cursor value.
-        :return: InlineResponse2005
+        :param int page_size: Number of results to return per page.
+        :return: InlineResponse2004
                  If the method is called asynchronously,
                  returns the request thread.
         """
 
-        all_params = ['name', 'name__in', 'last_updated__lt', 'last_updated__lte', 'last_updated__gt', 'last_updated__gte', 'last_updated__range', 'last_updated', 'cursor']  # noqa: E501
+        all_params = ['cursor', 'page_size']  # noqa: E501
         all_params.append('async')
         all_params.append('_return_http_data_only')
         all_params.append('_preload_content')
@@ -306,24 +292,10 @@ class RemotesApi(object):
         path_params = {}
 
         query_params = []
-        if 'name' in params:
-            query_params.append(('name', params['name']))  # noqa: E501
-        if 'name__in' in params:
-            query_params.append(('name__in', params['name__in']))  # noqa: E501
-        if 'last_updated__lt' in params:
-            query_params.append(('last_updated__lt', params['last_updated__lt']))  # noqa: E501
-        if 'last_updated__lte' in params:
-            query_params.append(('last_updated__lte', params['last_updated__lte']))  # noqa: E501
-        if 'last_updated__gt' in params:
-            query_params.append(('last_updated__gt', params['last_updated__gt']))  # noqa: E501
-        if 'last_updated__gte' in params:
-            query_params.append(('last_updated__gte', params['last_updated__gte']))  # noqa: E501
-        if 'last_updated__range' in params:
-            query_params.append(('last_updated__range', params['last_updated__range']))  # noqa: E501
-        if 'last_updated' in params:
-            query_params.append(('last_updated', params['last_updated']))  # noqa: E501
         if 'cursor' in params:
             query_params.append(('cursor', params['cursor']))  # noqa: E501
+        if 'page_size' in params:
+            query_params.append(('page_size', params['page_size']))  # noqa: E501
 
         header_params = {}
 
@@ -350,7 +322,7 @@ class RemotesApi(object):
             body=body_params,
             post_params=form_params,
             files=local_var_files,
-            response_type='InlineResponse2005',  # noqa: E501
+            response_type='InlineResponse2004',  # noqa: E501
             auth_settings=auth_settings,
             async=params.get('async'),
             _return_http_data_only=params.get('_return_http_data_only'),
@@ -358,47 +330,47 @@ class RemotesApi(object):
             _request_timeout=params.get('_request_timeout'),
             collection_formats=collection_formats)
 
-    def remotes_file_partial_update(self, href, data, **kwargs):  # noqa: E501
+    def remotes_file_partial_update(self, file_remote_href, data, **kwargs):  # noqa: E501
         """remotes_file_partial_update  # noqa: E501
 
-          # noqa: E501
+        Trigger an asynchronous partial update task  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async=True
-        >>> thread = api.remotes_file_partial_update(href, data, async=True)
+        >>> thread = api.remotes_file_partial_update(file_remote_href, data, async=True)
         >>> result = thread.get()
 
         :param async bool
-        :param str href: A relative URI for the resource. (required)
+        :param str file_remote_href: URI of File Remote. e.g.: /remotes/file/1/ (required)
         :param FileRemote data: (required)
-        :return: FileRemote
+        :return: AsnycOperationResponse
                  If the method is called asynchronously,
                  returns the request thread.
         """
         kwargs['_return_http_data_only'] = True
         if kwargs.get('async'):
-            return self.remotes_file_partial_update_with_http_info(href, data, **kwargs)  # noqa: E501
+            return self.remotes_file_partial_update_with_http_info(file_remote_href, data, **kwargs)  # noqa: E501
         else:
-            (data) = self.remotes_file_partial_update_with_http_info(href, data, **kwargs)  # noqa: E501
+            (data) = self.remotes_file_partial_update_with_http_info(file_remote_href, data, **kwargs)  # noqa: E501
             return data
 
-    def remotes_file_partial_update_with_http_info(self, href, data, **kwargs):  # noqa: E501
+    def remotes_file_partial_update_with_http_info(self, file_remote_href, data, **kwargs):  # noqa: E501
         """remotes_file_partial_update  # noqa: E501
 
-          # noqa: E501
+        Trigger an asynchronous partial update task  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async=True
-        >>> thread = api.remotes_file_partial_update_with_http_info(href, data, async=True)
+        >>> thread = api.remotes_file_partial_update_with_http_info(file_remote_href, data, async=True)
         >>> result = thread.get()
 
         :param async bool
-        :param str href: A relative URI for the resource. (required)
+        :param str file_remote_href: URI of File Remote. e.g.: /remotes/file/1/ (required)
         :param FileRemote data: (required)
-        :return: FileRemote
+        :return: AsnycOperationResponse
                  If the method is called asynchronously,
                  returns the request thread.
         """
 
-        all_params = ['href', 'data']  # noqa: E501
+        all_params = ['file_remote_href', 'data']  # noqa: E501
         all_params.append('async')
         all_params.append('_return_http_data_only')
         all_params.append('_preload_content')
@@ -413,10 +385,10 @@ class RemotesApi(object):
                 )
             params[key] = val
         del params['kwargs']
-        # verify the required parameter 'href' is set
-        if ('href' not in params or
-                params['href'] is None):
-            raise ValueError("Missing the required parameter `href` when calling `remotes_file_partial_update`")  # noqa: E501
+        # verify the required parameter 'file_remote_href' is set
+        if ('file_remote_href' not in params or
+                params['file_remote_href'] is None):
+            raise ValueError("Missing the required parameter `file_remote_href` when calling `remotes_file_partial_update`")  # noqa: E501
         # verify the required parameter 'data' is set
         if ('data' not in params or
                 params['data'] is None):
@@ -425,8 +397,8 @@ class RemotesApi(object):
         collection_formats = {}
 
         path_params = {}
-        if 'href' in params:
-            path_params['href'] = params['href']  # noqa: E501
+        if 'file_remote_href' in params:
+            path_params['{file_remote_href}'] = params['file_remote_href']  # noqa: E501
 
         query_params = []
 
@@ -450,14 +422,14 @@ class RemotesApi(object):
         auth_settings = ['basic']  # noqa: E501
 
         return self.api_client.call_api(
-            '{href}', 'PATCH',
+            '/{file_remote_href}/', 'PATCH',
             path_params,
             query_params,
             header_params,
             body=body_params,
             post_params=form_params,
             files=local_var_files,
-            response_type='FileRemote',  # noqa: E501
+            response_type='AsnycOperationResponse',  # noqa: E501
             auth_settings=auth_settings,
             async=params.get('async'),
             _return_http_data_only=params.get('_return_http_data_only'),
@@ -465,45 +437,45 @@ class RemotesApi(object):
             _request_timeout=params.get('_request_timeout'),
             collection_formats=collection_formats)
 
-    def remotes_file_read(self, href, **kwargs):  # noqa: E501
+    def remotes_file_read(self, file_remote_href, **kwargs):  # noqa: E501
         """remotes_file_read  # noqa: E501
 
           # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async=True
-        >>> thread = api.remotes_file_read(href, async=True)
+        >>> thread = api.remotes_file_read(file_remote_href, async=True)
         >>> result = thread.get()
 
         :param async bool
-        :param str href: A relative URI for the resource. (required)
+        :param str file_remote_href: URI of File Remote. e.g.: /remotes/file/1/ (required)
         :return: FileRemote
                  If the method is called asynchronously,
                  returns the request thread.
         """
         kwargs['_return_http_data_only'] = True
         if kwargs.get('async'):
-            return self.remotes_file_read_with_http_info(href, **kwargs)  # noqa: E501
+            return self.remotes_file_read_with_http_info(file_remote_href, **kwargs)  # noqa: E501
         else:
-            (data) = self.remotes_file_read_with_http_info(href, **kwargs)  # noqa: E501
+            (data) = self.remotes_file_read_with_http_info(file_remote_href, **kwargs)  # noqa: E501
             return data
 
-    def remotes_file_read_with_http_info(self, href, **kwargs):  # noqa: E501
+    def remotes_file_read_with_http_info(self, file_remote_href, **kwargs):  # noqa: E501
         """remotes_file_read  # noqa: E501
 
           # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async=True
-        >>> thread = api.remotes_file_read_with_http_info(href, async=True)
+        >>> thread = api.remotes_file_read_with_http_info(file_remote_href, async=True)
         >>> result = thread.get()
 
         :param async bool
-        :param str href: A relative URI for the resource. (required)
+        :param str file_remote_href: URI of File Remote. e.g.: /remotes/file/1/ (required)
         :return: FileRemote
                  If the method is called asynchronously,
                  returns the request thread.
         """
 
-        all_params = ['href']  # noqa: E501
+        all_params = ['file_remote_href']  # noqa: E501
         all_params.append('async')
         all_params.append('_return_http_data_only')
         all_params.append('_preload_content')
@@ -518,16 +490,16 @@ class RemotesApi(object):
                 )
             params[key] = val
         del params['kwargs']
-        # verify the required parameter 'href' is set
-        if ('href' not in params or
-                params['href'] is None):
-            raise ValueError("Missing the required parameter `href` when calling `remotes_file_read`")  # noqa: E501
+        # verify the required parameter 'file_remote_href' is set
+        if ('file_remote_href' not in params or
+                params['file_remote_href'] is None):
+            raise ValueError("Missing the required parameter `file_remote_href` when calling `remotes_file_read`")  # noqa: E501
 
         collection_formats = {}
 
         path_params = {}
-        if 'href' in params:
-            path_params['href'] = params['href']  # noqa: E501
+        if 'file_remote_href' in params:
+            path_params['{file_remote_href}'] = params['file_remote_href']  # noqa: E501
 
         query_params = []
 
@@ -549,7 +521,7 @@ class RemotesApi(object):
         auth_settings = ['basic']  # noqa: E501
 
         return self.api_client.call_api(
-            '{href}', 'GET',
+            '/{file_remote_href}/', 'GET',
             path_params,
             query_params,
             header_params,
@@ -564,47 +536,47 @@ class RemotesApi(object):
             _request_timeout=params.get('_request_timeout'),
             collection_formats=collection_formats)
 
-    def remotes_file_sync(self, href, data, **kwargs):  # noqa: E501
+    def remotes_file_sync(self, file_remote_href, data, **kwargs):  # noqa: E501
         """remotes_file_sync  # noqa: E501
 
-        Synchronizes a repository. The ``repository`` field has to be provided.  # noqa: E501
+        Trigger an asynchronous task to sync file content.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async=True
-        >>> thread = api.remotes_file_sync(href, data, async=True)
+        >>> thread = api.remotes_file_sync(file_remote_href, data, async=True)
         >>> result = thread.get()
 
         :param async bool
-        :param str href: A relative URI for the resource. (required)
+        :param str file_remote_href: URI of File Remote. e.g.: /remotes/file/1/ (required)
         :param RepositorySyncURL data: (required)
-        :return: RepositorySyncURL
+        :return: AsnycOperationResponse
                  If the method is called asynchronously,
                  returns the request thread.
         """
         kwargs['_return_http_data_only'] = True
         if kwargs.get('async'):
-            return self.remotes_file_sync_with_http_info(href, data, **kwargs)  # noqa: E501
+            return self.remotes_file_sync_with_http_info(file_remote_href, data, **kwargs)  # noqa: E501
         else:
-            (data) = self.remotes_file_sync_with_http_info(href, data, **kwargs)  # noqa: E501
+            (data) = self.remotes_file_sync_with_http_info(file_remote_href, data, **kwargs)  # noqa: E501
             return data
 
-    def remotes_file_sync_with_http_info(self, href, data, **kwargs):  # noqa: E501
+    def remotes_file_sync_with_http_info(self, file_remote_href, data, **kwargs):  # noqa: E501
         """remotes_file_sync  # noqa: E501
 
-        Synchronizes a repository. The ``repository`` field has to be provided.  # noqa: E501
+        Trigger an asynchronous task to sync file content.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async=True
-        >>> thread = api.remotes_file_sync_with_http_info(href, data, async=True)
+        >>> thread = api.remotes_file_sync_with_http_info(file_remote_href, data, async=True)
         >>> result = thread.get()
 
         :param async bool
-        :param str href: A relative URI for the resource. (required)
+        :param str file_remote_href: URI of File Remote. e.g.: /remotes/file/1/ (required)
         :param RepositorySyncURL data: (required)
-        :return: RepositorySyncURL
+        :return: AsnycOperationResponse
                  If the method is called asynchronously,
                  returns the request thread.
         """
 
-        all_params = ['href', 'data']  # noqa: E501
+        all_params = ['file_remote_href', 'data']  # noqa: E501
         all_params.append('async')
         all_params.append('_return_http_data_only')
         all_params.append('_preload_content')
@@ -619,10 +591,10 @@ class RemotesApi(object):
                 )
             params[key] = val
         del params['kwargs']
-        # verify the required parameter 'href' is set
-        if ('href' not in params or
-                params['href'] is None):
-            raise ValueError("Missing the required parameter `href` when calling `remotes_file_sync`")  # noqa: E501
+        # verify the required parameter 'file_remote_href' is set
+        if ('file_remote_href' not in params or
+                params['file_remote_href'] is None):
+            raise ValueError("Missing the required parameter `file_remote_href` when calling `remotes_file_sync`")  # noqa: E501
         # verify the required parameter 'data' is set
         if ('data' not in params or
                 params['data'] is None):
@@ -631,8 +603,8 @@ class RemotesApi(object):
         collection_formats = {}
 
         path_params = {}
-        if 'href' in params:
-            path_params['href'] = params['href']  # noqa: E501
+        if 'file_remote_href' in params:
+            path_params['{file_remote_href}'] = params['file_remote_href']  # noqa: E501
 
         query_params = []
 
@@ -656,14 +628,14 @@ class RemotesApi(object):
         auth_settings = ['basic']  # noqa: E501
 
         return self.api_client.call_api(
-            '{href}', 'POST',
+            '/{file_remote_href}/sync/', 'POST',
             path_params,
             query_params,
             header_params,
             body=body_params,
             post_params=form_params,
             files=local_var_files,
-            response_type='RepositorySyncURL',  # noqa: E501
+            response_type='AsnycOperationResponse',  # noqa: E501
             auth_settings=auth_settings,
             async=params.get('async'),
             _return_http_data_only=params.get('_return_http_data_only'),
@@ -671,47 +643,47 @@ class RemotesApi(object):
             _request_timeout=params.get('_request_timeout'),
             collection_formats=collection_formats)
 
-    def remotes_file_update(self, href, data, **kwargs):  # noqa: E501
+    def remotes_file_update(self, file_remote_href, data, **kwargs):  # noqa: E501
         """remotes_file_update  # noqa: E501
 
-          # noqa: E501
+        Trigger an asynchronous update task  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async=True
-        >>> thread = api.remotes_file_update(href, data, async=True)
+        >>> thread = api.remotes_file_update(file_remote_href, data, async=True)
         >>> result = thread.get()
 
         :param async bool
-        :param str href: A relative URI for the resource. (required)
+        :param str file_remote_href: URI of File Remote. e.g.: /remotes/file/1/ (required)
         :param FileRemote data: (required)
-        :return: FileRemote
+        :return: AsnycOperationResponse
                  If the method is called asynchronously,
                  returns the request thread.
         """
         kwargs['_return_http_data_only'] = True
         if kwargs.get('async'):
-            return self.remotes_file_update_with_http_info(href, data, **kwargs)  # noqa: E501
+            return self.remotes_file_update_with_http_info(file_remote_href, data, **kwargs)  # noqa: E501
         else:
-            (data) = self.remotes_file_update_with_http_info(href, data, **kwargs)  # noqa: E501
+            (data) = self.remotes_file_update_with_http_info(file_remote_href, data, **kwargs)  # noqa: E501
             return data
 
-    def remotes_file_update_with_http_info(self, href, data, **kwargs):  # noqa: E501
+    def remotes_file_update_with_http_info(self, file_remote_href, data, **kwargs):  # noqa: E501
         """remotes_file_update  # noqa: E501
 
-          # noqa: E501
+        Trigger an asynchronous update task  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async=True
-        >>> thread = api.remotes_file_update_with_http_info(href, data, async=True)
+        >>> thread = api.remotes_file_update_with_http_info(file_remote_href, data, async=True)
         >>> result = thread.get()
 
         :param async bool
-        :param str href: A relative URI for the resource. (required)
+        :param str file_remote_href: URI of File Remote. e.g.: /remotes/file/1/ (required)
         :param FileRemote data: (required)
-        :return: FileRemote
+        :return: AsnycOperationResponse
                  If the method is called asynchronously,
                  returns the request thread.
         """
 
-        all_params = ['href', 'data']  # noqa: E501
+        all_params = ['file_remote_href', 'data']  # noqa: E501
         all_params.append('async')
         all_params.append('_return_http_data_only')
         all_params.append('_preload_content')
@@ -726,10 +698,10 @@ class RemotesApi(object):
                 )
             params[key] = val
         del params['kwargs']
-        # verify the required parameter 'href' is set
-        if ('href' not in params or
-                params['href'] is None):
-            raise ValueError("Missing the required parameter `href` when calling `remotes_file_update`")  # noqa: E501
+        # verify the required parameter 'file_remote_href' is set
+        if ('file_remote_href' not in params or
+                params['file_remote_href'] is None):
+            raise ValueError("Missing the required parameter `file_remote_href` when calling `remotes_file_update`")  # noqa: E501
         # verify the required parameter 'data' is set
         if ('data' not in params or
                 params['data'] is None):
@@ -738,8 +710,8 @@ class RemotesApi(object):
         collection_formats = {}
 
         path_params = {}
-        if 'href' in params:
-            path_params['href'] = params['href']  # noqa: E501
+        if 'file_remote_href' in params:
+            path_params['{file_remote_href}'] = params['file_remote_href']  # noqa: E501
 
         query_params = []
 
@@ -763,14 +735,14 @@ class RemotesApi(object):
         auth_settings = ['basic']  # noqa: E501
 
         return self.api_client.call_api(
-            '{href}', 'PUT',
+            '/{file_remote_href}/', 'PUT',
             path_params,
             query_params,
             header_params,
             body=body_params,
             post_params=form_params,
             files=local_var_files,
-            response_type='FileRemote',  # noqa: E501
+            response_type='AsnycOperationResponse',  # noqa: E501
             auth_settings=auth_settings,
             async=params.get('async'),
             _return_http_data_only=params.get('_return_http_data_only'),

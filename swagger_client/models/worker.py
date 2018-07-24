@@ -31,6 +31,7 @@ class Worker(object):
                             and the value is json key in definition.
     """
     swagger_types = {
+        'id': 'int',
         'href': 'str',
         'name': 'str',
         'last_heartbeat': 'datetime',
@@ -39,6 +40,7 @@ class Worker(object):
     }
 
     attribute_map = {
+        'id': 'id',
         'href': '_href',
         'name': 'name',
         'last_heartbeat': 'last_heartbeat',
@@ -46,9 +48,10 @@ class Worker(object):
         'missing': 'missing'
     }
 
-    def __init__(self, href=None, name=None, last_heartbeat=None, online=None, missing=None):  # noqa: E501
+    def __init__(self, id=None, href=None, name=None, last_heartbeat=None, online=None, missing=None):  # noqa: E501
         """Worker - a model defined in Swagger"""  # noqa: E501
 
+        self._id = None
         self._href = None
         self._name = None
         self._last_heartbeat = None
@@ -56,6 +59,8 @@ class Worker(object):
         self._missing = None
         self.discriminator = None
 
+        if id is not None:
+            self.id = id
         if href is not None:
             self.href = href
         if name is not None:
@@ -66,6 +71,27 @@ class Worker(object):
             self.online = online
         if missing is not None:
             self.missing = missing
+
+    @property
+    def id(self):
+        """Gets the id of this Worker.  # noqa: E501
+
+
+        :return: The id of this Worker.  # noqa: E501
+        :rtype: int
+        """
+        return self._id
+
+    @id.setter
+    def id(self, id):
+        """Sets the id of this Worker.
+
+
+        :param id: The id of this Worker.  # noqa: E501
+        :type: int
+        """
+
+        self._id = id
 
     @property
     def href(self):
@@ -108,6 +134,8 @@ class Worker(object):
         :param name: The name of this Worker.  # noqa: E501
         :type: str
         """
+        if name is not None and len(name) < 1:
+            raise ValueError("Invalid value for `name`, length must be greater than or equal to `1`")  # noqa: E501
 
         self._name = name
 

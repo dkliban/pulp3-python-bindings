@@ -5,12 +5,12 @@ All URIs are relative to *http://localhost:8000/pulp/api/v3*
 Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**publishers_file_create**](PublishersApi.md#publishers_file_create) | **POST** /publishers/file/ | 
-[**publishers_file_delete**](PublishersApi.md#publishers_file_delete) | **DELETE** {href} | 
+[**publishers_file_delete**](PublishersApi.md#publishers_file_delete) | **DELETE** /{file_publisher_href}/ | 
 [**publishers_file_list**](PublishersApi.md#publishers_file_list) | **GET** /publishers/file/ | 
-[**publishers_file_partial_update**](PublishersApi.md#publishers_file_partial_update) | **PATCH** {href} | 
-[**publishers_file_publish**](PublishersApi.md#publishers_file_publish) | **POST** {href} | 
-[**publishers_file_read**](PublishersApi.md#publishers_file_read) | **GET** {href} | 
-[**publishers_file_update**](PublishersApi.md#publishers_file_update) | **PUT** {href} | 
+[**publishers_file_partial_update**](PublishersApi.md#publishers_file_partial_update) | **PATCH** /{file_publisher_href}/ | 
+[**publishers_file_publish**](PublishersApi.md#publishers_file_publish) | **POST** /{file_publisher_href}/publish/ | 
+[**publishers_file_read**](PublishersApi.md#publishers_file_read) | **GET** /{file_publisher_href}/ | 
+[**publishers_file_update**](PublishersApi.md#publishers_file_update) | **PUT** /{file_publisher_href}/ | 
 
 
 # **publishers_file_create**
@@ -66,11 +66,11 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **publishers_file_delete**
-> publishers_file_delete(href)
+> AsnycOperationResponse publishers_file_delete(file_publisher_href)
 
 
 
-Delete a model instance
+Trigger an asynchronous delete task
 
 ### Example
 ```python
@@ -87,10 +87,11 @@ configuration.password = 'YOUR_PASSWORD'
 
 # create an instance of the API class
 api_instance = swagger_client.PublishersApi(swagger_client.ApiClient(configuration))
-href = 'id_example' # str | A relative URI for the resource.
+file_publisher_href = 'file_publisher_href_example' # str | URI of File Publisher. e.g.: /publishers/file/1/
 
 try:
-    api_instance.publishers_file_delete(href)
+    api_response = api_instance.publishers_file_delete(file_publisher_href)
+    pprint(api_response)
 except ApiException as e:
     print("Exception when calling PublishersApi->publishers_file_delete: %s\n" % e)
 ```
@@ -99,11 +100,11 @@ except ApiException as e:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **href** | [**str**](.md)| A relative URI for the resource. | 
+ **file_publisher_href** | **str**| URI of File Publisher. e.g.: /publishers/file/1/ | 
 
 ### Return type
 
-void (empty response body)
+[**AsnycOperationResponse**](AsnycOperationResponse.md)
 
 ### Authorization
 
@@ -117,7 +118,7 @@ void (empty response body)
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **publishers_file_list**
-> InlineResponse2004 publishers_file_list(name=name, name__in=name__in, last_updated__lt=last_updated__lt, last_updated__lte=last_updated__lte, last_updated__gt=last_updated__gt, last_updated__gte=last_updated__gte, last_updated__range=last_updated__range, last_updated=last_updated, cursor=cursor)
+> InlineResponse2003 publishers_file_list(cursor=cursor, page_size=page_size)
 
 
 
@@ -138,18 +139,11 @@ configuration.password = 'YOUR_PASSWORD'
 
 # create an instance of the API class
 api_instance = swagger_client.PublishersApi(swagger_client.ApiClient(configuration))
-name = 'name_example' # str |  (optional)
-name__in = 'name__in_example' # str | Multiple values may be separated by commas. (optional)
-last_updated__lt = 'last_updated__lt_example' # str |  (optional)
-last_updated__lte = 'last_updated__lte_example' # str |  (optional)
-last_updated__gt = 'last_updated__gt_example' # str |  (optional)
-last_updated__gte = 'last_updated__gte_example' # str |  (optional)
-last_updated__range = 'last_updated__range_example' # str | Multiple values may be separated by commas. (optional)
-last_updated = 'last_updated_example' # str |  (optional)
 cursor = 'cursor_example' # str | The pagination cursor value. (optional)
+page_size = 56 # int | Number of results to return per page. (optional)
 
 try:
-    api_response = api_instance.publishers_file_list(name=name, name__in=name__in, last_updated__lt=last_updated__lt, last_updated__lte=last_updated__lte, last_updated__gt=last_updated__gt, last_updated__gte=last_updated__gte, last_updated__range=last_updated__range, last_updated=last_updated, cursor=cursor)
+    api_response = api_instance.publishers_file_list(cursor=cursor, page_size=page_size)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling PublishersApi->publishers_file_list: %s\n" % e)
@@ -159,19 +153,12 @@ except ApiException as e:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **name** | **str**|  | [optional] 
- **name__in** | **str**| Multiple values may be separated by commas. | [optional] 
- **last_updated__lt** | **str**|  | [optional] 
- **last_updated__lte** | **str**|  | [optional] 
- **last_updated__gt** | **str**|  | [optional] 
- **last_updated__gte** | **str**|  | [optional] 
- **last_updated__range** | **str**| Multiple values may be separated by commas. | [optional] 
- **last_updated** | **str**|  | [optional] 
  **cursor** | **str**| The pagination cursor value. | [optional] 
+ **page_size** | **int**| Number of results to return per page. | [optional] 
 
 ### Return type
 
-[**InlineResponse2004**](InlineResponse2004.md)
+[**InlineResponse2003**](InlineResponse2003.md)
 
 ### Authorization
 
@@ -185,11 +172,11 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **publishers_file_partial_update**
-> FilePublisher publishers_file_partial_update(href, data)
+> AsnycOperationResponse publishers_file_partial_update(file_publisher_href, data)
 
 
 
-
+Trigger an asynchronous partial update task
 
 ### Example
 ```python
@@ -206,11 +193,11 @@ configuration.password = 'YOUR_PASSWORD'
 
 # create an instance of the API class
 api_instance = swagger_client.PublishersApi(swagger_client.ApiClient(configuration))
-href = 'id_example' # str | A relative URI for the resource.
+file_publisher_href = 'file_publisher_href_example' # str | URI of File Publisher. e.g.: /publishers/file/1/
 data = swagger_client.FilePublisher() # FilePublisher | 
 
 try:
-    api_response = api_instance.publishers_file_partial_update(href, data)
+    api_response = api_instance.publishers_file_partial_update(file_publisher_href, data)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling PublishersApi->publishers_file_partial_update: %s\n" % e)
@@ -220,12 +207,12 @@ except ApiException as e:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **href** | [**str**](.md)| A relative URI for the resource. | 
+ **file_publisher_href** | **str**| URI of File Publisher. e.g.: /publishers/file/1/ | 
  **data** | [**FilePublisher**](FilePublisher.md)|  | 
 
 ### Return type
 
-[**FilePublisher**](FilePublisher.md)
+[**AsnycOperationResponse**](AsnycOperationResponse.md)
 
 ### Authorization
 
@@ -239,11 +226,11 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **publishers_file_publish**
-> RepositoryPublishURL publishers_file_publish(href, data)
+> AsnycOperationResponse publishers_file_publish(file_publisher_href, data)
 
 
 
-Publishes a repository. Either the ``repository`` or the ``repository_version`` fields can be provided but not both at the same time.
+Trigger an asynchronous task to publish file content.
 
 ### Example
 ```python
@@ -260,11 +247,11 @@ configuration.password = 'YOUR_PASSWORD'
 
 # create an instance of the API class
 api_instance = swagger_client.PublishersApi(swagger_client.ApiClient(configuration))
-href = 'id_example' # str | A relative URI for the resource.
+file_publisher_href = 'file_publisher_href_example' # str | URI of File Publisher. e.g.: /publishers/file/1/
 data = swagger_client.RepositoryPublishURL() # RepositoryPublishURL | 
 
 try:
-    api_response = api_instance.publishers_file_publish(href, data)
+    api_response = api_instance.publishers_file_publish(file_publisher_href, data)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling PublishersApi->publishers_file_publish: %s\n" % e)
@@ -274,12 +261,12 @@ except ApiException as e:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **href** | [**str**](.md)| A relative URI for the resource. | 
+ **file_publisher_href** | **str**| URI of File Publisher. e.g.: /publishers/file/1/ | 
  **data** | [**RepositoryPublishURL**](RepositoryPublishURL.md)|  | 
 
 ### Return type
 
-[**RepositoryPublishURL**](RepositoryPublishURL.md)
+[**AsnycOperationResponse**](AsnycOperationResponse.md)
 
 ### Authorization
 
@@ -293,7 +280,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **publishers_file_read**
-> FilePublisher publishers_file_read(href)
+> FilePublisher publishers_file_read(file_publisher_href)
 
 
 
@@ -314,10 +301,10 @@ configuration.password = 'YOUR_PASSWORD'
 
 # create an instance of the API class
 api_instance = swagger_client.PublishersApi(swagger_client.ApiClient(configuration))
-href = 'id_example' # str | A relative URI for the resource.
+file_publisher_href = 'file_publisher_href_example' # str | URI of File Publisher. e.g.: /publishers/file/1/
 
 try:
-    api_response = api_instance.publishers_file_read(href)
+    api_response = api_instance.publishers_file_read(file_publisher_href)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling PublishersApi->publishers_file_read: %s\n" % e)
@@ -327,7 +314,7 @@ except ApiException as e:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **href** | [**str**](.md)| A relative URI for the resource. | 
+ **file_publisher_href** | **str**| URI of File Publisher. e.g.: /publishers/file/1/ | 
 
 ### Return type
 
@@ -345,11 +332,11 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **publishers_file_update**
-> FilePublisher publishers_file_update(href, data)
+> AsnycOperationResponse publishers_file_update(file_publisher_href, data)
 
 
 
-
+Trigger an asynchronous update task
 
 ### Example
 ```python
@@ -366,11 +353,11 @@ configuration.password = 'YOUR_PASSWORD'
 
 # create an instance of the API class
 api_instance = swagger_client.PublishersApi(swagger_client.ApiClient(configuration))
-href = 'id_example' # str | A relative URI for the resource.
+file_publisher_href = 'file_publisher_href_example' # str | URI of File Publisher. e.g.: /publishers/file/1/
 data = swagger_client.FilePublisher() # FilePublisher | 
 
 try:
-    api_response = api_instance.publishers_file_update(href, data)
+    api_response = api_instance.publishers_file_update(file_publisher_href, data)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling PublishersApi->publishers_file_update: %s\n" % e)
@@ -380,12 +367,12 @@ except ApiException as e:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **href** | [**str**](.md)| A relative URI for the resource. | 
+ **file_publisher_href** | **str**| URI of File Publisher. e.g.: /publishers/file/1/ | 
  **data** | [**FilePublisher**](FilePublisher.md)|  | 
 
 ### Return type
 
-[**FilePublisher**](FilePublisher.md)
+[**AsnycOperationResponse**](AsnycOperationResponse.md)
 
 ### Authorization
 

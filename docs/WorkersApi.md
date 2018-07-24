@@ -5,11 +5,11 @@ All URIs are relative to *http://localhost:8000/pulp/api/v3*
 Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**workers_list**](WorkersApi.md#workers_list) | **GET** /workers/ | 
-[**workers_read**](WorkersApi.md#workers_read) | **GET** {href} | 
+[**workers_read**](WorkersApi.md#workers_read) | **GET** /{worker_href}/ | 
 
 
 # **workers_list**
-> InlineResponse20010 workers_list(name=name, name__in=name__in, last_heartbeat__lt=last_heartbeat__lt, last_heartbeat__lte=last_heartbeat__lte, last_heartbeat__gt=last_heartbeat__gt, last_heartbeat__gte=last_heartbeat__gte, last_heartbeat__range=last_heartbeat__range, online=online, missing=missing, last_heartbeat=last_heartbeat, cursor=cursor)
+> InlineResponse2009 workers_list(cursor=cursor, page_size=page_size)
 
 
 
@@ -30,20 +30,11 @@ configuration.password = 'YOUR_PASSWORD'
 
 # create an instance of the API class
 api_instance = swagger_client.WorkersApi(swagger_client.ApiClient(configuration))
-name = 'name_example' # str |  (optional)
-name__in = 'name__in_example' # str | Multiple values may be separated by commas. (optional)
-last_heartbeat__lt = 'last_heartbeat__lt_example' # str |  (optional)
-last_heartbeat__lte = 'last_heartbeat__lte_example' # str |  (optional)
-last_heartbeat__gt = 'last_heartbeat__gt_example' # str |  (optional)
-last_heartbeat__gte = 'last_heartbeat__gte_example' # str |  (optional)
-last_heartbeat__range = 'last_heartbeat__range_example' # str | Multiple values may be separated by commas. (optional)
-online = 'online_example' # str |  (optional)
-missing = 'missing_example' # str |  (optional)
-last_heartbeat = 'last_heartbeat_example' # str |  (optional)
 cursor = 'cursor_example' # str | The pagination cursor value. (optional)
+page_size = 56 # int | Number of results to return per page. (optional)
 
 try:
-    api_response = api_instance.workers_list(name=name, name__in=name__in, last_heartbeat__lt=last_heartbeat__lt, last_heartbeat__lte=last_heartbeat__lte, last_heartbeat__gt=last_heartbeat__gt, last_heartbeat__gte=last_heartbeat__gte, last_heartbeat__range=last_heartbeat__range, online=online, missing=missing, last_heartbeat=last_heartbeat, cursor=cursor)
+    api_response = api_instance.workers_list(cursor=cursor, page_size=page_size)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling WorkersApi->workers_list: %s\n" % e)
@@ -53,21 +44,12 @@ except ApiException as e:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **name** | **str**|  | [optional] 
- **name__in** | **str**| Multiple values may be separated by commas. | [optional] 
- **last_heartbeat__lt** | **str**|  | [optional] 
- **last_heartbeat__lte** | **str**|  | [optional] 
- **last_heartbeat__gt** | **str**|  | [optional] 
- **last_heartbeat__gte** | **str**|  | [optional] 
- **last_heartbeat__range** | **str**| Multiple values may be separated by commas. | [optional] 
- **online** | **str**|  | [optional] 
- **missing** | **str**|  | [optional] 
- **last_heartbeat** | **str**|  | [optional] 
  **cursor** | **str**| The pagination cursor value. | [optional] 
+ **page_size** | **int**| Number of results to return per page. | [optional] 
 
 ### Return type
 
-[**InlineResponse20010**](InlineResponse20010.md)
+[**InlineResponse2009**](InlineResponse2009.md)
 
 ### Authorization
 
@@ -81,7 +63,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **workers_read**
-> Worker workers_read(href)
+> Worker workers_read(worker_href)
 
 
 
@@ -102,10 +84,10 @@ configuration.password = 'YOUR_PASSWORD'
 
 # create an instance of the API class
 api_instance = swagger_client.WorkersApi(swagger_client.ApiClient(configuration))
-href = 'id_example' # str | A relative URI for the resource.
+worker_href = 'worker_href_example' # str | URI of Worker. e.g.: /workers/1/
 
 try:
-    api_response = api_instance.workers_read(href)
+    api_response = api_instance.workers_read(worker_href)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling WorkersApi->workers_read: %s\n" % e)
@@ -115,7 +97,7 @@ except ApiException as e:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **href** | [**str**](.md)| A relative URI for the resource. | 
+ **worker_href** | **str**| URI of Worker. e.g.: /workers/1/ | 
 
 ### Return type
 

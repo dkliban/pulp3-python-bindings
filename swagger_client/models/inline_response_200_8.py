@@ -16,7 +16,7 @@ import re  # noqa: F401
 
 import six
 
-from swagger_client.models.minimal_task import MinimalTask  # noqa: F401,E501
+from swagger_client.models.user import User  # noqa: F401,E501
 
 
 class InlineResponse2008(object):
@@ -35,7 +35,7 @@ class InlineResponse2008(object):
     swagger_types = {
         'next': 'str',
         'previous': 'str',
-        'results': 'list[MinimalTask]'
+        'results': 'list[User]'
     }
 
     attribute_map = {
@@ -106,7 +106,7 @@ class InlineResponse2008(object):
 
 
         :return: The results of this InlineResponse2008.  # noqa: E501
-        :rtype: list[MinimalTask]
+        :rtype: list[User]
         """
         return self._results
 
@@ -116,7 +116,7 @@ class InlineResponse2008(object):
 
 
         :param results: The results of this InlineResponse2008.  # noqa: E501
-        :type: list[MinimalTask]
+        :type: list[User]
         """
         if results is None:
             raise ValueError("Invalid value for `results`, must not be `None`")  # noqa: E501

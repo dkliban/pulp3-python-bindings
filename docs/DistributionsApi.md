@@ -5,11 +5,11 @@ All URIs are relative to *http://localhost:8000/pulp/api/v3*
 Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**distributions_create**](DistributionsApi.md#distributions_create) | **POST** /distributions/ | 
-[**distributions_delete**](DistributionsApi.md#distributions_delete) | **DELETE** {href} | 
+[**distributions_delete**](DistributionsApi.md#distributions_delete) | **DELETE** /{distribution_href}/ | 
 [**distributions_list**](DistributionsApi.md#distributions_list) | **GET** /distributions/ | 
-[**distributions_partial_update**](DistributionsApi.md#distributions_partial_update) | **PATCH** {href} | 
-[**distributions_read**](DistributionsApi.md#distributions_read) | **GET** {href} | 
-[**distributions_update**](DistributionsApi.md#distributions_update) | **PUT** {href} | 
+[**distributions_partial_update**](DistributionsApi.md#distributions_partial_update) | **PATCH** /{distribution_href}/ | 
+[**distributions_read**](DistributionsApi.md#distributions_read) | **GET** /{distribution_href}/ | 
+[**distributions_update**](DistributionsApi.md#distributions_update) | **PUT** /{distribution_href}/ | 
 
 
 # **distributions_create**
@@ -65,7 +65,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **distributions_delete**
-> distributions_delete(href)
+> distributions_delete(distribution_href)
 
 
 
@@ -86,10 +86,10 @@ configuration.password = 'YOUR_PASSWORD'
 
 # create an instance of the API class
 api_instance = swagger_client.DistributionsApi(swagger_client.ApiClient(configuration))
-href = 'id_example' # str | A relative URI for the resource.
+distribution_href = 'distribution_href_example' # str | URI of Distribution. e.g.: /distributions/1/
 
 try:
-    api_instance.distributions_delete(href)
+    api_instance.distributions_delete(distribution_href)
 except ApiException as e:
     print("Exception when calling DistributionsApi->distributions_delete: %s\n" % e)
 ```
@@ -98,7 +98,7 @@ except ApiException as e:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **href** | [**str**](.md)| A relative URI for the resource. | 
+ **distribution_href** | **str**| URI of Distribution. e.g.: /distributions/1/ | 
 
 ### Return type
 
@@ -116,7 +116,7 @@ void (empty response body)
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **distributions_list**
-> InlineResponse2002 distributions_list(name=name, name__in=name__in, base_path=base_path, base_path__contains=base_path__contains, base_path__icontains=base_path__icontains, base_path__in=base_path__in, cursor=cursor)
+> InlineResponse2001 distributions_list(cursor=cursor, page_size=page_size)
 
 
 
@@ -137,16 +137,11 @@ configuration.password = 'YOUR_PASSWORD'
 
 # create an instance of the API class
 api_instance = swagger_client.DistributionsApi(swagger_client.ApiClient(configuration))
-name = 'name_example' # str |  (optional)
-name__in = 'name__in_example' # str | Multiple values may be separated by commas. (optional)
-base_path = 'base_path_example' # str |  (optional)
-base_path__contains = 'base_path__contains_example' # str |  (optional)
-base_path__icontains = 'base_path__icontains_example' # str |  (optional)
-base_path__in = 'base_path__in_example' # str | Multiple values may be separated by commas. (optional)
 cursor = 'cursor_example' # str | The pagination cursor value. (optional)
+page_size = 56 # int | Number of results to return per page. (optional)
 
 try:
-    api_response = api_instance.distributions_list(name=name, name__in=name__in, base_path=base_path, base_path__contains=base_path__contains, base_path__icontains=base_path__icontains, base_path__in=base_path__in, cursor=cursor)
+    api_response = api_instance.distributions_list(cursor=cursor, page_size=page_size)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling DistributionsApi->distributions_list: %s\n" % e)
@@ -156,17 +151,12 @@ except ApiException as e:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **name** | **str**|  | [optional] 
- **name__in** | **str**| Multiple values may be separated by commas. | [optional] 
- **base_path** | **str**|  | [optional] 
- **base_path__contains** | **str**|  | [optional] 
- **base_path__icontains** | **str**|  | [optional] 
- **base_path__in** | **str**| Multiple values may be separated by commas. | [optional] 
  **cursor** | **str**| The pagination cursor value. | [optional] 
+ **page_size** | **int**| Number of results to return per page. | [optional] 
 
 ### Return type
 
-[**InlineResponse2002**](InlineResponse2002.md)
+[**InlineResponse2001**](InlineResponse2001.md)
 
 ### Authorization
 
@@ -180,7 +170,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **distributions_partial_update**
-> Distribution distributions_partial_update(href, data)
+> Distribution distributions_partial_update(distribution_href, data)
 
 
 
@@ -201,11 +191,11 @@ configuration.password = 'YOUR_PASSWORD'
 
 # create an instance of the API class
 api_instance = swagger_client.DistributionsApi(swagger_client.ApiClient(configuration))
-href = 'id_example' # str | A relative URI for the resource.
+distribution_href = 'distribution_href_example' # str | URI of Distribution. e.g.: /distributions/1/
 data = swagger_client.Distribution() # Distribution | 
 
 try:
-    api_response = api_instance.distributions_partial_update(href, data)
+    api_response = api_instance.distributions_partial_update(distribution_href, data)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling DistributionsApi->distributions_partial_update: %s\n" % e)
@@ -215,7 +205,7 @@ except ApiException as e:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **href** | [**str**](.md)| A relative URI for the resource. | 
+ **distribution_href** | **str**| URI of Distribution. e.g.: /distributions/1/ | 
  **data** | [**Distribution**](Distribution.md)|  | 
 
 ### Return type
@@ -234,7 +224,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **distributions_read**
-> Distribution distributions_read(href)
+> Distribution distributions_read(distribution_href)
 
 
 
@@ -255,10 +245,10 @@ configuration.password = 'YOUR_PASSWORD'
 
 # create an instance of the API class
 api_instance = swagger_client.DistributionsApi(swagger_client.ApiClient(configuration))
-href = 'id_example' # str | A relative URI for the resource.
+distribution_href = 'distribution_href_example' # str | URI of Distribution. e.g.: /distributions/1/
 
 try:
-    api_response = api_instance.distributions_read(href)
+    api_response = api_instance.distributions_read(distribution_href)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling DistributionsApi->distributions_read: %s\n" % e)
@@ -268,7 +258,7 @@ except ApiException as e:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **href** | [**str**](.md)| A relative URI for the resource. | 
+ **distribution_href** | **str**| URI of Distribution. e.g.: /distributions/1/ | 
 
 ### Return type
 
@@ -286,7 +276,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **distributions_update**
-> Distribution distributions_update(href, data)
+> Distribution distributions_update(distribution_href, data)
 
 
 
@@ -307,11 +297,11 @@ configuration.password = 'YOUR_PASSWORD'
 
 # create an instance of the API class
 api_instance = swagger_client.DistributionsApi(swagger_client.ApiClient(configuration))
-href = 'id_example' # str | A relative URI for the resource.
+distribution_href = 'distribution_href_example' # str | URI of Distribution. e.g.: /distributions/1/
 data = swagger_client.Distribution() # Distribution | 
 
 try:
-    api_response = api_instance.distributions_update(href, data)
+    api_response = api_instance.distributions_update(distribution_href, data)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling DistributionsApi->distributions_update: %s\n" % e)
@@ -321,7 +311,7 @@ except ApiException as e:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **href** | [**str**](.md)| A relative URI for the resource. | 
+ **distribution_href** | **str**| URI of Distribution. e.g.: /distributions/1/ | 
  **data** | [**Distribution**](Distribution.md)|  | 
 
 ### Return type

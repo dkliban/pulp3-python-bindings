@@ -33,17 +33,17 @@ class TasksApi(object):
             api_client = ApiClient()
         self.api_client = api_client
 
-    def tasks_cancel(self, href, data, **kwargs):  # noqa: E501
+    def tasks_cancel(self, task_href, data, **kwargs):  # noqa: E501
         """tasks_cancel  # noqa: E501
 
           # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async=True
-        >>> thread = api.tasks_cancel(href, data, async=True)
+        >>> thread = api.tasks_cancel(task_href, data, async=True)
         >>> result = thread.get()
 
         :param async bool
-        :param str href: A relative URI for the resource. (required)
+        :param str task_href: URI of Task. e.g.: /tasks/1/ (required)
         :param Task data: (required)
         :return: Task
                  If the method is called asynchronously,
@@ -51,29 +51,29 @@ class TasksApi(object):
         """
         kwargs['_return_http_data_only'] = True
         if kwargs.get('async'):
-            return self.tasks_cancel_with_http_info(href, data, **kwargs)  # noqa: E501
+            return self.tasks_cancel_with_http_info(task_href, data, **kwargs)  # noqa: E501
         else:
-            (data) = self.tasks_cancel_with_http_info(href, data, **kwargs)  # noqa: E501
+            (data) = self.tasks_cancel_with_http_info(task_href, data, **kwargs)  # noqa: E501
             return data
 
-    def tasks_cancel_with_http_info(self, href, data, **kwargs):  # noqa: E501
+    def tasks_cancel_with_http_info(self, task_href, data, **kwargs):  # noqa: E501
         """tasks_cancel  # noqa: E501
 
           # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async=True
-        >>> thread = api.tasks_cancel_with_http_info(href, data, async=True)
+        >>> thread = api.tasks_cancel_with_http_info(task_href, data, async=True)
         >>> result = thread.get()
 
         :param async bool
-        :param str href: A relative URI for the resource. (required)
+        :param str task_href: URI of Task. e.g.: /tasks/1/ (required)
         :param Task data: (required)
         :return: Task
                  If the method is called asynchronously,
                  returns the request thread.
         """
 
-        all_params = ['href', 'data']  # noqa: E501
+        all_params = ['task_href', 'data']  # noqa: E501
         all_params.append('async')
         all_params.append('_return_http_data_only')
         all_params.append('_preload_content')
@@ -88,10 +88,10 @@ class TasksApi(object):
                 )
             params[key] = val
         del params['kwargs']
-        # verify the required parameter 'href' is set
-        if ('href' not in params or
-                params['href'] is None):
-            raise ValueError("Missing the required parameter `href` when calling `tasks_cancel`")  # noqa: E501
+        # verify the required parameter 'task_href' is set
+        if ('task_href' not in params or
+                params['task_href'] is None):
+            raise ValueError("Missing the required parameter `task_href` when calling `tasks_cancel`")  # noqa: E501
         # verify the required parameter 'data' is set
         if ('data' not in params or
                 params['data'] is None):
@@ -100,8 +100,8 @@ class TasksApi(object):
         collection_formats = {}
 
         path_params = {}
-        if 'href' in params:
-            path_params['href'] = params['href']  # noqa: E501
+        if 'task_href' in params:
+            path_params['{task_href}'] = params['task_href']  # noqa: E501
 
         query_params = []
 
@@ -125,7 +125,7 @@ class TasksApi(object):
         auth_settings = ['basic']  # noqa: E501
 
         return self.api_client.call_api(
-            '{href}', 'POST',
+            '/{task_href}/cancel/', 'POST',
             path_params,
             query_params,
             header_params,
@@ -140,45 +140,45 @@ class TasksApi(object):
             _request_timeout=params.get('_request_timeout'),
             collection_formats=collection_formats)
 
-    def tasks_delete(self, href, **kwargs):  # noqa: E501
+    def tasks_delete(self, task_href, **kwargs):  # noqa: E501
         """tasks_delete  # noqa: E501
 
           # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async=True
-        >>> thread = api.tasks_delete(href, async=True)
+        >>> thread = api.tasks_delete(task_href, async=True)
         >>> result = thread.get()
 
         :param async bool
-        :param str href: A relative URI for the resource. (required)
+        :param str task_href: URI of Task. e.g.: /tasks/1/ (required)
         :return: None
                  If the method is called asynchronously,
                  returns the request thread.
         """
         kwargs['_return_http_data_only'] = True
         if kwargs.get('async'):
-            return self.tasks_delete_with_http_info(href, **kwargs)  # noqa: E501
+            return self.tasks_delete_with_http_info(task_href, **kwargs)  # noqa: E501
         else:
-            (data) = self.tasks_delete_with_http_info(href, **kwargs)  # noqa: E501
+            (data) = self.tasks_delete_with_http_info(task_href, **kwargs)  # noqa: E501
             return data
 
-    def tasks_delete_with_http_info(self, href, **kwargs):  # noqa: E501
+    def tasks_delete_with_http_info(self, task_href, **kwargs):  # noqa: E501
         """tasks_delete  # noqa: E501
 
           # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async=True
-        >>> thread = api.tasks_delete_with_http_info(href, async=True)
+        >>> thread = api.tasks_delete_with_http_info(task_href, async=True)
         >>> result = thread.get()
 
         :param async bool
-        :param str href: A relative URI for the resource. (required)
+        :param str task_href: URI of Task. e.g.: /tasks/1/ (required)
         :return: None
                  If the method is called asynchronously,
                  returns the request thread.
         """
 
-        all_params = ['href']  # noqa: E501
+        all_params = ['task_href']  # noqa: E501
         all_params.append('async')
         all_params.append('_return_http_data_only')
         all_params.append('_preload_content')
@@ -193,16 +193,16 @@ class TasksApi(object):
                 )
             params[key] = val
         del params['kwargs']
-        # verify the required parameter 'href' is set
-        if ('href' not in params or
-                params['href'] is None):
-            raise ValueError("Missing the required parameter `href` when calling `tasks_delete`")  # noqa: E501
+        # verify the required parameter 'task_href' is set
+        if ('task_href' not in params or
+                params['task_href'] is None):
+            raise ValueError("Missing the required parameter `task_href` when calling `tasks_delete`")  # noqa: E501
 
         collection_formats = {}
 
         path_params = {}
-        if 'href' in params:
-            path_params['href'] = params['href']  # noqa: E501
+        if 'task_href' in params:
+            path_params['{task_href}'] = params['task_href']  # noqa: E501
 
         query_params = []
 
@@ -224,7 +224,7 @@ class TasksApi(object):
         auth_settings = ['basic']  # noqa: E501
 
         return self.api_client.call_api(
-            '{href}', 'DELETE',
+            '/{task_href}/', 'DELETE',
             path_params,
             query_params,
             header_params,
@@ -268,7 +268,8 @@ class TasksApi(object):
         :param str started_at: 
         :param str finished_at: 
         :param str cursor: The pagination cursor value.
-        :return: InlineResponse2008
+        :param int page_size: Number of results to return per page.
+        :return: InlineResponse2007
                  If the method is called asynchronously,
                  returns the request thread.
         """
@@ -308,12 +309,13 @@ class TasksApi(object):
         :param str started_at: 
         :param str finished_at: 
         :param str cursor: The pagination cursor value.
-        :return: InlineResponse2008
+        :param int page_size: Number of results to return per page.
+        :return: InlineResponse2007
                  If the method is called asynchronously,
                  returns the request thread.
         """
 
-        all_params = ['ordering', 'state', 'state__in', 'worker', 'worker__in', 'started_at__lt', 'started_at__lte', 'started_at__gt', 'started_at__gte', 'started_at__range', 'finished_at__lt', 'finished_at__lte', 'finished_at__gt', 'finished_at__gte', 'finished_at__range', 'parent', 'started_at', 'finished_at', 'cursor']  # noqa: E501
+        all_params = ['ordering', 'state', 'state__in', 'worker', 'worker__in', 'started_at__lt', 'started_at__lte', 'started_at__gt', 'started_at__gte', 'started_at__range', 'finished_at__lt', 'finished_at__lte', 'finished_at__gt', 'finished_at__gte', 'finished_at__range', 'parent', 'started_at', 'finished_at', 'cursor', 'page_size']  # noqa: E501
         all_params.append('async')
         all_params.append('_return_http_data_only')
         all_params.append('_preload_content')
@@ -372,6 +374,8 @@ class TasksApi(object):
             query_params.append(('finished_at', params['finished_at']))  # noqa: E501
         if 'cursor' in params:
             query_params.append(('cursor', params['cursor']))  # noqa: E501
+        if 'page_size' in params:
+            query_params.append(('page_size', params['page_size']))  # noqa: E501
 
         header_params = {}
 
@@ -398,7 +402,7 @@ class TasksApi(object):
             body=body_params,
             post_params=form_params,
             files=local_var_files,
-            response_type='InlineResponse2008',  # noqa: E501
+            response_type='InlineResponse2007',  # noqa: E501
             auth_settings=auth_settings,
             async=params.get('async'),
             _return_http_data_only=params.get('_return_http_data_only'),
@@ -406,45 +410,45 @@ class TasksApi(object):
             _request_timeout=params.get('_request_timeout'),
             collection_formats=collection_formats)
 
-    def tasks_read(self, href, **kwargs):  # noqa: E501
+    def tasks_read(self, task_href, **kwargs):  # noqa: E501
         """tasks_read  # noqa: E501
 
           # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async=True
-        >>> thread = api.tasks_read(href, async=True)
+        >>> thread = api.tasks_read(task_href, async=True)
         >>> result = thread.get()
 
         :param async bool
-        :param str href: A relative URI for the resource. (required)
+        :param str task_href: URI of Task. e.g.: /tasks/1/ (required)
         :return: Task
                  If the method is called asynchronously,
                  returns the request thread.
         """
         kwargs['_return_http_data_only'] = True
         if kwargs.get('async'):
-            return self.tasks_read_with_http_info(href, **kwargs)  # noqa: E501
+            return self.tasks_read_with_http_info(task_href, **kwargs)  # noqa: E501
         else:
-            (data) = self.tasks_read_with_http_info(href, **kwargs)  # noqa: E501
+            (data) = self.tasks_read_with_http_info(task_href, **kwargs)  # noqa: E501
             return data
 
-    def tasks_read_with_http_info(self, href, **kwargs):  # noqa: E501
+    def tasks_read_with_http_info(self, task_href, **kwargs):  # noqa: E501
         """tasks_read  # noqa: E501
 
           # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async=True
-        >>> thread = api.tasks_read_with_http_info(href, async=True)
+        >>> thread = api.tasks_read_with_http_info(task_href, async=True)
         >>> result = thread.get()
 
         :param async bool
-        :param str href: A relative URI for the resource. (required)
+        :param str task_href: URI of Task. e.g.: /tasks/1/ (required)
         :return: Task
                  If the method is called asynchronously,
                  returns the request thread.
         """
 
-        all_params = ['href']  # noqa: E501
+        all_params = ['task_href']  # noqa: E501
         all_params.append('async')
         all_params.append('_return_http_data_only')
         all_params.append('_preload_content')
@@ -459,16 +463,16 @@ class TasksApi(object):
                 )
             params[key] = val
         del params['kwargs']
-        # verify the required parameter 'href' is set
-        if ('href' not in params or
-                params['href'] is None):
-            raise ValueError("Missing the required parameter `href` when calling `tasks_read`")  # noqa: E501
+        # verify the required parameter 'task_href' is set
+        if ('task_href' not in params or
+                params['task_href'] is None):
+            raise ValueError("Missing the required parameter `task_href` when calling `tasks_read`")  # noqa: E501
 
         collection_formats = {}
 
         path_params = {}
-        if 'href' in params:
-            path_params['href'] = params['href']  # noqa: E501
+        if 'task_href' in params:
+            path_params['{task_href}'] = params['task_href']  # noqa: E501
 
         query_params = []
 
@@ -490,7 +494,7 @@ class TasksApi(object):
         auth_settings = ['basic']  # noqa: E501
 
         return self.api_client.call_api(
-            '{href}', 'GET',
+            '/{task_href}/', 'GET',
             path_params,
             query_params,
             header_params,

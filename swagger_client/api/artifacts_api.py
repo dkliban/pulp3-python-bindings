@@ -33,45 +33,65 @@ class ArtifactsApi(object):
             api_client = ApiClient()
         self.api_client = api_client
 
-    def artifacts_create(self, data, **kwargs):  # noqa: E501
+    def artifacts_create(self, file, **kwargs):  # noqa: E501
         """artifacts_create  # noqa: E501
 
           # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async=True
-        >>> thread = api.artifacts_create(data, async=True)
+        >>> thread = api.artifacts_create(file, async=True)
         >>> result = thread.get()
 
         :param async bool
-        :param Artifact data: (required)
-        :return: Artifact
+        :param file file: The stored file. (required)
+        :param int id:
+        :param str href:
+        :param datetime created: Timestamp of creation.
+        :param int size: The size of the file in bytes.
+        :param str md5: The MD5 checksum of the file if available.
+        :param str sha1: The SHA-1 checksum of the file if available.
+        :param str sha224: The SHA-224 checksum of the file if available.
+        :param str sha256: The SHA-256 checksum of the file if available.
+        :param str sha384: The SHA-384 checksum of the file if available.
+        :param str sha512: The SHA-512 checksum of the file if available.
+        :return: None
                  If the method is called asynchronously,
                  returns the request thread.
         """
         kwargs['_return_http_data_only'] = True
         if kwargs.get('async'):
-            return self.artifacts_create_with_http_info(data, **kwargs)  # noqa: E501
+            return self.artifacts_create_with_http_info(file, **kwargs)  # noqa: E501
         else:
-            (data) = self.artifacts_create_with_http_info(data, **kwargs)  # noqa: E501
+            (data) = self.artifacts_create_with_http_info(file, **kwargs)  # noqa: E501
             return data
 
-    def artifacts_create_with_http_info(self, data, **kwargs):  # noqa: E501
+    def artifacts_create_with_http_info(self, file, **kwargs):  # noqa: E501
         """artifacts_create  # noqa: E501
 
           # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async=True
-        >>> thread = api.artifacts_create_with_http_info(data, async=True)
+        >>> thread = api.artifacts_create_with_http_info(file, async=True)
         >>> result = thread.get()
 
         :param async bool
-        :param Artifact data: (required)
-        :return: Artifact
+        :param file file: The stored file. (required)
+        :param int id:
+        :param str href:
+        :param datetime created: Timestamp of creation.
+        :param int size: The size of the file in bytes.
+        :param str md5: The MD5 checksum of the file if available.
+        :param str sha1: The SHA-1 checksum of the file if available.
+        :param str sha224: The SHA-224 checksum of the file if available.
+        :param str sha256: The SHA-256 checksum of the file if available.
+        :param str sha384: The SHA-384 checksum of the file if available.
+        :param str sha512: The SHA-512 checksum of the file if available.
+        :return: None
                  If the method is called asynchronously,
                  returns the request thread.
         """
 
-        all_params = ['data']  # noqa: E501
+        all_params = ['file', 'id', 'href', 'created', 'size', 'md5', 'sha1', 'sha224', 'sha256', 'sha384', 'sha512']  # noqa: E501
         all_params.append('async')
         all_params.append('_return_http_data_only')
         all_params.append('_preload_content')
@@ -86,10 +106,10 @@ class ArtifactsApi(object):
                 )
             params[key] = val
         del params['kwargs']
-        # verify the required parameter 'data' is set
-        if ('data' not in params or
-                params['data'] is None):
-            raise ValueError("Missing the required parameter `data` when calling `artifacts_create`")  # noqa: E501
+        # verify the required parameter 'file' is set
+        if ('file' not in params or
+                params['file'] is None):
+            raise ValueError("Missing the required parameter `file` when calling `artifacts_create`")  # noqa: E501
 
         collection_formats = {}
 
@@ -101,17 +121,37 @@ class ArtifactsApi(object):
 
         form_params = []
         local_var_files = {}
+        if 'id' in params:
+            form_params.append(('id', params['id']))  # noqa: E501
+        if 'href' in params:
+            form_params.append(('_href', params['href']))  # noqa: E501
+        if 'created' in params:
+            form_params.append(('created', params['created']))  # noqa: E501
+        if 'file' in params:
+            local_var_files['file'] = params['file']  # noqa: E501
+        if 'size' in params:
+            form_params.append(('size', params['size']))  # noqa: E501
+        if 'md5' in params:
+            form_params.append(('md5', params['md5']))  # noqa: E501
+        if 'sha1' in params:
+            form_params.append(('sha1', params['sha1']))  # noqa: E501
+        if 'sha224' in params:
+            form_params.append(('sha224', params['sha224']))  # noqa: E501
+        if 'sha256' in params:
+            form_params.append(('sha256', params['sha256']))  # noqa: E501
+        if 'sha384' in params:
+            form_params.append(('sha384', params['sha384']))  # noqa: E501
+        if 'sha512' in params:
+            form_params.append(('sha512', params['sha512']))  # noqa: E501
 
         body_params = None
-        if 'data' in params:
-            body_params = params['data']
         # HTTP header `Accept`
         header_params['Accept'] = self.api_client.select_header_accept(
             ['application/json'])  # noqa: E501
 
         # HTTP header `Content-Type`
         header_params['Content-Type'] = self.api_client.select_header_content_type(  # noqa: E501
-            ['application/json'])  # noqa: E501
+            ['multipart/form-data', 'application/x-www-form-urlencoded'])  # noqa: E501
 
         # Authentication setting
         auth_settings = ['basic']  # noqa: E501
@@ -124,7 +164,7 @@ class ArtifactsApi(object):
             body=body_params,
             post_params=form_params,
             files=local_var_files,
-            response_type='Artifact',  # noqa: E501
+            response_type=None,  # noqa: E501
             auth_settings=auth_settings,
             async=params.get('async'),
             _return_http_data_only=params.get('_return_http_data_only'),
@@ -132,45 +172,45 @@ class ArtifactsApi(object):
             _request_timeout=params.get('_request_timeout'),
             collection_formats=collection_formats)
 
-    def artifacts_delete(self, href, **kwargs):  # noqa: E501
+    def artifacts_delete(self, artifact_href, **kwargs):  # noqa: E501
         """artifacts_delete  # noqa: E501
 
         Remove Artifact only if it is not associated with any Content.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async=True
-        >>> thread = api.artifacts_delete(href, async=True)
+        >>> thread = api.artifacts_delete(artifact_href, async=True)
         >>> result = thread.get()
 
         :param async bool
-        :param str href: A relative URI for the resource. (required)
+        :param str artifact_href: URI of Artifact. e.g.: /artifacts/1/ (required)
         :return: None
                  If the method is called asynchronously,
                  returns the request thread.
         """
         kwargs['_return_http_data_only'] = True
         if kwargs.get('async'):
-            return self.artifacts_delete_with_http_info(href, **kwargs)  # noqa: E501
+            return self.artifacts_delete_with_http_info(artifact_href, **kwargs)  # noqa: E501
         else:
-            (data) = self.artifacts_delete_with_http_info(href, **kwargs)  # noqa: E501
+            (data) = self.artifacts_delete_with_http_info(artifact_href, **kwargs)  # noqa: E501
             return data
 
-    def artifacts_delete_with_http_info(self, href, **kwargs):  # noqa: E501
+    def artifacts_delete_with_http_info(self, artifact_href, **kwargs):  # noqa: E501
         """artifacts_delete  # noqa: E501
 
         Remove Artifact only if it is not associated with any Content.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async=True
-        >>> thread = api.artifacts_delete_with_http_info(href, async=True)
+        >>> thread = api.artifacts_delete_with_http_info(artifact_href, async=True)
         >>> result = thread.get()
 
         :param async bool
-        :param str href: A relative URI for the resource. (required)
+        :param str artifact_href: URI of Artifact. e.g.: /artifacts/1/ (required)
         :return: None
                  If the method is called asynchronously,
                  returns the request thread.
         """
 
-        all_params = ['href']  # noqa: E501
+        all_params = ['artifact_href']  # noqa: E501
         all_params.append('async')
         all_params.append('_return_http_data_only')
         all_params.append('_preload_content')
@@ -185,16 +225,16 @@ class ArtifactsApi(object):
                 )
             params[key] = val
         del params['kwargs']
-        # verify the required parameter 'href' is set
-        if ('href' not in params or
-                params['href'] is None):
-            raise ValueError("Missing the required parameter `href` when calling `artifacts_delete`")  # noqa: E501
+        # verify the required parameter 'artifact_href' is set
+        if ('artifact_href' not in params or
+                params['artifact_href'] is None):
+            raise ValueError("Missing the required parameter `artifact_href` when calling `artifacts_delete`")  # noqa: E501
 
         collection_formats = {}
 
         path_params = {}
-        if 'href' in params:
-            path_params['href'] = params['href']  # noqa: E501
+        if 'artifact_href' in params:
+            path_params['{artifact_href}'] = params['artifact_href']  # noqa: E501
 
         query_params = []
 
@@ -210,13 +250,13 @@ class ArtifactsApi(object):
 
         # HTTP header `Content-Type`
         header_params['Content-Type'] = self.api_client.select_header_content_type(  # noqa: E501
-            ['application/json'])  # noqa: E501
+            ['multipart/form-data', 'application/x-www-form-urlencoded'])  # noqa: E501
 
         # Authentication setting
         auth_settings = ['basic']  # noqa: E501
 
         return self.api_client.call_api(
-            '{href}', 'DELETE',
+            '/{artifact_href}/', 'DELETE',
             path_params,
             query_params,
             header_params,
@@ -241,14 +281,9 @@ class ArtifactsApi(object):
         >>> result = thread.get()
 
         :param async bool
-        :param str md5: 
-        :param str sha1: 
-        :param str sha224: 
-        :param str sha256: 
-        :param str sha384: 
-        :param str sha512: 
         :param str cursor: The pagination cursor value.
-        :return: InlineResponse200
+        :param int page_size: Number of results to return per page.
+        :return: None
                  If the method is called asynchronously,
                  returns the request thread.
         """
@@ -269,19 +304,14 @@ class ArtifactsApi(object):
         >>> result = thread.get()
 
         :param async bool
-        :param str md5: 
-        :param str sha1: 
-        :param str sha224: 
-        :param str sha256: 
-        :param str sha384: 
-        :param str sha512: 
         :param str cursor: The pagination cursor value.
-        :return: InlineResponse200
+        :param int page_size: Number of results to return per page.
+        :return: None
                  If the method is called asynchronously,
                  returns the request thread.
         """
 
-        all_params = ['md5', 'sha1', 'sha224', 'sha256', 'sha384', 'sha512', 'cursor']  # noqa: E501
+        all_params = ['cursor', 'page_size']  # noqa: E501
         all_params.append('async')
         all_params.append('_return_http_data_only')
         all_params.append('_preload_content')
@@ -302,20 +332,10 @@ class ArtifactsApi(object):
         path_params = {}
 
         query_params = []
-        if 'md5' in params:
-            query_params.append(('md5', params['md5']))  # noqa: E501
-        if 'sha1' in params:
-            query_params.append(('sha1', params['sha1']))  # noqa: E501
-        if 'sha224' in params:
-            query_params.append(('sha224', params['sha224']))  # noqa: E501
-        if 'sha256' in params:
-            query_params.append(('sha256', params['sha256']))  # noqa: E501
-        if 'sha384' in params:
-            query_params.append(('sha384', params['sha384']))  # noqa: E501
-        if 'sha512' in params:
-            query_params.append(('sha512', params['sha512']))  # noqa: E501
         if 'cursor' in params:
             query_params.append(('cursor', params['cursor']))  # noqa: E501
+        if 'page_size' in params:
+            query_params.append(('page_size', params['page_size']))  # noqa: E501
 
         header_params = {}
 
@@ -329,7 +349,7 @@ class ArtifactsApi(object):
 
         # HTTP header `Content-Type`
         header_params['Content-Type'] = self.api_client.select_header_content_type(  # noqa: E501
-            ['application/json'])  # noqa: E501
+            ['multipart/form-data', 'application/x-www-form-urlencoded'])  # noqa: E501
 
         # Authentication setting
         auth_settings = ['basic']  # noqa: E501
@@ -342,7 +362,7 @@ class ArtifactsApi(object):
             body=body_params,
             post_params=form_params,
             files=local_var_files,
-            response_type='InlineResponse200',  # noqa: E501
+            response_type=None,  # noqa: E501
             auth_settings=auth_settings,
             async=params.get('async'),
             _return_http_data_only=params.get('_return_http_data_only'),
@@ -350,45 +370,45 @@ class ArtifactsApi(object):
             _request_timeout=params.get('_request_timeout'),
             collection_formats=collection_formats)
 
-    def artifacts_read(self, href, **kwargs):  # noqa: E501
+    def artifacts_read(self, artifact_href, **kwargs):  # noqa: E501
         """artifacts_read  # noqa: E501
 
           # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async=True
-        >>> thread = api.artifacts_read(href, async=True)
+        >>> thread = api.artifacts_read(artifact_href, async=True)
         >>> result = thread.get()
 
         :param async bool
-        :param str href: A relative URI for the resource. (required)
-        :return: Artifact
+        :param str artifact_href: URI of Artifact. e.g.: /artifacts/1/ (required)
+        :return: None
                  If the method is called asynchronously,
                  returns the request thread.
         """
         kwargs['_return_http_data_only'] = True
         if kwargs.get('async'):
-            return self.artifacts_read_with_http_info(href, **kwargs)  # noqa: E501
+            return self.artifacts_read_with_http_info(artifact_href, **kwargs)  # noqa: E501
         else:
-            (data) = self.artifacts_read_with_http_info(href, **kwargs)  # noqa: E501
+            (data) = self.artifacts_read_with_http_info(artifact_href, **kwargs)  # noqa: E501
             return data
 
-    def artifacts_read_with_http_info(self, href, **kwargs):  # noqa: E501
+    def artifacts_read_with_http_info(self, artifact_href, **kwargs):  # noqa: E501
         """artifacts_read  # noqa: E501
 
           # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async=True
-        >>> thread = api.artifacts_read_with_http_info(href, async=True)
+        >>> thread = api.artifacts_read_with_http_info(artifact_href, async=True)
         >>> result = thread.get()
 
         :param async bool
-        :param str href: A relative URI for the resource. (required)
-        :return: Artifact
+        :param str artifact_href: URI of Artifact. e.g.: /artifacts/1/ (required)
+        :return: None
                  If the method is called asynchronously,
                  returns the request thread.
         """
 
-        all_params = ['href']  # noqa: E501
+        all_params = ['artifact_href']  # noqa: E501
         all_params.append('async')
         all_params.append('_return_http_data_only')
         all_params.append('_preload_content')
@@ -403,16 +423,16 @@ class ArtifactsApi(object):
                 )
             params[key] = val
         del params['kwargs']
-        # verify the required parameter 'href' is set
-        if ('href' not in params or
-                params['href'] is None):
-            raise ValueError("Missing the required parameter `href` when calling `artifacts_read`")  # noqa: E501
+        # verify the required parameter 'artifact_href' is set
+        if ('artifact_href' not in params or
+                params['artifact_href'] is None):
+            raise ValueError("Missing the required parameter `artifact_href` when calling `artifacts_read`")  # noqa: E501
 
         collection_formats = {}
 
         path_params = {}
-        if 'href' in params:
-            path_params['href'] = params['href']  # noqa: E501
+        if 'artifact_href' in params:
+            path_params['{artifact_href}'] = params['artifact_href']  # noqa: E501
 
         query_params = []
 
@@ -428,20 +448,20 @@ class ArtifactsApi(object):
 
         # HTTP header `Content-Type`
         header_params['Content-Type'] = self.api_client.select_header_content_type(  # noqa: E501
-            ['application/json'])  # noqa: E501
+            ['multipart/form-data', 'application/x-www-form-urlencoded'])  # noqa: E501
 
         # Authentication setting
         auth_settings = ['basic']  # noqa: E501
 
         return self.api_client.call_api(
-            '{href}', 'GET',
+            '/{artifact_href}/', 'GET',
             path_params,
             query_params,
             header_params,
             body=body_params,
             post_params=form_params,
             files=local_var_files,
-            response_type='Artifact',  # noqa: E501
+            response_type=None,  # noqa: E501
             auth_settings=auth_settings,
             async=params.get('async'),
             _return_http_data_only=params.get('_return_http_data_only'),

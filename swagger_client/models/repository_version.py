@@ -31,7 +31,9 @@ class RepositoryVersion(object):
                             and the value is json key in definition.
     """
     swagger_types = {
+        'id': 'int',
         'href': 'str',
+        'created': 'datetime',
         'content_href': 'str',
         'added_href': 'str',
         'removed_href': 'str',
@@ -42,7 +44,9 @@ class RepositoryVersion(object):
     }
 
     attribute_map = {
+        'id': 'id',
         'href': '_href',
+        'created': 'created',
         'content_href': '_content_href',
         'added_href': '_added_href',
         'removed_href': '_removed_href',
@@ -52,10 +56,12 @@ class RepositoryVersion(object):
         'remove_content_units': 'remove_content_units'
     }
 
-    def __init__(self, href=None, content_href=None, added_href=None, removed_href=None, number=None, content_summary=None, add_content_units=None, remove_content_units=None):  # noqa: E501
+    def __init__(self, id=None, href=None, created=None, content_href=None, added_href=None, removed_href=None, number=None, content_summary=None, add_content_units=None, remove_content_units=None):  # noqa: E501
         """RepositoryVersion - a model defined in Swagger"""  # noqa: E501
 
+        self._id = None
         self._href = None
+        self._created = None
         self._content_href = None
         self._added_href = None
         self._removed_href = None
@@ -65,8 +71,12 @@ class RepositoryVersion(object):
         self._remove_content_units = None
         self.discriminator = None
 
+        if id is not None:
+            self.id = id
         if href is not None:
             self.href = href
+        if created is not None:
+            self.created = created
         if content_href is not None:
             self.content_href = content_href
         if added_href is not None:
@@ -79,6 +89,27 @@ class RepositoryVersion(object):
             self.content_summary = content_summary
         self.add_content_units = add_content_units
         self.remove_content_units = remove_content_units
+
+    @property
+    def id(self):
+        """Gets the id of this RepositoryVersion.  # noqa: E501
+
+
+        :return: The id of this RepositoryVersion.  # noqa: E501
+        :rtype: int
+        """
+        return self._id
+
+    @id.setter
+    def id(self, id):
+        """Sets the id of this RepositoryVersion.
+
+
+        :param id: The id of this RepositoryVersion.  # noqa: E501
+        :type: int
+        """
+
+        self._id = id
 
     @property
     def href(self):
@@ -100,6 +131,29 @@ class RepositoryVersion(object):
         """
 
         self._href = href
+
+    @property
+    def created(self):
+        """Gets the created of this RepositoryVersion.  # noqa: E501
+
+        Timestamp of creation.  # noqa: E501
+
+        :return: The created of this RepositoryVersion.  # noqa: E501
+        :rtype: datetime
+        """
+        return self._created
+
+    @created.setter
+    def created(self, created):
+        """Sets the created of this RepositoryVersion.
+
+        Timestamp of creation.  # noqa: E501
+
+        :param created: The created of this RepositoryVersion.  # noqa: E501
+        :type: datetime
+        """
+
+        self._created = created
 
     @property
     def content_href(self):

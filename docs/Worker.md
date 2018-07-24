@@ -3,6 +3,7 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**id** | **int** |  | [optional] 
 **href** | **str** |  | [optional] 
 **name** | **str** | The name of the worker. | [optional] 
 **last_heartbeat** | **datetime** | Timestamp of the last time the worker talked to the service. | [optional] 

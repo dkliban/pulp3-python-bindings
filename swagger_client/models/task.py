@@ -34,6 +34,7 @@ class Task(object):
                             and the value is json key in definition.
     """
     swagger_types = {
+        'id': 'str',
         'href': 'str',
         'created': 'datetime',
         'state': 'str',
@@ -49,6 +50,7 @@ class Task(object):
     }
 
     attribute_map = {
+        'id': 'id',
         'href': '_href',
         'created': 'created',
         'state': 'state',
@@ -63,9 +65,10 @@ class Task(object):
         'created_resources': 'created_resources'
     }
 
-    def __init__(self, href=None, created=None, state=None, started_at=None, finished_at=None, non_fatal_errors=None, error=None, worker=None, parent=None, spawned_tasks=None, progress_reports=None, created_resources=None):  # noqa: E501
+    def __init__(self, id=None, href=None, created=None, state=None, started_at=None, finished_at=None, non_fatal_errors=None, error=None, worker=None, parent=None, spawned_tasks=None, progress_reports=None, created_resources=None):  # noqa: E501
         """Task - a model defined in Swagger"""  # noqa: E501
 
+        self._id = None
         self._href = None
         self._created = None
         self._state = None
@@ -80,6 +83,8 @@ class Task(object):
         self._created_resources = None
         self.discriminator = None
 
+        if id is not None:
+            self.id = id
         if href is not None:
             self.href = href
         if created is not None:
@@ -104,6 +109,27 @@ class Task(object):
             self.progress_reports = progress_reports
         if created_resources is not None:
             self.created_resources = created_resources
+
+    @property
+    def id(self):
+        """Gets the id of this Task.  # noqa: E501
+
+
+        :return: The id of this Task.  # noqa: E501
+        :rtype: str
+        """
+        return self._id
+
+    @id.setter
+    def id(self, id):
+        """Sets the id of this Task.
+
+
+        :param id: The id of this Task.  # noqa: E501
+        :type: str
+        """
+
+        self._id = id
 
     @property
     def href(self):
@@ -169,6 +195,8 @@ class Task(object):
         :param state: The state of this Task.  # noqa: E501
         :type: str
         """
+        if state is not None and len(state) < 1:
+            raise ValueError("Invalid value for `state`, length must be greater than or equal to `1`")  # noqa: E501
 
         self._state = state
 

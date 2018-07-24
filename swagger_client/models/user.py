@@ -31,6 +31,7 @@ class User(object):
                             and the value is json key in definition.
     """
     swagger_types = {
+        'id': 'int',
         'href': 'str',
         'created': 'datetime',
         'username': 'str',
@@ -38,27 +39,52 @@ class User(object):
     }
 
     attribute_map = {
+        'id': 'id',
         'href': '_href',
         'created': 'created',
         'username': 'username',
         'password': 'password'
     }
 
-    def __init__(self, href=None, created=None, username=None, password=None):  # noqa: E501
+    def __init__(self, id=None, href=None, created=None, username=None, password=None):  # noqa: E501
         """User - a model defined in Swagger"""  # noqa: E501
 
+        self._id = None
         self._href = None
         self._created = None
         self._username = None
         self._password = None
         self.discriminator = None
 
+        if id is not None:
+            self.id = id
         if href is not None:
             self.href = href
         if created is not None:
             self.created = created
         self.username = username
         self.password = password
+
+    @property
+    def id(self):
+        """Gets the id of this User.  # noqa: E501
+
+
+        :return: The id of this User.  # noqa: E501
+        :rtype: int
+        """
+        return self._id
+
+    @id.setter
+    def id(self, id):
+        """Sets the id of this User.
+
+
+        :param id: The id of this User.  # noqa: E501
+        :type: int
+        """
+
+        self._id = id
 
     @property
     def href(self):
@@ -128,6 +154,8 @@ class User(object):
             raise ValueError("Invalid value for `username`, must not be `None`")  # noqa: E501
         if username is not None and len(username) > 150:
             raise ValueError("Invalid value for `username`, length must be less than or equal to `150`")  # noqa: E501
+        if username is not None and len(username) < 1:
+            raise ValueError("Invalid value for `username`, length must be greater than or equal to `1`")  # noqa: E501
         if username is not None and not re.search('^[\\w.@+-]+$', username):  # noqa: E501
             raise ValueError("Invalid value for `username`, must be a follow pattern or equal to `/^[\\w.@+-]+$/`")  # noqa: E501
 
@@ -155,6 +183,8 @@ class User(object):
         """
         if password is None:
             raise ValueError("Invalid value for `password`, must not be `None`")  # noqa: E501
+        if password is not None and len(password) < 1:
+            raise ValueError("Invalid value for `password`, length must be greater than or equal to `1`")  # noqa: E501
 
         self._password = password
 

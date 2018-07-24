@@ -31,34 +31,93 @@ class FileContent(object):
                             and the value is json key in definition.
     """
     swagger_types = {
+        'notes': 'dict(str, str)',
+        'id': 'int',
         'href': 'str',
         'type': 'str',
+        'created': 'datetime',
         'relative_path': 'str',
         'artifact': 'str'
     }
 
     attribute_map = {
+        'notes': 'notes',
+        'id': 'id',
         'href': '_href',
         'type': 'type',
+        'created': 'created',
         'relative_path': 'relative_path',
         'artifact': 'artifact'
     }
 
-    def __init__(self, href=None, type=None, relative_path=None, artifact=None):  # noqa: E501
+    def __init__(self, notes=None, id=None, href=None, type=None, created=None, relative_path=None, artifact=None):  # noqa: E501
         """FileContent - a model defined in Swagger"""  # noqa: E501
 
+        self._notes = None
+        self._id = None
         self._href = None
         self._type = None
+        self._created = None
         self._relative_path = None
         self._artifact = None
         self.discriminator = None
 
+        if notes is not None:
+            self.notes = notes
+        if id is not None:
+            self.id = id
         if href is not None:
             self.href = href
         if type is not None:
             self.type = type
+        if created is not None:
+            self.created = created
         self.relative_path = relative_path
         self.artifact = artifact
+
+    @property
+    def notes(self):
+        """Gets the notes of this FileContent.  # noqa: E501
+
+        A mapping of string keys to string values, for storing notes on this object.  # noqa: E501
+
+        :return: The notes of this FileContent.  # noqa: E501
+        :rtype: dict(str, str)
+        """
+        return self._notes
+
+    @notes.setter
+    def notes(self, notes):
+        """Sets the notes of this FileContent.
+
+        A mapping of string keys to string values, for storing notes on this object.  # noqa: E501
+
+        :param notes: The notes of this FileContent.  # noqa: E501
+        :type: dict(str, str)
+        """
+
+        self._notes = notes
+
+    @property
+    def id(self):
+        """Gets the id of this FileContent.  # noqa: E501
+
+
+        :return: The id of this FileContent.  # noqa: E501
+        :rtype: int
+        """
+        return self._id
+
+    @id.setter
+    def id(self, id):
+        """Sets the id of this FileContent.
+
+
+        :param id: The id of this FileContent.  # noqa: E501
+        :type: int
+        """
+
+        self._id = id
 
     @property
     def href(self):
@@ -99,8 +158,33 @@ class FileContent(object):
         :param type: The type of this FileContent.  # noqa: E501
         :type: str
         """
+        if type is not None and len(type) < 1:
+            raise ValueError("Invalid value for `type`, length must be greater than or equal to `1`")  # noqa: E501
 
         self._type = type
+
+    @property
+    def created(self):
+        """Gets the created of this FileContent.  # noqa: E501
+
+        Timestamp of creation.  # noqa: E501
+
+        :return: The created of this FileContent.  # noqa: E501
+        :rtype: datetime
+        """
+        return self._created
+
+    @created.setter
+    def created(self, created):
+        """Sets the created of this FileContent.
+
+        Timestamp of creation.  # noqa: E501
+
+        :param created: The created of this FileContent.  # noqa: E501
+        :type: datetime
+        """
+
+        self._created = created
 
     @property
     def relative_path(self):
@@ -124,6 +208,8 @@ class FileContent(object):
         """
         if relative_path is None:
             raise ValueError("Invalid value for `relative_path`, must not be `None`")  # noqa: E501
+        if relative_path is not None and len(relative_path) < 1:
+            raise ValueError("Invalid value for `relative_path`, length must be greater than or equal to `1`")  # noqa: E501
 
         self._relative_path = relative_path
 

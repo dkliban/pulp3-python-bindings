@@ -132,45 +132,45 @@ class UsersApi(object):
             _request_timeout=params.get('_request_timeout'),
             collection_formats=collection_formats)
 
-    def users_delete(self, href, **kwargs):  # noqa: E501
+    def users_delete(self, user_href, **kwargs):  # noqa: E501
         """users_delete  # noqa: E501
 
           # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async=True
-        >>> thread = api.users_delete(href, async=True)
+        >>> thread = api.users_delete(user_href, async=True)
         >>> result = thread.get()
 
         :param async bool
-        :param str href: A relative URI for the resource. (required)
+        :param str user_href: URI of User. e.g.: /users/1/ (required)
         :return: None
                  If the method is called asynchronously,
                  returns the request thread.
         """
         kwargs['_return_http_data_only'] = True
         if kwargs.get('async'):
-            return self.users_delete_with_http_info(href, **kwargs)  # noqa: E501
+            return self.users_delete_with_http_info(user_href, **kwargs)  # noqa: E501
         else:
-            (data) = self.users_delete_with_http_info(href, **kwargs)  # noqa: E501
+            (data) = self.users_delete_with_http_info(user_href, **kwargs)  # noqa: E501
             return data
 
-    def users_delete_with_http_info(self, href, **kwargs):  # noqa: E501
+    def users_delete_with_http_info(self, user_href, **kwargs):  # noqa: E501
         """users_delete  # noqa: E501
 
           # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async=True
-        >>> thread = api.users_delete_with_http_info(href, async=True)
+        >>> thread = api.users_delete_with_http_info(user_href, async=True)
         >>> result = thread.get()
 
         :param async bool
-        :param str href: A relative URI for the resource. (required)
+        :param str user_href: URI of User. e.g.: /users/1/ (required)
         :return: None
                  If the method is called asynchronously,
                  returns the request thread.
         """
 
-        all_params = ['href']  # noqa: E501
+        all_params = ['user_href']  # noqa: E501
         all_params.append('async')
         all_params.append('_return_http_data_only')
         all_params.append('_preload_content')
@@ -185,16 +185,16 @@ class UsersApi(object):
                 )
             params[key] = val
         del params['kwargs']
-        # verify the required parameter 'href' is set
-        if ('href' not in params or
-                params['href'] is None):
-            raise ValueError("Missing the required parameter `href` when calling `users_delete`")  # noqa: E501
+        # verify the required parameter 'user_href' is set
+        if ('user_href' not in params or
+                params['user_href'] is None):
+            raise ValueError("Missing the required parameter `user_href` when calling `users_delete`")  # noqa: E501
 
         collection_formats = {}
 
         path_params = {}
-        if 'href' in params:
-            path_params['href'] = params['href']  # noqa: E501
+        if 'user_href' in params:
+            path_params['{user_href}'] = params['user_href']  # noqa: E501
 
         query_params = []
 
@@ -216,7 +216,7 @@ class UsersApi(object):
         auth_settings = ['basic']  # noqa: E501
 
         return self.api_client.call_api(
-            '{href}', 'DELETE',
+            '/{user_href}/', 'DELETE',
             path_params,
             query_params,
             header_params,
@@ -241,10 +241,9 @@ class UsersApi(object):
         >>> result = thread.get()
 
         :param async bool
-        :param str username: 
-        :param str username__in: Multiple values may be separated by commas.
         :param str cursor: The pagination cursor value.
-        :return: InlineResponse2009
+        :param int page_size: Number of results to return per page.
+        :return: InlineResponse2008
                  If the method is called asynchronously,
                  returns the request thread.
         """
@@ -265,15 +264,14 @@ class UsersApi(object):
         >>> result = thread.get()
 
         :param async bool
-        :param str username: 
-        :param str username__in: Multiple values may be separated by commas.
         :param str cursor: The pagination cursor value.
-        :return: InlineResponse2009
+        :param int page_size: Number of results to return per page.
+        :return: InlineResponse2008
                  If the method is called asynchronously,
                  returns the request thread.
         """
 
-        all_params = ['username', 'username__in', 'cursor']  # noqa: E501
+        all_params = ['cursor', 'page_size']  # noqa: E501
         all_params.append('async')
         all_params.append('_return_http_data_only')
         all_params.append('_preload_content')
@@ -294,12 +292,10 @@ class UsersApi(object):
         path_params = {}
 
         query_params = []
-        if 'username' in params:
-            query_params.append(('username', params['username']))  # noqa: E501
-        if 'username__in' in params:
-            query_params.append(('username__in', params['username__in']))  # noqa: E501
         if 'cursor' in params:
             query_params.append(('cursor', params['cursor']))  # noqa: E501
+        if 'page_size' in params:
+            query_params.append(('page_size', params['page_size']))  # noqa: E501
 
         header_params = {}
 
@@ -326,7 +322,7 @@ class UsersApi(object):
             body=body_params,
             post_params=form_params,
             files=local_var_files,
-            response_type='InlineResponse2009',  # noqa: E501
+            response_type='InlineResponse2008',  # noqa: E501
             auth_settings=auth_settings,
             async=params.get('async'),
             _return_http_data_only=params.get('_return_http_data_only'),
@@ -334,17 +330,17 @@ class UsersApi(object):
             _request_timeout=params.get('_request_timeout'),
             collection_formats=collection_formats)
 
-    def users_partial_update(self, href, data, **kwargs):  # noqa: E501
+    def users_partial_update(self, user_href, data, **kwargs):  # noqa: E501
         """users_partial_update  # noqa: E501
 
           # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async=True
-        >>> thread = api.users_partial_update(href, data, async=True)
+        >>> thread = api.users_partial_update(user_href, data, async=True)
         >>> result = thread.get()
 
         :param async bool
-        :param str href: A relative URI for the resource. (required)
+        :param str user_href: URI of User. e.g.: /users/1/ (required)
         :param User data: (required)
         :return: User
                  If the method is called asynchronously,
@@ -352,29 +348,29 @@ class UsersApi(object):
         """
         kwargs['_return_http_data_only'] = True
         if kwargs.get('async'):
-            return self.users_partial_update_with_http_info(href, data, **kwargs)  # noqa: E501
+            return self.users_partial_update_with_http_info(user_href, data, **kwargs)  # noqa: E501
         else:
-            (data) = self.users_partial_update_with_http_info(href, data, **kwargs)  # noqa: E501
+            (data) = self.users_partial_update_with_http_info(user_href, data, **kwargs)  # noqa: E501
             return data
 
-    def users_partial_update_with_http_info(self, href, data, **kwargs):  # noqa: E501
+    def users_partial_update_with_http_info(self, user_href, data, **kwargs):  # noqa: E501
         """users_partial_update  # noqa: E501
 
           # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async=True
-        >>> thread = api.users_partial_update_with_http_info(href, data, async=True)
+        >>> thread = api.users_partial_update_with_http_info(user_href, data, async=True)
         >>> result = thread.get()
 
         :param async bool
-        :param str href: A relative URI for the resource. (required)
+        :param str user_href: URI of User. e.g.: /users/1/ (required)
         :param User data: (required)
         :return: User
                  If the method is called asynchronously,
                  returns the request thread.
         """
 
-        all_params = ['href', 'data']  # noqa: E501
+        all_params = ['user_href', 'data']  # noqa: E501
         all_params.append('async')
         all_params.append('_return_http_data_only')
         all_params.append('_preload_content')
@@ -389,10 +385,10 @@ class UsersApi(object):
                 )
             params[key] = val
         del params['kwargs']
-        # verify the required parameter 'href' is set
-        if ('href' not in params or
-                params['href'] is None):
-            raise ValueError("Missing the required parameter `href` when calling `users_partial_update`")  # noqa: E501
+        # verify the required parameter 'user_href' is set
+        if ('user_href' not in params or
+                params['user_href'] is None):
+            raise ValueError("Missing the required parameter `user_href` when calling `users_partial_update`")  # noqa: E501
         # verify the required parameter 'data' is set
         if ('data' not in params or
                 params['data'] is None):
@@ -401,8 +397,8 @@ class UsersApi(object):
         collection_formats = {}
 
         path_params = {}
-        if 'href' in params:
-            path_params['href'] = params['href']  # noqa: E501
+        if 'user_href' in params:
+            path_params['{user_href}'] = params['user_href']  # noqa: E501
 
         query_params = []
 
@@ -426,7 +422,7 @@ class UsersApi(object):
         auth_settings = ['basic']  # noqa: E501
 
         return self.api_client.call_api(
-            '{href}', 'PATCH',
+            '/{user_href}/', 'PATCH',
             path_params,
             query_params,
             header_params,
@@ -441,45 +437,45 @@ class UsersApi(object):
             _request_timeout=params.get('_request_timeout'),
             collection_formats=collection_formats)
 
-    def users_read(self, href, **kwargs):  # noqa: E501
+    def users_read(self, user_href, **kwargs):  # noqa: E501
         """users_read  # noqa: E501
 
           # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async=True
-        >>> thread = api.users_read(href, async=True)
+        >>> thread = api.users_read(user_href, async=True)
         >>> result = thread.get()
 
         :param async bool
-        :param str href: A relative URI for the resource. (required)
+        :param str user_href: URI of User. e.g.: /users/1/ (required)
         :return: User
                  If the method is called asynchronously,
                  returns the request thread.
         """
         kwargs['_return_http_data_only'] = True
         if kwargs.get('async'):
-            return self.users_read_with_http_info(href, **kwargs)  # noqa: E501
+            return self.users_read_with_http_info(user_href, **kwargs)  # noqa: E501
         else:
-            (data) = self.users_read_with_http_info(href, **kwargs)  # noqa: E501
+            (data) = self.users_read_with_http_info(user_href, **kwargs)  # noqa: E501
             return data
 
-    def users_read_with_http_info(self, href, **kwargs):  # noqa: E501
+    def users_read_with_http_info(self, user_href, **kwargs):  # noqa: E501
         """users_read  # noqa: E501
 
           # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async=True
-        >>> thread = api.users_read_with_http_info(href, async=True)
+        >>> thread = api.users_read_with_http_info(user_href, async=True)
         >>> result = thread.get()
 
         :param async bool
-        :param str href: A relative URI for the resource. (required)
+        :param str user_href: URI of User. e.g.: /users/1/ (required)
         :return: User
                  If the method is called asynchronously,
                  returns the request thread.
         """
 
-        all_params = ['href']  # noqa: E501
+        all_params = ['user_href']  # noqa: E501
         all_params.append('async')
         all_params.append('_return_http_data_only')
         all_params.append('_preload_content')
@@ -494,16 +490,16 @@ class UsersApi(object):
                 )
             params[key] = val
         del params['kwargs']
-        # verify the required parameter 'href' is set
-        if ('href' not in params or
-                params['href'] is None):
-            raise ValueError("Missing the required parameter `href` when calling `users_read`")  # noqa: E501
+        # verify the required parameter 'user_href' is set
+        if ('user_href' not in params or
+                params['user_href'] is None):
+            raise ValueError("Missing the required parameter `user_href` when calling `users_read`")  # noqa: E501
 
         collection_formats = {}
 
         path_params = {}
-        if 'href' in params:
-            path_params['href'] = params['href']  # noqa: E501
+        if 'user_href' in params:
+            path_params['{user_href}'] = params['user_href']  # noqa: E501
 
         query_params = []
 
@@ -525,7 +521,7 @@ class UsersApi(object):
         auth_settings = ['basic']  # noqa: E501
 
         return self.api_client.call_api(
-            '{href}', 'GET',
+            '/{user_href}/', 'GET',
             path_params,
             query_params,
             header_params,
@@ -540,17 +536,17 @@ class UsersApi(object):
             _request_timeout=params.get('_request_timeout'),
             collection_formats=collection_formats)
 
-    def users_update(self, href, data, **kwargs):  # noqa: E501
+    def users_update(self, user_href, data, **kwargs):  # noqa: E501
         """users_update  # noqa: E501
 
           # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async=True
-        >>> thread = api.users_update(href, data, async=True)
+        >>> thread = api.users_update(user_href, data, async=True)
         >>> result = thread.get()
 
         :param async bool
-        :param str href: A relative URI for the resource. (required)
+        :param str user_href: URI of User. e.g.: /users/1/ (required)
         :param User data: (required)
         :return: User
                  If the method is called asynchronously,
@@ -558,29 +554,29 @@ class UsersApi(object):
         """
         kwargs['_return_http_data_only'] = True
         if kwargs.get('async'):
-            return self.users_update_with_http_info(href, data, **kwargs)  # noqa: E501
+            return self.users_update_with_http_info(user_href, data, **kwargs)  # noqa: E501
         else:
-            (data) = self.users_update_with_http_info(href, data, **kwargs)  # noqa: E501
+            (data) = self.users_update_with_http_info(user_href, data, **kwargs)  # noqa: E501
             return data
 
-    def users_update_with_http_info(self, href, data, **kwargs):  # noqa: E501
+    def users_update_with_http_info(self, user_href, data, **kwargs):  # noqa: E501
         """users_update  # noqa: E501
 
           # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async=True
-        >>> thread = api.users_update_with_http_info(href, data, async=True)
+        >>> thread = api.users_update_with_http_info(user_href, data, async=True)
         >>> result = thread.get()
 
         :param async bool
-        :param str href: A relative URI for the resource. (required)
+        :param str user_href: URI of User. e.g.: /users/1/ (required)
         :param User data: (required)
         :return: User
                  If the method is called asynchronously,
                  returns the request thread.
         """
 
-        all_params = ['href', 'data']  # noqa: E501
+        all_params = ['user_href', 'data']  # noqa: E501
         all_params.append('async')
         all_params.append('_return_http_data_only')
         all_params.append('_preload_content')
@@ -595,10 +591,10 @@ class UsersApi(object):
                 )
             params[key] = val
         del params['kwargs']
-        # verify the required parameter 'href' is set
-        if ('href' not in params or
-                params['href'] is None):
-            raise ValueError("Missing the required parameter `href` when calling `users_update`")  # noqa: E501
+        # verify the required parameter 'user_href' is set
+        if ('user_href' not in params or
+                params['user_href'] is None):
+            raise ValueError("Missing the required parameter `user_href` when calling `users_update`")  # noqa: E501
         # verify the required parameter 'data' is set
         if ('data' not in params or
                 params['data'] is None):
@@ -607,8 +603,8 @@ class UsersApi(object):
         collection_formats = {}
 
         path_params = {}
-        if 'href' in params:
-            path_params['href'] = params['href']  # noqa: E501
+        if 'user_href' in params:
+            path_params['{user_href}'] = params['user_href']  # noqa: E501
 
         query_params = []
 
@@ -632,7 +628,7 @@ class UsersApi(object):
         auth_settings = ['basic']  # noqa: E501
 
         return self.api_client.call_api(
-            '{href}', 'PUT',
+            '/{user_href}/', 'PUT',
             path_params,
             query_params,
             header_params,

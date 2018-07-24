@@ -56,11 +56,20 @@ swagger_client.configuration.username = 'YOUR_USERNAME'
 swagger_client.configuration.password = 'YOUR_PASSWORD'
 # create an instance of the API class
 api_instance = swagger_client.ArtifactsApi()
-data = swagger_client.Artifact() # Artifact | 
+file = '/path/to/file.txt' # file | The stored file.
+id = 56 # int |  (optional)
+href = 'href_example' # str |  (optional)
+created = '2013-10-20T19:20:30+01:00' # datetime | Timestamp of creation. (optional)
+size = 56 # int | The size of the file in bytes. (optional)
+md5 = 'md5_example' # str | The MD5 checksum of the file if available. (optional)
+sha1 = 'sha1_example' # str | The SHA-1 checksum of the file if available. (optional)
+sha224 = 'sha224_example' # str | The SHA-224 checksum of the file if available. (optional)
+sha256 = 'sha256_example' # str | The SHA-256 checksum of the file if available. (optional)
+sha384 = 'sha384_example' # str | The SHA-384 checksum of the file if available. (optional)
+sha512 = 'sha512_example' # str | The SHA-512 checksum of the file if available. (optional)
 
 try:
-    api_response = api_instance.artifacts_create(data)
-    pprint(api_response)
+    api_instance.artifacts_create(file, id=id, href=href, created=created, size=size, md5=md5, sha1=sha1, sha224=sha224, sha256=sha256, sha384=sha384, sha512=sha512)
 except ApiException as e:
     print("Exception when calling ArtifactsApi->artifacts_create: %s\n" % e)
 
@@ -73,67 +82,70 @@ All URIs are relative to *http://localhost:8000/pulp/api/v3*
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
 *ArtifactsApi* | [**artifacts_create**](docs/ArtifactsApi.md#artifacts_create) | **POST** /artifacts/ | 
-*ArtifactsApi* | [**artifacts_delete**](docs/ArtifactsApi.md#artifacts_delete) | **DELETE** {href} | 
+*ArtifactsApi* | [**artifacts_delete**](docs/ArtifactsApi.md#artifacts_delete) | **DELETE** /{artifact_href}/ | 
 *ArtifactsApi* | [**artifacts_list**](docs/ArtifactsApi.md#artifacts_list) | **GET** /artifacts/ | 
-*ArtifactsApi* | [**artifacts_read**](docs/ArtifactsApi.md#artifacts_read) | **GET** {href} | 
-*ContentApi* | [**content_file_create**](docs/ContentApi.md#content_file_create) | **POST** /content/file/ | 
-*ContentApi* | [**content_file_list**](docs/ContentApi.md#content_file_list) | **GET** /content/file/ | 
-*ContentApi* | [**content_file_read**](docs/ContentApi.md#content_file_read) | **GET** {href} | 
+*ArtifactsApi* | [**artifacts_read**](docs/ArtifactsApi.md#artifacts_read) | **GET** /{artifact_href}/ | 
+*ContentApi* | [**content_file_files_create**](docs/ContentApi.md#content_file_files_create) | **POST** /content/file/files/ | 
+*ContentApi* | [**content_file_files_list**](docs/ContentApi.md#content_file_files_list) | **GET** /content/file/files/ | 
+*ContentApi* | [**content_file_files_read**](docs/ContentApi.md#content_file_files_read) | **GET** /{file_content_href}/ | 
 *DistributionsApi* | [**distributions_create**](docs/DistributionsApi.md#distributions_create) | **POST** /distributions/ | 
-*DistributionsApi* | [**distributions_delete**](docs/DistributionsApi.md#distributions_delete) | **DELETE** {href} | 
+*DistributionsApi* | [**distributions_delete**](docs/DistributionsApi.md#distributions_delete) | **DELETE** /{distribution_href}/ | 
 *DistributionsApi* | [**distributions_list**](docs/DistributionsApi.md#distributions_list) | **GET** /distributions/ | 
-*DistributionsApi* | [**distributions_partial_update**](docs/DistributionsApi.md#distributions_partial_update) | **PATCH** {href} | 
-*DistributionsApi* | [**distributions_read**](docs/DistributionsApi.md#distributions_read) | **GET** {href} | 
-*DistributionsApi* | [**distributions_update**](docs/DistributionsApi.md#distributions_update) | **PUT** {href} | 
+*DistributionsApi* | [**distributions_partial_update**](docs/DistributionsApi.md#distributions_partial_update) | **PATCH** /{distribution_href}/ | 
+*DistributionsApi* | [**distributions_read**](docs/DistributionsApi.md#distributions_read) | **GET** /{distribution_href}/ | 
+*DistributionsApi* | [**distributions_update**](docs/DistributionsApi.md#distributions_update) | **PUT** /{distribution_href}/ | 
 *OrphansApi* | [**orphans_delete**](docs/OrphansApi.md#orphans_delete) | **DELETE** /orphans/ | 
-*PublicationsApi* | [**publications_delete**](docs/PublicationsApi.md#publications_delete) | **DELETE** {href} | 
+*PublicationsApi* | [**publications_delete**](docs/PublicationsApi.md#publications_delete) | **DELETE** /{publication_href}/ | 
 *PublicationsApi* | [**publications_list**](docs/PublicationsApi.md#publications_list) | **GET** /publications/ | 
-*PublicationsApi* | [**publications_read**](docs/PublicationsApi.md#publications_read) | **GET** {href} | 
+*PublicationsApi* | [**publications_read**](docs/PublicationsApi.md#publications_read) | **GET** /{publication_href}/ | 
 *PublishersApi* | [**publishers_file_create**](docs/PublishersApi.md#publishers_file_create) | **POST** /publishers/file/ | 
-*PublishersApi* | [**publishers_file_delete**](docs/PublishersApi.md#publishers_file_delete) | **DELETE** {href} | 
+*PublishersApi* | [**publishers_file_delete**](docs/PublishersApi.md#publishers_file_delete) | **DELETE** /{file_publisher_href}/ | 
 *PublishersApi* | [**publishers_file_list**](docs/PublishersApi.md#publishers_file_list) | **GET** /publishers/file/ | 
-*PublishersApi* | [**publishers_file_partial_update**](docs/PublishersApi.md#publishers_file_partial_update) | **PATCH** {href} | 
-*PublishersApi* | [**publishers_file_publish**](docs/PublishersApi.md#publishers_file_publish) | **POST** {href} | 
-*PublishersApi* | [**publishers_file_read**](docs/PublishersApi.md#publishers_file_read) | **GET** {href} | 
-*PublishersApi* | [**publishers_file_update**](docs/PublishersApi.md#publishers_file_update) | **PUT** {href} | 
+*PublishersApi* | [**publishers_file_partial_update**](docs/PublishersApi.md#publishers_file_partial_update) | **PATCH** /{file_publisher_href}/ | 
+*PublishersApi* | [**publishers_file_publish**](docs/PublishersApi.md#publishers_file_publish) | **POST** /{file_publisher_href}/publish/ | 
+*PublishersApi* | [**publishers_file_read**](docs/PublishersApi.md#publishers_file_read) | **GET** /{file_publisher_href}/ | 
+*PublishersApi* | [**publishers_file_update**](docs/PublishersApi.md#publishers_file_update) | **PUT** /{file_publisher_href}/ | 
 *RemotesApi* | [**remotes_file_create**](docs/RemotesApi.md#remotes_file_create) | **POST** /remotes/file/ | 
-*RemotesApi* | [**remotes_file_delete**](docs/RemotesApi.md#remotes_file_delete) | **DELETE** {href} | 
+*RemotesApi* | [**remotes_file_delete**](docs/RemotesApi.md#remotes_file_delete) | **DELETE** /{file_remote_href}/ | 
 *RemotesApi* | [**remotes_file_list**](docs/RemotesApi.md#remotes_file_list) | **GET** /remotes/file/ | 
-*RemotesApi* | [**remotes_file_partial_update**](docs/RemotesApi.md#remotes_file_partial_update) | **PATCH** {href} | 
-*RemotesApi* | [**remotes_file_read**](docs/RemotesApi.md#remotes_file_read) | **GET** {href} | 
-*RemotesApi* | [**remotes_file_sync**](docs/RemotesApi.md#remotes_file_sync) | **POST** {href} | 
-*RemotesApi* | [**remotes_file_update**](docs/RemotesApi.md#remotes_file_update) | **PUT** {href} | 
+*RemotesApi* | [**remotes_file_partial_update**](docs/RemotesApi.md#remotes_file_partial_update) | **PATCH** /{file_remote_href}/ | 
+*RemotesApi* | [**remotes_file_read**](docs/RemotesApi.md#remotes_file_read) | **GET** /{file_remote_href}/ | 
+*RemotesApi* | [**remotes_file_sync**](docs/RemotesApi.md#remotes_file_sync) | **POST** /{file_remote_href}/sync/ | 
+*RemotesApi* | [**remotes_file_update**](docs/RemotesApi.md#remotes_file_update) | **PUT** /{file_remote_href}/ | 
 *RepositoriesApi* | [**repositories_create**](docs/RepositoriesApi.md#repositories_create) | **POST** /repositories/ | 
-*RepositoriesApi* | [**repositories_delete**](docs/RepositoriesApi.md#repositories_delete) | **DELETE** {href} | 
+*RepositoriesApi* | [**repositories_delete**](docs/RepositoriesApi.md#repositories_delete) | **DELETE** /{repository_href}/ | 
 *RepositoriesApi* | [**repositories_list**](docs/RepositoriesApi.md#repositories_list) | **GET** /repositories/ | 
-*RepositoriesApi* | [**repositories_partial_update**](docs/RepositoriesApi.md#repositories_partial_update) | **PATCH** {href} | 
-*RepositoriesApi* | [**repositories_read**](docs/RepositoriesApi.md#repositories_read) | **GET** {href} | 
-*RepositoriesApi* | [**repositories_update**](docs/RepositoriesApi.md#repositories_update) | **PUT** {href} | 
-*RepositoriesApi* | [**repositories_versions_added_content**](docs/RepositoriesApi.md#repositories_versions_added_content) | **GET** {href} | 
-*RepositoriesApi* | [**repositories_versions_content**](docs/RepositoriesApi.md#repositories_versions_content) | **GET** {href} | 
-*RepositoriesApi* | [**repositories_versions_create**](docs/RepositoriesApi.md#repositories_versions_create) | **POST** {href} | 
-*RepositoriesApi* | [**repositories_versions_delete**](docs/RepositoriesApi.md#repositories_versions_delete) | **DELETE** {href} | 
-*RepositoriesApi* | [**repositories_versions_list**](docs/RepositoriesApi.md#repositories_versions_list) | **GET** {href} | 
-*RepositoriesApi* | [**repositories_versions_read**](docs/RepositoriesApi.md#repositories_versions_read) | **GET** {href} | 
-*RepositoriesApi* | [**repositories_versions_removed_content**](docs/RepositoriesApi.md#repositories_versions_removed_content) | **GET** {href} | 
+*RepositoriesApi* | [**repositories_partial_update**](docs/RepositoriesApi.md#repositories_partial_update) | **PATCH** /{repository_href}/ | 
+*RepositoriesApi* | [**repositories_read**](docs/RepositoriesApi.md#repositories_read) | **GET** /{repository_href}/ | 
+*RepositoriesApi* | [**repositories_update**](docs/RepositoriesApi.md#repositories_update) | **PUT** /{repository_href}/ | 
+*RepositoriesApi* | [**repositories_versions_added_content**](docs/RepositoriesApi.md#repositories_versions_added_content) | **GET** /{repository_version_href}/added_content/ | 
+*RepositoriesApi* | [**repositories_versions_content**](docs/RepositoriesApi.md#repositories_versions_content) | **GET** /{repository_version_href}/content/ | 
+*RepositoriesApi* | [**repositories_versions_create**](docs/RepositoriesApi.md#repositories_versions_create) | **POST** /{repository_version_href}/versions/ | 
+*RepositoriesApi* | [**repositories_versions_delete**](docs/RepositoriesApi.md#repositories_versions_delete) | **DELETE** /{repository_version_href}/ | 
+*RepositoriesApi* | [**repositories_versions_list**](docs/RepositoriesApi.md#repositories_versions_list) | **GET** /{repository_version_href}/versions/ | 
+*RepositoriesApi* | [**repositories_versions_partial_update**](docs/RepositoriesApi.md#repositories_versions_partial_update) | **PATCH** /{repository_version_href}/ | 
+*RepositoriesApi* | [**repositories_versions_read**](docs/RepositoriesApi.md#repositories_versions_read) | **GET** /{repository_version_href}/ | 
+*RepositoriesApi* | [**repositories_versions_removed_content**](docs/RepositoriesApi.md#repositories_versions_removed_content) | **GET** /{repository_version_href}/removed_content/ | 
+*RepositoriesApi* | [**repositories_versions_update**](docs/RepositoriesApi.md#repositories_versions_update) | **PUT** /{repository_version_href}/ | 
 *StatusApi* | [**status_list**](docs/StatusApi.md#status_list) | **GET** /status/ | 
-*TasksApi* | [**tasks_cancel**](docs/TasksApi.md#tasks_cancel) | **POST** {href} | 
-*TasksApi* | [**tasks_delete**](docs/TasksApi.md#tasks_delete) | **DELETE** {href} | 
+*TasksApi* | [**tasks_cancel**](docs/TasksApi.md#tasks_cancel) | **POST** /{task_href}/cancel/ | 
+*TasksApi* | [**tasks_delete**](docs/TasksApi.md#tasks_delete) | **DELETE** /{task_href}/ | 
 *TasksApi* | [**tasks_list**](docs/TasksApi.md#tasks_list) | **GET** /tasks/ | 
-*TasksApi* | [**tasks_read**](docs/TasksApi.md#tasks_read) | **GET** {href} | 
+*TasksApi* | [**tasks_read**](docs/TasksApi.md#tasks_read) | **GET** /{task_href}/ | 
 *UsersApi* | [**users_create**](docs/UsersApi.md#users_create) | **POST** /users/ | 
-*UsersApi* | [**users_delete**](docs/UsersApi.md#users_delete) | **DELETE** {href} | 
+*UsersApi* | [**users_delete**](docs/UsersApi.md#users_delete) | **DELETE** /{user_href}/ | 
 *UsersApi* | [**users_list**](docs/UsersApi.md#users_list) | **GET** /users/ | 
-*UsersApi* | [**users_partial_update**](docs/UsersApi.md#users_partial_update) | **PATCH** {href} | 
-*UsersApi* | [**users_read**](docs/UsersApi.md#users_read) | **GET** {href} | 
-*UsersApi* | [**users_update**](docs/UsersApi.md#users_update) | **PUT** {href} | 
+*UsersApi* | [**users_partial_update**](docs/UsersApi.md#users_partial_update) | **PATCH** /{user_href}/ | 
+*UsersApi* | [**users_read**](docs/UsersApi.md#users_read) | **GET** /{user_href}/ | 
+*UsersApi* | [**users_update**](docs/UsersApi.md#users_update) | **PUT** /{user_href}/ | 
 *WorkersApi* | [**workers_list**](docs/WorkersApi.md#workers_list) | **GET** /workers/ | 
-*WorkersApi* | [**workers_read**](docs/WorkersApi.md#workers_read) | **GET** {href} | 
+*WorkersApi* | [**workers_read**](docs/WorkersApi.md#workers_read) | **GET** /{worker_href}/ | 
 
 
 ## Documentation For Models
 
- - [Artifact](docs/Artifact.md)
+ - [AsnycOperationResponse](docs/AsnycOperationResponse.md)
+ - [Content](docs/Content.md)
  - [CreatedResource](docs/CreatedResource.md)
  - [Distribution](docs/Distribution.md)
  - [FileContent](docs/FileContent.md)
@@ -141,7 +153,6 @@ Class | Method | HTTP request | Description
  - [FileRemote](docs/FileRemote.md)
  - [InlineResponse200](docs/InlineResponse200.md)
  - [InlineResponse2001](docs/InlineResponse2001.md)
- - [InlineResponse20010](docs/InlineResponse20010.md)
  - [InlineResponse2002](docs/InlineResponse2002.md)
  - [InlineResponse2003](docs/InlineResponse2003.md)
  - [InlineResponse2004](docs/InlineResponse2004.md)
@@ -150,7 +161,6 @@ Class | Method | HTTP request | Description
  - [InlineResponse2007](docs/InlineResponse2007.md)
  - [InlineResponse2008](docs/InlineResponse2008.md)
  - [InlineResponse2009](docs/InlineResponse2009.md)
- - [MinimalTask](docs/MinimalTask.md)
  - [ProgressReport](docs/ProgressReport.md)
  - [Publication](docs/Publication.md)
  - [Repository](docs/Repository.md)

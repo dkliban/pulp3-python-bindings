@@ -16,7 +16,7 @@ import re  # noqa: F401
 
 import six
 
-from swagger_client.models.distribution import Distribution  # noqa: F401,E501
+from swagger_client.models.publication import Publication  # noqa: F401,E501
 
 
 class InlineResponse2002(object):
@@ -35,7 +35,7 @@ class InlineResponse2002(object):
     swagger_types = {
         'next': 'str',
         'previous': 'str',
-        'results': 'list[Distribution]'
+        'results': 'list[Publication]'
     }
 
     attribute_map = {
@@ -106,7 +106,7 @@ class InlineResponse2002(object):
 
 
         :return: The results of this InlineResponse2002.  # noqa: E501
-        :rtype: list[Distribution]
+        :rtype: list[Publication]
         """
         return self._results
 
@@ -116,7 +116,7 @@ class InlineResponse2002(object):
 
 
         :param results: The results of this InlineResponse2002.  # noqa: E501
-        :type: list[Distribution]
+        :type: list[Publication]
         """
         if results is None:
             raise ValueError("Invalid value for `results`, must not be `None`")  # noqa: E501

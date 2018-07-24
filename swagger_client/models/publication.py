@@ -31,6 +31,7 @@ class Publication(object):
                             and the value is json key in definition.
     """
     swagger_types = {
+        'id': 'int',
         'href': 'str',
         'created': 'datetime',
         'publisher': 'str',
@@ -39,6 +40,7 @@ class Publication(object):
     }
 
     attribute_map = {
+        'id': 'id',
         'href': '_href',
         'created': 'created',
         'publisher': 'publisher',
@@ -46,9 +48,10 @@ class Publication(object):
         'repository_version': 'repository_version'
     }
 
-    def __init__(self, href=None, created=None, publisher=None, distributions=None, repository_version=None):  # noqa: E501
+    def __init__(self, id=None, href=None, created=None, publisher=None, distributions=None, repository_version=None):  # noqa: E501
         """Publication - a model defined in Swagger"""  # noqa: E501
 
+        self._id = None
         self._href = None
         self._created = None
         self._publisher = None
@@ -56,6 +59,8 @@ class Publication(object):
         self._repository_version = None
         self.discriminator = None
 
+        if id is not None:
+            self.id = id
         if href is not None:
             self.href = href
         if created is not None:
@@ -65,6 +70,27 @@ class Publication(object):
             self.distributions = distributions
         if repository_version is not None:
             self.repository_version = repository_version
+
+    @property
+    def id(self):
+        """Gets the id of this Publication.  # noqa: E501
+
+
+        :return: The id of this Publication.  # noqa: E501
+        :rtype: int
+        """
+        return self._id
+
+    @id.setter
+    def id(self, id):
+        """Sets the id of this Publication.
+
+
+        :param id: The id of this Publication.  # noqa: E501
+        :type: int
+        """
+
+        self._id = id
 
     @property
     def href(self):

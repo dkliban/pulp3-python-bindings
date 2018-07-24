@@ -16,7 +16,7 @@ import re  # noqa: F401
 
 import six
 
-from swagger_client.models.user import User  # noqa: F401,E501
+from swagger_client.models.worker import Worker  # noqa: F401,E501
 
 
 class InlineResponse2009(object):
@@ -35,7 +35,7 @@ class InlineResponse2009(object):
     swagger_types = {
         'next': 'str',
         'previous': 'str',
-        'results': 'list[User]'
+        'results': 'list[Worker]'
     }
 
     attribute_map = {
@@ -106,7 +106,7 @@ class InlineResponse2009(object):
 
 
         :return: The results of this InlineResponse2009.  # noqa: E501
-        :rtype: list[User]
+        :rtype: list[Worker]
         """
         return self._results
 
@@ -116,7 +116,7 @@ class InlineResponse2009(object):
 
 
         :param results: The results of this InlineResponse2009.  # noqa: E501
-        :type: list[User]
+        :type: list[Worker]
         """
         if results is None:
             raise ValueError("Invalid value for `results`, must not be `None`")  # noqa: E501

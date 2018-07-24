@@ -5,11 +5,11 @@ All URIs are relative to *http://localhost:8000/pulp/api/v3*
 Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**users_create**](UsersApi.md#users_create) | **POST** /users/ | 
-[**users_delete**](UsersApi.md#users_delete) | **DELETE** {href} | 
+[**users_delete**](UsersApi.md#users_delete) | **DELETE** /{user_href}/ | 
 [**users_list**](UsersApi.md#users_list) | **GET** /users/ | 
-[**users_partial_update**](UsersApi.md#users_partial_update) | **PATCH** {href} | 
-[**users_read**](UsersApi.md#users_read) | **GET** {href} | 
-[**users_update**](UsersApi.md#users_update) | **PUT** {href} | 
+[**users_partial_update**](UsersApi.md#users_partial_update) | **PATCH** /{user_href}/ | 
+[**users_read**](UsersApi.md#users_read) | **GET** /{user_href}/ | 
+[**users_update**](UsersApi.md#users_update) | **PUT** /{user_href}/ | 
 
 
 # **users_create**
@@ -65,7 +65,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **users_delete**
-> users_delete(href)
+> users_delete(user_href)
 
 
 
@@ -86,10 +86,10 @@ configuration.password = 'YOUR_PASSWORD'
 
 # create an instance of the API class
 api_instance = swagger_client.UsersApi(swagger_client.ApiClient(configuration))
-href = 'id_example' # str | A relative URI for the resource.
+user_href = 'user_href_example' # str | URI of User. e.g.: /users/1/
 
 try:
-    api_instance.users_delete(href)
+    api_instance.users_delete(user_href)
 except ApiException as e:
     print("Exception when calling UsersApi->users_delete: %s\n" % e)
 ```
@@ -98,7 +98,7 @@ except ApiException as e:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **href** | [**str**](.md)| A relative URI for the resource. | 
+ **user_href** | **str**| URI of User. e.g.: /users/1/ | 
 
 ### Return type
 
@@ -116,7 +116,7 @@ void (empty response body)
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **users_list**
-> InlineResponse2009 users_list(username=username, username__in=username__in, cursor=cursor)
+> InlineResponse2008 users_list(cursor=cursor, page_size=page_size)
 
 
 
@@ -137,12 +137,11 @@ configuration.password = 'YOUR_PASSWORD'
 
 # create an instance of the API class
 api_instance = swagger_client.UsersApi(swagger_client.ApiClient(configuration))
-username = 'username_example' # str |  (optional)
-username__in = 'username__in_example' # str | Multiple values may be separated by commas. (optional)
 cursor = 'cursor_example' # str | The pagination cursor value. (optional)
+page_size = 56 # int | Number of results to return per page. (optional)
 
 try:
-    api_response = api_instance.users_list(username=username, username__in=username__in, cursor=cursor)
+    api_response = api_instance.users_list(cursor=cursor, page_size=page_size)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling UsersApi->users_list: %s\n" % e)
@@ -152,13 +151,12 @@ except ApiException as e:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **username** | **str**|  | [optional] 
- **username__in** | **str**| Multiple values may be separated by commas. | [optional] 
  **cursor** | **str**| The pagination cursor value. | [optional] 
+ **page_size** | **int**| Number of results to return per page. | [optional] 
 
 ### Return type
 
-[**InlineResponse2009**](InlineResponse2009.md)
+[**InlineResponse2008**](InlineResponse2008.md)
 
 ### Authorization
 
@@ -172,7 +170,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **users_partial_update**
-> User users_partial_update(href, data)
+> User users_partial_update(user_href, data)
 
 
 
@@ -193,11 +191,11 @@ configuration.password = 'YOUR_PASSWORD'
 
 # create an instance of the API class
 api_instance = swagger_client.UsersApi(swagger_client.ApiClient(configuration))
-href = 'id_example' # str | A relative URI for the resource.
+user_href = 'user_href_example' # str | URI of User. e.g.: /users/1/
 data = swagger_client.User() # User | 
 
 try:
-    api_response = api_instance.users_partial_update(href, data)
+    api_response = api_instance.users_partial_update(user_href, data)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling UsersApi->users_partial_update: %s\n" % e)
@@ -207,7 +205,7 @@ except ApiException as e:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **href** | [**str**](.md)| A relative URI for the resource. | 
+ **user_href** | **str**| URI of User. e.g.: /users/1/ | 
  **data** | [**User**](User.md)|  | 
 
 ### Return type
@@ -226,7 +224,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **users_read**
-> User users_read(href)
+> User users_read(user_href)
 
 
 
@@ -247,10 +245,10 @@ configuration.password = 'YOUR_PASSWORD'
 
 # create an instance of the API class
 api_instance = swagger_client.UsersApi(swagger_client.ApiClient(configuration))
-href = 'id_example' # str | A relative URI for the resource.
+user_href = 'user_href_example' # str | URI of User. e.g.: /users/1/
 
 try:
-    api_response = api_instance.users_read(href)
+    api_response = api_instance.users_read(user_href)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling UsersApi->users_read: %s\n" % e)
@@ -260,7 +258,7 @@ except ApiException as e:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **href** | [**str**](.md)| A relative URI for the resource. | 
+ **user_href** | **str**| URI of User. e.g.: /users/1/ | 
 
 ### Return type
 
@@ -278,7 +276,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **users_update**
-> User users_update(href, data)
+> User users_update(user_href, data)
 
 
 
@@ -299,11 +297,11 @@ configuration.password = 'YOUR_PASSWORD'
 
 # create an instance of the API class
 api_instance = swagger_client.UsersApi(swagger_client.ApiClient(configuration))
-href = 'id_example' # str | A relative URI for the resource.
+user_href = 'user_href_example' # str | URI of User. e.g.: /users/1/
 data = swagger_client.User() # User | 
 
 try:
-    api_response = api_instance.users_update(href, data)
+    api_response = api_instance.users_update(user_href, data)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling UsersApi->users_update: %s\n" % e)
@@ -313,7 +311,7 @@ except ApiException as e:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **href** | [**str**](.md)| A relative URI for the resource. | 
+ **user_href** | **str**| URI of User. e.g.: /users/1/ | 
  **data** | [**User**](User.md)|  | 
 
 ### Return type

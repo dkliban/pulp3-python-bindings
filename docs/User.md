@@ -3,6 +3,7 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**id** | **int** |  | [optional] 
 **href** | **str** |  | [optional] 
 **created** | **datetime** | Timestamp of creation. | [optional] 
 **username** | **str** | Required. 150 characters or fewer. Letters, digits and @/./+/-/_ only. | 

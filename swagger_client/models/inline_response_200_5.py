@@ -16,7 +16,7 @@ import re  # noqa: F401
 
 import six
 
-from swagger_client.models.file_remote import FileRemote  # noqa: F401,E501
+from swagger_client.models.repository import Repository  # noqa: F401,E501
 
 
 class InlineResponse2005(object):
@@ -35,7 +35,7 @@ class InlineResponse2005(object):
     swagger_types = {
         'next': 'str',
         'previous': 'str',
-        'results': 'list[FileRemote]'
+        'results': 'list[Repository]'
     }
 
     attribute_map = {
@@ -106,7 +106,7 @@ class InlineResponse2005(object):
 
 
         :return: The results of this InlineResponse2005.  # noqa: E501
-        :rtype: list[FileRemote]
+        :rtype: list[Repository]
         """
         return self._results
 
@@ -116,7 +116,7 @@ class InlineResponse2005(object):
 
 
         :param results: The results of this InlineResponse2005.  # noqa: E501
-        :type: list[FileRemote]
+        :type: list[Repository]
         """
         if results is None:
             raise ValueError("Invalid value for `results`, must not be `None`")  # noqa: E501

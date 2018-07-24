@@ -92,6 +92,8 @@ class ProgressReport(object):
         :param message: The message of this ProgressReport.  # noqa: E501
         :type: str
         """
+        if message is not None and len(message) < 1:
+            raise ValueError("Invalid value for `message`, length must be greater than or equal to `1`")  # noqa: E501
 
         self._message = message
 
@@ -115,6 +117,8 @@ class ProgressReport(object):
         :param state: The state of this ProgressReport.  # noqa: E501
         :type: str
         """
+        if state is not None and len(state) < 1:
+            raise ValueError("Invalid value for `state`, length must be greater than or equal to `1`")  # noqa: E501
 
         self._state = state
 
@@ -184,6 +188,8 @@ class ProgressReport(object):
         :param suffix: The suffix of this ProgressReport.  # noqa: E501
         :type: str
         """
+        if suffix is not None and len(suffix) < 1:
+            raise ValueError("Invalid value for `suffix`, length must be greater than or equal to `1`")  # noqa: E501
 
         self._suffix = suffix
 

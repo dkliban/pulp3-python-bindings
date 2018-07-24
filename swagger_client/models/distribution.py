@@ -31,6 +31,7 @@ class Distribution(object):
                             and the value is json key in definition.
     """
     swagger_types = {
+        'id': 'int',
         'href': 'str',
         'created': 'datetime',
         'name': 'str',
@@ -42,6 +43,7 @@ class Distribution(object):
     }
 
     attribute_map = {
+        'id': 'id',
         'href': '_href',
         'created': 'created',
         'name': 'name',
@@ -52,9 +54,10 @@ class Distribution(object):
         'repository': 'repository'
     }
 
-    def __init__(self, href=None, created=None, name=None, base_path=None, publisher=None, publication=None, base_url=None, repository=None):  # noqa: E501
+    def __init__(self, id=None, href=None, created=None, name=None, base_path=None, publisher=None, publication=None, base_url=None, repository=None):  # noqa: E501
         """Distribution - a model defined in Swagger"""  # noqa: E501
 
+        self._id = None
         self._href = None
         self._created = None
         self._name = None
@@ -65,6 +68,8 @@ class Distribution(object):
         self._repository = None
         self.discriminator = None
 
+        if id is not None:
+            self.id = id
         if href is not None:
             self.href = href
         if created is not None:
@@ -79,6 +84,27 @@ class Distribution(object):
             self.base_url = base_url
         if repository is not None:
             self.repository = repository
+
+    @property
+    def id(self):
+        """Gets the id of this Distribution.  # noqa: E501
+
+
+        :return: The id of this Distribution.  # noqa: E501
+        :rtype: int
+        """
+        return self._id
+
+    @id.setter
+    def id(self, id):
+        """Sets the id of this Distribution.
+
+
+        :param id: The id of this Distribution.  # noqa: E501
+        :type: int
+        """
+
+        self._id = id
 
     @property
     def href(self):
@@ -128,7 +154,7 @@ class Distribution(object):
     def name(self):
         """Gets the name of this Distribution.  # noqa: E501
 
-        The name of the distribution. Ex, `rawhide` and `stable`.  # noqa: E501
+        A unique distribution name. Ex, `rawhide` and `stable`.  # noqa: E501
 
         :return: The name of this Distribution.  # noqa: E501
         :rtype: str
@@ -139,7 +165,7 @@ class Distribution(object):
     def name(self, name):
         """Sets the name of this Distribution.
 
-        The name of the distribution. Ex, `rawhide` and `stable`.  # noqa: E501
+        A unique distribution name. Ex, `rawhide` and `stable`.  # noqa: E501
 
         :param name: The name of this Distribution.  # noqa: E501
         :type: str
@@ -148,6 +174,8 @@ class Distribution(object):
             raise ValueError("Invalid value for `name`, must not be `None`")  # noqa: E501
         if name is not None and len(name) > 255:
             raise ValueError("Invalid value for `name`, length must be less than or equal to `255`")  # noqa: E501
+        if name is not None and len(name) < 1:
+            raise ValueError("Invalid value for `name`, length must be greater than or equal to `1`")  # noqa: E501
 
         self._name = name
 
@@ -175,6 +203,8 @@ class Distribution(object):
             raise ValueError("Invalid value for `base_path`, must not be `None`")  # noqa: E501
         if base_path is not None and len(base_path) > 255:
             raise ValueError("Invalid value for `base_path`, length must be less than or equal to `255`")  # noqa: E501
+        if base_path is not None and len(base_path) < 1:
+            raise ValueError("Invalid value for `base_path`, length must be greater than or equal to `1`")  # noqa: E501
 
         self._base_path = base_path
 
@@ -244,6 +274,8 @@ class Distribution(object):
         :param base_url: The base_url of this Distribution.  # noqa: E501
         :type: str
         """
+        if base_url is not None and len(base_url) < 1:
+            raise ValueError("Invalid value for `base_url`, length must be greater than or equal to `1`")  # noqa: E501
 
         self._base_url = base_url
 

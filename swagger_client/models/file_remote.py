@@ -31,6 +31,7 @@ class FileRemote(object):
                             and the value is json key in definition.
     """
     swagger_types = {
+        'id': 'int',
         'href': 'str',
         'created': 'datetime',
         'type': 'str',
@@ -49,6 +50,7 @@ class FileRemote(object):
     }
 
     attribute_map = {
+        'id': 'id',
         'href': '_href',
         'created': 'created',
         'type': 'type',
@@ -66,9 +68,10 @@ class FileRemote(object):
         'last_updated': 'last_updated'
     }
 
-    def __init__(self, href=None, created=None, type=None, name=None, url=None, validate=None, ssl_ca_certificate=None, ssl_client_certificate=None, ssl_client_key=None, ssl_validation=None, proxy_url=None, username=None, password=None, last_synced=None, last_updated=None):  # noqa: E501
+    def __init__(self, id=None, href=None, created=None, type=None, name=None, url=None, validate=None, ssl_ca_certificate=None, ssl_client_certificate=None, ssl_client_key=None, ssl_validation=None, proxy_url=None, username=None, password=None, last_synced=None, last_updated=None):  # noqa: E501
         """FileRemote - a model defined in Swagger"""  # noqa: E501
 
+        self._id = None
         self._href = None
         self._created = None
         self._type = None
@@ -86,6 +89,8 @@ class FileRemote(object):
         self._last_updated = None
         self.discriminator = None
 
+        if id is not None:
+            self.id = id
         if href is not None:
             self.href = href
         if created is not None:
@@ -114,6 +119,27 @@ class FileRemote(object):
             self.last_synced = last_synced
         if last_updated is not None:
             self.last_updated = last_updated
+
+    @property
+    def id(self):
+        """Gets the id of this FileRemote.  # noqa: E501
+
+
+        :return: The id of this FileRemote.  # noqa: E501
+        :rtype: int
+        """
+        return self._id
+
+    @id.setter
+    def id(self, id):
+        """Sets the id of this FileRemote.
+
+
+        :param id: The id of this FileRemote.  # noqa: E501
+        :type: int
+        """
+
+        self._id = id
 
     @property
     def href(self):
@@ -177,6 +203,8 @@ class FileRemote(object):
         :param type: The type of this FileRemote.  # noqa: E501
         :type: str
         """
+        if type is not None and len(type) < 1:
+            raise ValueError("Invalid value for `type`, length must be greater than or equal to `1`")  # noqa: E501
 
         self._type = type
 
@@ -202,6 +230,8 @@ class FileRemote(object):
         """
         if name is None:
             raise ValueError("Invalid value for `name`, must not be `None`")  # noqa: E501
+        if name is not None and len(name) < 1:
+            raise ValueError("Invalid value for `name`, length must be greater than or equal to `1`")  # noqa: E501
 
         self._name = name
 
@@ -227,6 +257,8 @@ class FileRemote(object):
         """
         if url is None:
             raise ValueError("Invalid value for `url`, must not be `None`")  # noqa: E501
+        if url is not None and len(url) < 1:
+            raise ValueError("Invalid value for `url`, length must be greater than or equal to `1`")  # noqa: E501
 
         self._url = url
 

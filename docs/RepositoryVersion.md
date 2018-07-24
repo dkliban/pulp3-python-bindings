@@ -3,7 +3,9 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**id** | **int** |  | [optional] 
 **href** | **str** |  | [optional] 
+**created** | **datetime** | Timestamp of creation. | [optional] 
 **content_href** | **str** |  | [optional] 
 **added_href** | **str** |  | [optional] 
 **removed_href** | **str** |  | [optional] 
